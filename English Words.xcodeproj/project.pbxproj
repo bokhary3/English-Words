@@ -11,6 +11,7 @@
 		4F12FF821FFEB98000710EAA /* SearchResultTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F12FF811FFEB98000710EAA /* SearchResultTableViewController.swift */; };
 		4F12FF841FFEBBBC00710EAA /* SearchWordTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F12FF831FFEBBBC00710EAA /* SearchWordTableViewCell.swift */; };
 		4F12FF861FFEC02100710EAA /* Initializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F12FF851FFEC02100710EAA /* Initializer.swift */; };
+		4F34E60B20080AED00836171 /* RememberedWordsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F34E60A20080AED00836171 /* RememberedWordsTableViewController.swift */; };
 		4F6D710A1FEAF1490014FC39 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6D71091FEAF1490014FC39 /* AppDelegate.swift */; };
 		4F6D710F1FEAF1490014FC39 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F6D710D1FEAF1490014FC39 /* Main.storyboard */; };
 		4F6D71111FEAF1490014FC39 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F6D71101FEAF1490014FC39 /* Assets.xcassets */; };
@@ -22,8 +23,11 @@
 		4F6D712E1FEAFF1F0014FC39 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6D712D1FEAFF1F0014FC39 /* Constants.swift */; };
 		4F6D71301FEAFFF80014FC39 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6D712F1FEAFFF80014FC39 /* Helpers.swift */; };
 		4FE622BA1FF6B7F900C61957 /* RememberedWords.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4FE622B81FF6B7F900C61957 /* RememberedWords.xcdatamodeld */; };
-		4FEF91001FEB073C002D48A8 /* Words_English.xlsx in Resources */ = {isa = PBXBuildFile; fileRef = 4F6D71331FEB01250014FC39 /* Words_English.xlsx */; };
 		4FEF91031FEB09E2002D48A8 /* Words_English.csv in Resources */ = {isa = PBXBuildFile; fileRef = 4FEF91011FEB08DA002D48A8 /* Words_English.csv */; };
+		4FF44FD120040AD800947EC2 /* UserStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF44FD020040AD800947EC2 /* UserStatus.swift */; };
+		4FFA9DE720069DEE00559C8F /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFA9DE620069DEE00559C8F /* SettingsTableViewController.swift */; };
+		4FFA9DE92006A0C100559C8F /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFA9DE82006A0C100559C8F /* Alert.swift */; };
+		4FFA9DEB2006AC1100559C8F /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FFA9DEA2006AC1100559C8F /* StoreKit.framework */; };
 		5569BFA1099BAA6E295BDBC3 /* Pods_English_Words.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B2CFB607BA1591B565F3C89 /* Pods_English_Words.framework */; };
 /* End PBXBuildFile section */
 
@@ -34,6 +38,7 @@
 		4F12FF811FFEB98000710EAA /* SearchResultTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultTableViewController.swift; sourceTree = "<group>"; };
 		4F12FF831FFEBBBC00710EAA /* SearchWordTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchWordTableViewCell.swift; sourceTree = "<group>"; };
 		4F12FF851FFEC02100710EAA /* Initializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Initializer.swift; sourceTree = "<group>"; };
+		4F34E60A20080AED00836171 /* RememberedWordsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RememberedWordsTableViewController.swift; sourceTree = "<group>"; };
 		4F6D71061FEAF1490014FC39 /* English Words.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "English Words.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F6D71091FEAF1490014FC39 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4F6D710E1FEAF1490014FC39 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -46,9 +51,12 @@
 		4F6D712A1FEAF74E0014FC39 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		4F6D712D1FEAFF1F0014FC39 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		4F6D712F1FEAFFF80014FC39 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
-		4F6D71331FEB01250014FC39 /* Words_English.xlsx */ = {isa = PBXFileReference; lastKnownFileType = file; path = Words_English.xlsx; sourceTree = "<group>"; };
 		4FE622B91FF6B7F900C61957 /* RememberedWords.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RememberedWords.xcdatamodel; sourceTree = "<group>"; };
 		4FEF91011FEB08DA002D48A8 /* Words_English.csv */ = {isa = PBXFileReference; lastKnownFileType = text; path = Words_English.csv; sourceTree = "<group>"; };
+		4FF44FD020040AD800947EC2 /* UserStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStatus.swift; sourceTree = "<group>"; };
+		4FFA9DE620069DEE00559C8F /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
+		4FFA9DE82006A0C100559C8F /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
+		4FFA9DEA2006AC1100559C8F /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		AE73155B69956D899A87A16B /* Pods-English Words.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-English Words.debug.xcconfig"; path = "Pods/Target Support Files/Pods-English Words/Pods-English Words.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -58,6 +66,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5569BFA1099BAA6E295BDBC3 /* Pods_English_Words.framework in Frameworks */,
+				4FFA9DEB2006AC1100559C8F /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,6 +121,8 @@
 			children = (
 				4F6D71221FEAF3700014FC39 /* MainTableViewController.swift */,
 				4F12FF811FFEB98000710EAA /* SearchResultTableViewController.swift */,
+				4FFA9DE620069DEE00559C8F /* SettingsTableViewController.swift */,
+				4F34E60A20080AED00836171 /* RememberedWordsTableViewController.swift */,
 			);
 			path = "🔨Controllers";
 			sourceTree = "<group>";
@@ -165,6 +176,8 @@
 				4F6D712F1FEAFFF80014FC39 /* Helpers.swift */,
 				4F07DDF51FF0456D00395BEF /* Extensions.swift */,
 				4F12FF851FFEC02100710EAA /* Initializer.swift */,
+				4FF44FD020040AD800947EC2 /* UserStatus.swift */,
+				4FFA9DE82006A0C100559C8F /* Alert.swift */,
 			);
 			path = "💵Helpers";
 			sourceTree = "<group>";
@@ -172,7 +185,6 @@
 		4F6D71311FEB00AB0014FC39 /* 💰Resources */ = {
 			isa = PBXGroup;
 			children = (
-				4F6D71331FEB01250014FC39 /* Words_English.xlsx */,
 				4FEF91011FEB08DA002D48A8 /* Words_English.csv */,
 				4FE622B81FF6B7F900C61957 /* RememberedWords.xcdatamodeld */,
 			);
@@ -182,6 +194,7 @@
 		6CD6AB9613EE6B9108E9F8EA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4FFA9DEA2006AC1100559C8F /* StoreKit.framework */,
 				0B2CFB607BA1591B565F3C89 /* Pods_English_Words.framework */,
 			);
 			name = Frameworks;
@@ -232,6 +245,11 @@
 					4F6D71051FEAF1490014FC39 = {
 						CreatedOnToolsVersion = 9.0;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.InAppPurchase = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -262,7 +280,6 @@
 				4F6D71141FEAF1490014FC39 /* LaunchScreen.storyboard in Resources */,
 				4F6D71111FEAF1490014FC39 /* Assets.xcassets in Resources */,
 				4F6D710F1FEAF1490014FC39 /* Main.storyboard in Resources */,
-				4FEF91001FEB073C002D48A8 /* Words_English.xlsx in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -322,14 +339,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F6D710A1FEAF1490014FC39 /* AppDelegate.swift in Sources */,
+				4F34E60B20080AED00836171 /* RememberedWordsTableViewController.swift in Sources */,
 				4F6D71301FEAFFF80014FC39 /* Helpers.swift in Sources */,
 				4F6D71281FEAF3D80014FC39 /* SectionTableViewCell.swift in Sources */,
+				4FFA9DE92006A0C100559C8F /* Alert.swift in Sources */,
 				4F07DDF61FF0456D00395BEF /* Extensions.swift in Sources */,
 				4F12FF821FFEB98000710EAA /* SearchResultTableViewController.swift in Sources */,
 				4F6D71261FEAF3C70014FC39 /* WordTableViewCell.swift in Sources */,
+				4FFA9DE720069DEE00559C8F /* SettingsTableViewController.swift in Sources */,
 				4F12FF841FFEBBBC00710EAA /* SearchWordTableViewCell.swift in Sources */,
 				4F6D71231FEAF3700014FC39 /* MainTableViewController.swift in Sources */,
 				4F12FF861FFEC02100710EAA /* Initializer.swift in Sources */,
+				4FF44FD120040AD800947EC2 /* UserStatus.swift in Sources */,
 				4F6D712B1FEAF74E0014FC39 /* Models.swift in Sources */,
 				4FE622BA1FF6B7F900C61957 /* RememberedWords.xcdatamodeld in Sources */,
 				4F6D712E1FEAFF1F0014FC39 /* Constants.swift in Sources */,
@@ -470,13 +491,16 @@
 			baseConfigurationReference = AE73155B69956D899A87A16B /* Pods-English Words.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = E9WC5VCAQB;
 				INFOPLIST_FILE = "$(SRCROOT)/English Words/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "bokhary.English-Words";
+				PRODUCT_BUNDLE_IDENTIFIER = bokhary.All.English.Words;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -487,13 +511,16 @@
 			baseConfigurationReference = 35E8AD76A6DFD43E122C7B3E /* Pods-English Words.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = E9WC5VCAQB;
 				INFOPLIST_FILE = "$(SRCROOT)/English Words/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "bokhary.English-Words";
+				PRODUCT_BUNDLE_IDENTIFIER = bokhary.All.English.Words;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

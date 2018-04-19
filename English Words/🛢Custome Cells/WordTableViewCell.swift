@@ -9,8 +9,9 @@
 import UIKit
 import SafariServices
 import CoreData
+import EasyTipView
 class WordTableViewCell: UITableViewCell {
-
+    
     //MARK: Variables
     static let identifier = "WordCell"
     var mainTVC:MainTableViewController!
@@ -20,11 +21,65 @@ class WordTableViewCell: UITableViewCell {
     @IBOutlet weak var oBtnDictionary: UIButton!
     @IBOutlet weak var oBtnInfo: UIButton!
     @IBOutlet weak var oBtnTranslate: UIButton!
+    @IBOutlet weak var oBtnYouGlish: UIButton!
     
     //MARK: Actions
     @IBAction func aBtnRememper(_ sender: UIButton) {
         let indexPath = self.mainTVC.tableView.indexPath(for: sender)!
         let word = self.mainTVC.chars[indexPath.section].words[indexPath.row]
+        let cell = self.mainTVC.tableView.cellForRow(at: indexPath)
+        if !UserStatus.rememberTipShowed {
+            UserStatus.rememberTipShowed = true
+            self.showRemeberTipe(sender: sender, cell: cell!,message: "Remember it?")
+        }
+        else{
+            self.remeberWord(word: word)
+        }
+    }
+    @IBAction func aBtnDictionary(_ sender: UIButton) {
+        let indexPath = self.mainTVC.tableView.indexPath(for: sender)!
+        let word = self.mainTVC.chars[indexPath.section].words[indexPath.row]
+        self.openActionSheetSites(sender: sender, word: word.title.components(separatedBy: ",").first!)
+    }
+    @IBAction func aBtnInfo(_ sender: UIButton) {
+        let indexPath = self.mainTVC.tableView.indexPath(for: sender)!
+        let word = self.mainTVC.chars[indexPath.section].words[indexPath.row]
+        
+        let alert = UIAlertController(title: "\'\(word.title.components(separatedBy: ",").first!)\' info", message: "\'\(word.title.components(separatedBy: ",").first!)\' is (\(word.title.components(separatedBy: ",(")[1]), occures \(word.title.components(separatedBy: ",")[1]) times.", preferredStyle: .alert)
+        if let popoverController = alert.popoverPresentationController {
+            popoverController.sourceView = sender
+            popoverController.sourceRect = sender.bounds
+        }
+        
+        let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
+        alert.addAction(okAction)
+        self.mainTVC.present(alert, animated: true, completion: nil)
+    }
+    @IBAction func aBtnTranslate(_ sender: UIButton) {
+        let indexPath = self.mainTVC.tableView.indexPath(for: sender)!
+        let word = self.mainTVC.chars[indexPath.section].words[indexPath.row]
+        
+        let url = Constants.WebSites.googleTranslate + word.title.components(separatedBy: ",").first!
+        self.openSafariVC(url: url)
+    }
+    @IBAction func aBtnYouGlish(_ sender: UIButton) {
+        let indexPath = self.mainTVC.tableView.indexPath(for: sender)!
+        let word = self.mainTVC.chars[indexPath.section].words[indexPath.row]
+        let cell = self.mainTVC.tableView.cellForRow(at: indexPath)
+        if !UserStatus.youGlishTipShowed {
+            UserStatus.youGlishTipShowed = true
+            self.showRemeberTipe(sender: sender, cell: cell!,message: "Listen to this word?")
+        }
+        else{
+            let url = Constants.WebSites.youGlish + word.title.components(separatedBy: ",").first!
+            self.openSafariVC(url: url)
+        }
+    }
+    //MARK: Methods
+    func setupViews() {
+
+    }
+    func remeberWord(word:Word){
         //1
         guard let appDelegate =
             UIApplication.shared.delegate as? AppDelegate else {
@@ -59,40 +114,25 @@ class WordTableViewCell: UITableViewCell {
             print("error executing fetch request: \(error)")
         }
     }
-    @IBAction func aBtnDictionary(_ sender: UIButton) {
-        let indexPath = self.mainTVC.tableView.indexPath(for: sender)!
-        let word = self.mainTVC.chars[indexPath.section].words[indexPath.row]
-        self.openActionSheetSites(sender: sender, word: word.title.components(separatedBy: ",").first!)
-    }
-    @IBAction func aBtnInfo(_ sender: UIButton) {
-        let indexPath = self.mainTVC.tableView.indexPath(for: sender)!
-        let word = self.mainTVC.chars[indexPath.section].words[indexPath.row]
+    func showRemeberTipe(sender:UIButton,cell:UITableViewCell,message: String){
+        var preferences = EasyTipView.Preferences()
+        preferences.drawing.font = UIFont(name: "Futura-Medium", size: 15)!
+        preferences.drawing.foregroundColor = .white
+        preferences.drawing.backgroundColor = Helper.colorOf(hex: "007AFF")
+        preferences.drawing.arrowPosition = EasyTipView.ArrowPosition.top
         
-        let alert = UIAlertController(title: "\'\(word.title.components(separatedBy: ",").first!)\' info", message: "\'\(word.title.components(separatedBy: ",").first!)\' is (\(word.title.components(separatedBy: ",(")[1]), occures \(word.title.components(separatedBy: ",")[1]) ", preferredStyle: .alert)
-        if let popoverController = alert.popoverPresentationController {
-            popoverController.sourceView = sender
-            popoverController.sourceRect = sender.bounds
-        }
-        
-        let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
-        alert.addAction(okAction)
-        self.mainTVC.present(alert, animated: true, completion: nil)
-    }
-    
-    @IBAction func aBtnTranslate(_ sender: UIButton) {
-        let indexPath = self.mainTVC.tableView.indexPath(for: sender)!
-        let word = self.mainTVC.chars[indexPath.section].words[indexPath.row]
-
-        let url = Constants.WebSites.googleTranslate + word.title.components(separatedBy: ",").first!
-        self.openSafariVC(url: url)
-    }
-    
-    //MARK: Methods
-    func setupViews() {
-        
+        /*
+         * Optionally you can make these preferences global for all future EasyTipViews
+         */
+        EasyTipView.globalPreferences = preferences
+        EasyTipView.show(forView: sender,
+                         withinSuperview: cell.contentView,
+                         text: message,
+                         preferences: preferences,
+                         delegate: self.mainTVC)
     }
     func configureCell(indexPath:IndexPath){
-       let word =  self.mainTVC.chars[indexPath.section].words[indexPath.row]
+        let word =  self.mainTVC.chars[indexPath.section].words[indexPath.row]
         let wordObjs = self.mainTVC.remembredWords.filter { (wordObj) -> Bool in
             wordObj.value(forKey: "id") as! String == word.title
         }
@@ -100,13 +140,15 @@ class WordTableViewCell: UITableViewCell {
             word.isRemebered = wordObjs[0].value(forKey: "isRemember") as! Bool
         }
         self.oBtnRemember.setBackgroundImage(word.isRemebered ? #imageLiteral(resourceName: "check-box"):#imageLiteral(resourceName: "blank-check") , for: .normal)
+        
         let wordComponent = word.title.components(separatedBy: ",")
         if wordComponent.count > 0 {
-        self.oLblWordTitle.text = wordComponent.first
+            self.oLblWordTitle.text = wordComponent.first
         }
         else{
             self.oLblWordTitle.text =  word.title
         }
+        self.oBtnTranslate.isHidden = !UserStatus.productPurchased
         
     }
     
@@ -143,5 +185,13 @@ class WordTableViewCell: UITableViewCell {
         let safariVC = SFSafariViewController(url: URL(string:url)!)
         self.mainTVC.present(safariVC, animated: true, completion: nil)
     }
-   
+    
+}
+
+extension MainTableViewController:EasyTipViewDelegate{
+    func easyTipViewDidDismiss(_ tipView: EasyTipView) {
+        tipView.dismiss()
+    }
+    
+    
 }

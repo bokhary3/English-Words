@@ -14,6 +14,7 @@ struct Constants {
     struct StoryboardIds {
         static let mainSB = "Main"
         static let searchResultTVC = "SearchResultTVC"
+        static let homeNC = "HomeNC"
     }
     
     struct WebSites {
@@ -21,6 +22,7 @@ struct Constants {
         static let cambridge = "https://dictionary.cambridge.org/dictionary/english-arabic/"
         static let merriam = "https://www.merriam-webster.com/dictionary/"
         static let googleTranslate = "https://translate.google.com/#en/ar/"
+        static let youGlish = "https://youglish.com/search/"
     }
     
     struct Keys {
@@ -29,5 +31,16 @@ struct Constants {
         static let adMobInterstitial = "ca-app-pub-1448110355544135/6755344804"
     }
     
+    struct UserData {
+        static let productPurchasedKey = "PRODUCTPURCHASED"
+        static let rememberTipShowedKey = "REMEMBERTIPSHOWED"
+        static let youGlishTipShowedKey = "YOUGLISHTIPSHOWED"
+    }
+    
+    struct PurchaseData {
+        static let productID = "bokhary.All.English.Words.RemoveAds"
+    }
+    
+    static var fromPurchaseProcess = false
     
 }

@@ -19,11 +19,16 @@ class SectionTableViewCell: UITableViewCell {
     @IBOutlet weak var oBtnSelect: UIButton!
     //MARK: Actions
     @IBAction func aBtnDropDown(_ sender: UIButton) {
-        if self.mainTVC.interstitial.isReady {
-            self.mainTVC.interstitial.present(fromRootViewController: self.mainTVC)
-        } else {
-            print("Ad wasn't ready")
+        if !UserStatus.productPurchased{
+            if self.mainTVC.adsClicksCount % 8 == 0 {
+            if self.mainTVC.interstitial.isReady {
+                self.mainTVC.interstitial.present(fromRootViewController: self.mainTVC)
+            } else {
+                print("Ad wasn't ready")
+            }
         }
+        }
+        self.mainTVC.adsClicksCount += 1
         let char  = self.mainTVC.chars[sender.tag]
         if char.words.count > 0 {
             char.isExpanded = !char.isExpanded

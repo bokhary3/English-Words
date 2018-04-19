@@ -1,12 +1,18 @@
 PODS:
+  - EasyTipView (1.0.2)
   - Google-Mobile-Ads-SDK (7.27.0)
+  - SwiftyStoreKit (0.12.0)
 
 DEPENDENCIES:
+  - EasyTipView
   - Google-Mobile-Ads-SDK
+  - SwiftyStoreKit
 
 SPEC CHECKSUMS:
+  EasyTipView: b93a19be981cc2221d6d7191d49872f547e0bebf
   Google-Mobile-Ads-SDK: 83f7f890e638ce8f1debd440ea363338c9f6be3b
+  SwiftyStoreKit: 59c57f4aa11d3c564e7e5f589eae8bf98ac59f3d
 
-PODFILE CHECKSUM: 046d89126c32194935a077699a8985ed5211bbb0
+PODFILE CHECKSUM: 07ede64ae61a4317a8317a1e8e50a437c4066f8f
 
 COCOAPODS: 1.2.1

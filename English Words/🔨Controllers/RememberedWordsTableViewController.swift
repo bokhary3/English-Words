@@ -1,20 +1,18 @@
 //
-//  SearchResultTableViewController.swift
+//  RememberedWordsTableViewController.swift
 //  English Words
 //
-//  Created by Elsayed Hussein on 1/4/18.
+//  Created by Elsayed Hussein on 1/11/18.
 //  Copyright © 2018 mac. All rights reserved.
 //
 
 import UIKit
 import CoreData
-class SearchResultTableViewController: UITableViewController {
+class RememberedWordsTableViewController: UITableViewController {
     
     //MARK: Variables
-    var allWords = [Word]()
-    var matchingWords = [Word]()
-    var remembredWords = [NSManagedObject]()
-    
+    var results: [NSManagedObject] = []
+    var dataCome = false
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
@@ -25,9 +23,34 @@ class SearchResultTableViewController: UITableViewController {
     
     //MARK: Methods
     func setupViews() {
-        self.matchingWords = self.allWords
+        self.navigationItem.title = "Remembered Words"
+        self.tableView.tableFooterView = UIView(frame:CGRect.zero)
+        DispatchQueue.main.async {
+            self.rememberedWordsCount()
+        }
     }
-    
+    func rememberedWordsCount(){
+        guard let appDelegate =
+            UIApplication.shared.delegate as? AppDelegate else {
+                return
+        }
+        
+        // 1
+        let managedContext =
+            appDelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "WordObject")
+        fetchRequest.predicate = NSPredicate(format: "isRemember = %@", true as CVarArg)
+        
+        
+        do {
+            results = try managedContext.fetch(fetchRequest)
+            self.dataCome = true
+            self.tableView.reloadData()
+        }
+        catch {
+            print("error executing fetch request: \(error)")
+        }
+    }
     
     // MARK: - Table view data source
     
@@ -36,19 +59,26 @@ class SearchResultTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.matchingWords.count
+        return Helper.emptyTableView(tableView: tableView, dataCount: self.results.count, dataCome: self.dataCome, emptyTableViewMessage: "You didn't remember any word! :(", seperatorStyle: .singleLine)
     }
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: SearchWordTableViewCell.identifier, for: indexPath)    as! SearchWordTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         
         // Configure the cell...
-        cell.searchResultTVC = self
-        cell.configureCell(indexPath: indexPath)
+        let wordObj = self.results[indexPath.row]
+        let word = wordObj.value(forKey: "id") as? String ?? ""
+        let components = word.components(separatedBy: ",")
+        if components.count > 0 {
+            cell.textLabel?.text = components[0]
+        }
+        else{
+            cell.textLabel?.text = ""
+        }
         return cell
     }
-    
+
     
     /*
      // Override to support conditional editing of the table view.
@@ -95,18 +125,4 @@ class SearchResultTableViewController: UITableViewController {
      }
      */
     
-}
-extension SearchResultTableViewController:UISearchResultsUpdating{
-    func updateSearchResults(for searchController: UISearchController) {
-        let searchText = searchController.searchBar.text!
-        if !searchText.isEmpty{
-            matchingWords = allWords.filter({
-                $0.title.lowercased().contains(searchText.lowercased())
-            })
-        }
-        else {
-            matchingWords = allWords
-        }
-        self.tableView.reloadData()
-    }
 }

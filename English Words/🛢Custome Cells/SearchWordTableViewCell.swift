@@ -19,7 +19,8 @@ class SearchWordTableViewCell: UITableViewCell {
     @IBOutlet weak var oBtnInfo: UIButton!
     @IBOutlet weak var oBtnTranslate: UIButton!
     @IBOutlet weak var oBtnRemember: UIButton!
-
+    @IBOutlet weak var oBtnYouGlish: UIButton!
+    
     //MARK: Actions
     @IBAction func aBtnDictionary(_ sender: UIButton) {
         let indexPath = self.searchResultTVC.tableView.indexPath(for: sender)!
@@ -84,6 +85,15 @@ class SearchWordTableViewCell: UITableViewCell {
             print("error executing fetch request: \(error)")
         }
     }
+    @IBAction func aBtnYouGlish(_ sender: UIButton) {
+        let indexPath = self.searchResultTVC.tableView.indexPath(for: sender)!
+        let word = self.searchResultTVC.matchingWords[indexPath.row]
+        let url = Constants.WebSites.youGlish + word.title.components(separatedBy: ",").first!
+            self.openSafariVC(url: url)
+    }
+    
+    
+    
     //MARK: Methods
     func setupViews() {
         

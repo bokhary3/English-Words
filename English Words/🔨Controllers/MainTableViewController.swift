@@ -9,7 +9,6 @@
 import UIKit
 import CoreData
 import GoogleMobileAds
-
 class MainTableViewController: UITableViewController {
     
     //MARK: Variables
@@ -19,32 +18,40 @@ class MainTableViewController: UITableViewController {
     var interstitial: GADInterstitial!
     var searchController = UISearchController(searchResultsController: nil)
     var cleanWords = [String]()
+    var dataCome = false
+    var adsClicksCount = 0
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
     }
-    
     //MARK: Outlets
+    @IBOutlet weak var oViewNavigationTitle: UIView!
+    @IBOutlet weak var oLblNavigationTitle: UILabel!
+    @IBOutlet weak var oActivityIndicator: UIActivityIndicatorView!
     //MARK: Actions
     
     //MARK: Methods
     func setupViews() {
         
         
+        
         // create banner view
-        bannerView = GADBannerView(adSize: kGADAdSizeMediumRectangle)
-        bannerView.adUnitID = Constants.Keys.adMobBannerUnitID
-        bannerView.rootViewController = self
-        bannerView.delegate = self
-        self.tableView.tableHeaderView = bannerView
-        self.bannerView.load(GADRequest())
-        
-        // create interstistial
-        interstitial = self.createAndLoadInterstitial()
-        
-        
-        // setup search bar
-        setupSearchBar()
+        if !UserStatus.productPurchased{
+            let bannerSize = UIDevice.current.userInterfaceIdiom == .phone ? kGADAdSizeBanner : kGADAdSizeLeaderboard
+            bannerView = GADBannerView(adSize: bannerSize)
+            bannerView.adUnitID = Constants.Keys.adMobBannerUnitID
+            bannerView.rootViewController = self
+            bannerView.delegate = self
+            self.tableView.tableHeaderView = bannerView
+            self.bannerView.load(GADRequest())
+            
+            // create interstistial
+            interstitial = self.createAndLoadInterstitial()
+        }
+        else{
+            // setup search bar
+            setupSearchBar()
+        }
         
         
         // load words from file
@@ -58,13 +65,40 @@ class MainTableViewController: UITableViewController {
             wordss.first
         }
         
-        
-        for word in cleanWords{
-            if self.save(word: word) == 2 {
-                break
+        if !UserStatus.productPurchased {
+            cleanWords = cleanWords.chunks(cleanWords.count-750)[0]
+        }
+        if Constants.fromPurchaseProcess {
+            guard let appDelegate =
+                UIApplication.shared.delegate as? AppDelegate else {
+                    return
+            }
+            
+            // 1
+            let managedContext =
+                appDelegate.persistentContainer.viewContext
+        // 2
+            let deleteFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "WordObject")
+            let deleteRequest = NSBatchDeleteRequest(fetchRequest: deleteFetch)
+            
+            do {
+                try managedContext.execute(deleteRequest)
+                try managedContext.save()
+            } catch {
+                print ("There was an error")
             }
         }
-        self.rememberedWordsCount()
+        DispatchQueue.main.async(execute: {
+            for word in self.cleanWords{
+                if self.save(word: word) == 2 {
+                    break
+                }
+            }
+            
+            self.rememberedWordsCount()
+            
+        })
+
         fetchWords(words: cleanWords)
     }
     func setupSearchBar(){
@@ -76,7 +110,7 @@ class MainTableViewController: UITableViewController {
         definesPresentationContext = true
         searchController.hidesNavigationBarDuringPresentation = true
         searchController.searchBar.delegate = self
-      
+        
         self.tableView.tableHeaderView = searchController.searchBar
         
     }
@@ -92,6 +126,7 @@ class MainTableViewController: UITableViewController {
             let char = Char(isExpanded: false, words: wordsByChar)
             self.chars.append(char)
         }
+        self.dataCome = true
         self.tableView.reloadData()
     }
     func save(word: String)-> Int {
@@ -113,7 +148,6 @@ class MainTableViewController: UITableViewController {
             
             let wordObj = NSManagedObject(entity: entity,
                                           insertInto: managedContext)
-            
             // 3
             wordObj.setValue(word, forKeyPath: "id")
             wordObj.setValue(false, forKey: "isRemember")
@@ -174,7 +208,9 @@ class MainTableViewController: UITableViewController {
         
         do {
             results = try managedContext.fetch(fetchRequest)
-            self.navigationItem.title = "\(results.count)\\\(self.remembredWords.count)"
+            self.oLblNavigationTitle.text = "\(results.count)\\\(self.remembredWords.count)"
+            self.oViewNavigationTitle.isHidden = false
+            self.oActivityIndicator.stopAnimating()
         }
         catch {
             print("error executing fetch request: \(error)")
@@ -183,7 +219,8 @@ class MainTableViewController: UITableViewController {
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return self.chars.count
+        let count = UserStatus.productPurchased ? self.chars.count : self.chars.count - 10
+        return Helper.emptyTableView(tableView: tableView, dataCount: count,dataCome: self.dataCome,emptyTableViewMessage: "There is no words" ,seperatorStyle: .singleLine)
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
