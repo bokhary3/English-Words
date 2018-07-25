@@ -39,7 +39,7 @@ class RememberedWordsTableViewController: UITableViewController {
         let managedContext =
             appDelegate.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "WordObject")
-        fetchRequest.predicate = NSPredicate(format: "isRemember = %@", true as CVarArg)
+        fetchRequest.predicate = NSPredicate(format: "isRemember = %d", true)
         
         
         do {

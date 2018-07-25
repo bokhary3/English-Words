@@ -29,6 +29,11 @@
 		4FFA9DE92006A0C100559C8F /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFA9DE82006A0C100559C8F /* Alert.swift */; };
 		4FFA9DEB2006AC1100559C8F /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FFA9DEA2006AC1100559C8F /* StoreKit.framework */; };
 		5569BFA1099BAA6E295BDBC3 /* Pods_English_Words.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B2CFB607BA1591B565F3C89 /* Pods_English_Words.framework */; };
+		DA94160A2108BE6A00147F5B /* SectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA9416092108BE6A00147F5B /* SectionView.xib */; };
+		DAC88FE820FE14AA00C3FE94 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC88FE720FE14AA00C3FE94 /* MainViewModel.swift */; };
+		DAC88FEA20FE163700C3FE94 /* ViewModelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC88FE920FE163700C3FE94 /* ViewModelDelegate.swift */; };
+		DAC88FEC20FE19C400C3FE94 /* WordObjectManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC88FEB20FE19C400C3FE94 /* WordObjectManager.swift */; };
+		DAC88FEE20FE257C00C3FE94 /* Loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC88FED20FE257C00C3FE94 /* Loader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +63,11 @@
 		4FFA9DE82006A0C100559C8F /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		4FFA9DEA2006AC1100559C8F /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		AE73155B69956D899A87A16B /* Pods-English Words.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-English Words.debug.xcconfig"; path = "Pods/Target Support Files/Pods-English Words/Pods-English Words.debug.xcconfig"; sourceTree = "<group>"; };
+		DA9416092108BE6A00147F5B /* SectionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SectionView.xib; sourceTree = "<group>"; };
+		DAC88FE720FE14AA00C3FE94 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		DAC88FE920FE163700C3FE94 /* ViewModelDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelDelegate.swift; sourceTree = "<group>"; };
+		DAC88FEB20FE19C400C3FE94 /* WordObjectManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordObjectManager.swift; sourceTree = "<group>"; };
+		DAC88FED20FE257C00C3FE94 /* Loader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +104,7 @@
 		4F6D71081FEAF1490014FC39 /* English Words */ = {
 			isa = PBXGroup;
 			children = (
+				DAC88FE520FE145D00C3FE94 /* Moduls */,
 				4F6D71151FEAF1490014FC39 /* Info.plist */,
 				4F6D71311FEB00AB0014FC39 /* 💰Resources */,
 				4F6D712C1FEAFEFA0014FC39 /* 💵Helpers */,
@@ -101,8 +112,6 @@
 				4F6D71241FEAF39B0014FC39 /* 🛢Custome Cells */,
 				4F6D711F1FEAF1B10014FC39 /* 📋Plist */,
 				4F6D711E1FEAF1A20014FC39 /* 🌄Images */,
-				4F6D711D1FEAF18B0014FC39 /* 🖥Views */,
-				4F6D711C1FEAF1750014FC39 /* 🔨Controllers */,
 				4F6D711B1FEAF15F0014FC39 /* 💼Delegate */,
 			);
 			path = "English Words";
@@ -119,7 +128,7 @@
 		4F6D711C1FEAF1750014FC39 /* 🔨Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				4F6D71221FEAF3700014FC39 /* MainTableViewController.swift */,
+				DAC88FE620FE148A00C3FE94 /* Main Controller */,
 				4F12FF811FFEB98000710EAA /* SearchResultTableViewController.swift */,
 				4FFA9DE620069DEE00559C8F /* SettingsTableViewController.swift */,
 				4F34E60A20080AED00836171 /* RememberedWordsTableViewController.swift */,
@@ -132,6 +141,7 @@
 			children = (
 				4F6D71121FEAF1490014FC39 /* LaunchScreen.storyboard */,
 				4F6D710D1FEAF1490014FC39 /* Main.storyboard */,
+				DA9416092108BE6A00147F5B /* SectionView.xib */,
 			);
 			path = "🖥Views";
 			sourceTree = "<group>";
@@ -178,6 +188,9 @@
 				4F12FF851FFEC02100710EAA /* Initializer.swift */,
 				4FF44FD020040AD800947EC2 /* UserStatus.swift */,
 				4FFA9DE82006A0C100559C8F /* Alert.swift */,
+				DAC88FE920FE163700C3FE94 /* ViewModelDelegate.swift */,
+				DAC88FEB20FE19C400C3FE94 /* WordObjectManager.swift */,
+				DAC88FED20FE257C00C3FE94 /* Loader.swift */,
 			);
 			path = "💵Helpers";
 			sourceTree = "<group>";
@@ -209,6 +222,24 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		DAC88FE520FE145D00C3FE94 /* Moduls */ = {
+			isa = PBXGroup;
+			children = (
+				4F6D711C1FEAF1750014FC39 /* 🔨Controllers */,
+				4F6D711D1FEAF18B0014FC39 /* 🖥Views */,
+			);
+			path = Moduls;
+			sourceTree = "<group>";
+		};
+		DAC88FE620FE148A00C3FE94 /* Main Controller */ = {
+			isa = PBXGroup;
+			children = (
+				4F6D71221FEAF3700014FC39 /* MainTableViewController.swift */,
+				DAC88FE720FE14AA00C3FE94 /* MainViewModel.swift */,
+			);
+			path = "Main Controller";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -221,7 +252,6 @@
 				4F6D71031FEAF1490014FC39 /* Frameworks */,
 				4F6D71041FEAF1490014FC39 /* Resources */,
 				4A65704584FC4C211BD1BCD9 /* [CP] Embed Pods Frameworks */,
-				F893EB2CE9BEC99DBD1BB236 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -277,6 +307,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4FEF91031FEB09E2002D48A8 /* Words_English.csv in Resources */,
+				DA94160A2108BE6A00147F5B /* SectionView.xib in Resources */,
 				4F6D71141FEAF1490014FC39 /* LaunchScreen.storyboard in Resources */,
 				4F6D71111FEAF1490014FC39 /* Assets.xcassets in Resources */,
 				4F6D710F1FEAF1490014FC39 /* Main.storyboard in Resources */,
@@ -292,9 +323,14 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-English Words/Pods-English Words-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/EasyTipView/EasyTipView.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyStoreKit/SwiftyStoreKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EasyTipView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyStoreKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -307,28 +343,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-English Words-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		F893EB2CE9BEC99DBD1BB236 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-English Words/Pods-English Words-resources.sh\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -346,10 +370,14 @@
 				4F07DDF61FF0456D00395BEF /* Extensions.swift in Sources */,
 				4F12FF821FFEB98000710EAA /* SearchResultTableViewController.swift in Sources */,
 				4F6D71261FEAF3C70014FC39 /* WordTableViewCell.swift in Sources */,
+				DAC88FE820FE14AA00C3FE94 /* MainViewModel.swift in Sources */,
 				4FFA9DE720069DEE00559C8F /* SettingsTableViewController.swift in Sources */,
+				DAC88FEC20FE19C400C3FE94 /* WordObjectManager.swift in Sources */,
 				4F12FF841FFEBBBC00710EAA /* SearchWordTableViewCell.swift in Sources */,
 				4F6D71231FEAF3700014FC39 /* MainTableViewController.swift in Sources */,
 				4F12FF861FFEC02100710EAA /* Initializer.swift in Sources */,
+				DAC88FEE20FE257C00C3FE94 /* Loader.swift in Sources */,
+				DAC88FEA20FE163700C3FE94 /* ViewModelDelegate.swift in Sources */,
 				4FF44FD120040AD800947EC2 /* UserStatus.swift in Sources */,
 				4F6D712B1FEAF74E0014FC39 /* Models.swift in Sources */,
 				4FE622BA1FF6B7F900C61957 /* RememberedWords.xcdatamodeld in Sources */,

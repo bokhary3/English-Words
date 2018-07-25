@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 class Alert {
     
-    class func alert(title: String = "" , message :String , alertActionTitle:String = "Ok") {
+    class func alert(title: String = "" , message: String , alertActionTitle: String = "Ok") {
         
         if let topController = UIApplication.topViewController() {
             let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)

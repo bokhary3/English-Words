@@ -7,10 +7,12 @@
 //
 
 import Foundation
+
 class Word {
-    var isRemebered:Bool = false
-    var title:String = ""
-    init(isRemebered:Bool,title:String) {
+    var isRemebered = false
+    var isExpanded = false
+    var title = ""
+    init(isRemebered: Bool, title: String) {
         self.isRemebered = isRemebered
         self.title = title
     }

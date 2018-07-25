@@ -119,7 +119,7 @@ class SettingsTableViewController: UITableViewController {
             }
         }
     }
-    func relaunchApp(title:String,message:String,productPurchased:Bool = true){
+    func relaunchApp(title: String, message: String , productPurchased: Bool = true){
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
         let okAction = UIAlertAction(title: "Ok", style: .default, handler: {
