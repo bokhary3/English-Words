@@ -11,11 +11,20 @@ import Foundation
 class Word {
     var isRemebered = false
     var isExpanded = false
-    var title = ""
-    init(isRemebered: Bool, title: String) {
+    var data = ""
+    var title: String
+    init(isRemebered: Bool, data: String) {
         self.isRemebered = isRemebered
-        self.title = title
+        self.data = data
+        
+        let wordComponent =  data.components(separatedBy: ",")
+        if wordComponent.count > 0 {
+            self.title = wordComponent.first!
+        } else {
+            self.title =  data
+        }
     }
+    
 }
 class Char {
     var isExpanded:Bool = false

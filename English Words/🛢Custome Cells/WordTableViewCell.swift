@@ -28,21 +28,11 @@ class WordTableViewCell: UITableViewCell {
     //MARK: Actions
     
     //MARK: Methods
-    override func prepareForReuse() {
-        arrowImageView.rotate(0)
-    }
     
     func configureCell(indexPath: IndexPath, word: Word) {
         
         oBtnRemember.setBackgroundImage(word.isRemebered ? #imageLiteral(resourceName: "check-box"):#imageLiteral(resourceName: "blank-check") , for: .normal)
-        
-        let wordComponent = word.title.components(separatedBy: ",")
-        if wordComponent.count > 0 {
-            oLblWordTitle.text = wordComponent.first
-        }
-        else{
-            oLblWordTitle.text =  word.title
-        }
+        oLblWordTitle.text = word.title
         
         oBtnTranslate.isHidden = !UserStatus.productPurchased
         if word.isExpanded {

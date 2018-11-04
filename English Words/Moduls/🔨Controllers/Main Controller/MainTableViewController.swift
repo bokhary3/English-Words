@@ -102,10 +102,12 @@ class MainTableViewController: UITableViewController {
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: WordTableViewCell.identifier, for: indexPath) as! WordTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "WordCell", for: indexPath)
         
         // Configure the cell...
-        cell.configureCell(indexPath: indexPath, word: viewModel.checkIfWordIsRemeberedOf(indexPath: indexPath))
+        let word = viewModel.wordOf(indexPath: indexPath)
+        
+        cell.textLabel?.text =  word.title
         
         return cell
     }
@@ -204,21 +206,21 @@ extension MainTableViewController {
     @IBAction func aBtnDictionary(_ sender: UIButton) {
         let cellInfo =  cellInformation(sender: sender)
         
-        Helper.openActionSheetSites(sender: sender, word: cellInfo.0.title.components(separatedBy: ",").first!, viewController: self)
+        Helper.openActionSheetSites(sender: sender, word: cellInfo.0.title, viewController: self)
     }
     @IBAction func aBtnInfo(_ sender: UIButton) {
         let cellInfo =  cellInformation(sender: sender)
         
         
-        let title = "\'\(cellInfo.0.title.components(separatedBy: ",").first!)\' info"
-        let message = "\'\(cellInfo.0.title.components(separatedBy: ",").first!)\' is (\(cellInfo.0.title.components(separatedBy: ",(")[1]), occures \(cellInfo.0.title.components(separatedBy: ",")[1]) times."
+        let title = "\'\(cellInfo.0.title)\' info"
+        let message = "\'\(cellInfo.0.title)\' is (\(cellInfo.0.title.components(separatedBy: ",(")[1]), occures \(cellInfo.0.title.components(separatedBy: ",")[1]) times."
         
         Helper.alert(title: title, message: message, sender: sender, viewController: self)
     }
     @IBAction func aBtnTranslate(_ sender: UIButton) {
         let cellInfo =  cellInformation(sender: sender)
         
-        let url = Constants.WebSites.googleTranslate + cellInfo.0.title.components(separatedBy: ",").first!
+        let url = Constants.WebSites.googleTranslate + cellInfo.0.title
         Helper.openSafariVC(url: url, viewController: self)
     }
     @IBAction func aBtnYouGlish(_ sender: UIButton) {
@@ -229,7 +231,7 @@ extension MainTableViewController {
             Helper.showRemeberTipe(sender: sender, cell: cellInfo.1, message: "Listen to this word?")
         }
         else{
-            let url = Constants.WebSites.youGlish + cellInfo.0.title.components(separatedBy: ",").first!
+            let url = Constants.WebSites.youGlish + cellInfo.0.title
             Helper.openSafariVC(url: url, viewController: self)
         }
     }
@@ -293,7 +295,7 @@ extension MainTableViewController: UISearchBarDelegate{
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         let searchResultVC = self.searchController.searchResultsController as! SearchResultTableViewController
         searchResultVC.allWords = viewModel.cleanWords.map({ (title) in
-            Word(isRemebered: false, title: title)
+            Word(isRemebered: false, data: title)
         })
         searchResultVC.remembredWords = viewModel.remembredWords
     }

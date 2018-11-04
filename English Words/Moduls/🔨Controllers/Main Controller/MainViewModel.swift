@@ -56,7 +56,7 @@ class MainViewModel: NSObject {
             let wordsByChar = words.filter({ (word) -> Bool in
                 word.hasPrefix("\(_char)")
             }).map({ (fetchedWord) -> Word in
-                Word(isRemebered: false, title: fetchedWord)
+                Word(isRemebered: false, data: fetchedWord)
             })
             let char = Char(isExpanded: false, words: wordsByChar)
             chars.append(char)

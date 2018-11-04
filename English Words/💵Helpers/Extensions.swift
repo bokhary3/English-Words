@@ -54,3 +54,7 @@ extension UITableViewCell: EasyTipViewDelegate {
         tipView.dismiss()
     }
 }
+
+extension String {
+    
+}

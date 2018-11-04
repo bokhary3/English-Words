@@ -25,13 +25,13 @@ class SearchWordTableViewCell: UITableViewCell {
     @IBAction func aBtnDictionary(_ sender: UIButton) {
         let indexPath = self.searchResultTVC.tableView.indexPath(for: sender)!
         let word = self.searchResultTVC.matchingWords[indexPath.row]
-        self.openActionSheetSites(sender: sender, word: word.title.components(separatedBy: ",").first!)
+        self.openActionSheetSites(sender: sender, word: word.title)
     }
     @IBAction func aBtnInfo(_ sender: UIButton) {
         let indexPath = self.searchResultTVC.tableView.indexPath(for: sender)!
         let word = self.searchResultTVC.matchingWords[indexPath.row]
 
-        let alert = UIAlertController(title: "\'\(word.title.components(separatedBy: ",").first!)\' info", message: "\'\(word.title.components(separatedBy: ",").first!)\' is (\(word.title.components(separatedBy: ",(")[1]), occures \(word.title.components(separatedBy: ",")[1]) ", preferredStyle: .alert)
+        let alert = UIAlertController(title: "\'\(word.title)\' info", message: "\'\(word.title)\' is (\(word.title.components(separatedBy: ",(")[1]), occures \(word.title.components(separatedBy: ",")[1]) ", preferredStyle: .alert)
         if let popoverController = alert.popoverPresentationController {
             popoverController.sourceView = sender
             popoverController.sourceRect = sender.bounds
@@ -46,7 +46,7 @@ class SearchWordTableViewCell: UITableViewCell {
         let indexPath = self.searchResultTVC.tableView.indexPath(for: sender)!
         let word = self.searchResultTVC.matchingWords[indexPath.row]
 
-        let url = Constants.WebSites.googleTranslate + word.title.components(separatedBy: ",").first!
+        let url = Constants.WebSites.googleTranslate + word.title
         self.openSafariVC(url: url)
     }
     @IBAction func aBtnRememper(_ sender: UIButton) {
@@ -88,7 +88,7 @@ class SearchWordTableViewCell: UITableViewCell {
     @IBAction func aBtnYouGlish(_ sender: UIButton) {
         let indexPath = self.searchResultTVC.tableView.indexPath(for: sender)!
         let word = self.searchResultTVC.matchingWords[indexPath.row]
-        let url = Constants.WebSites.youGlish + word.title.components(separatedBy: ",").first!
+        let url = Constants.WebSites.youGlish + word.title
             self.openSafariVC(url: url)
     }
     
@@ -108,13 +108,8 @@ class SearchWordTableViewCell: UITableViewCell {
         }
         self.oBtnRemember.setBackgroundImage(word.isRemebered ? #imageLiteral(resourceName: "check-box"):#imageLiteral(resourceName: "blank-check") , for: .normal)
         
-        let wordComponent = word.title.components(separatedBy: ",")
-        if wordComponent.count > 0 {
-            self.oLblWordTitle.text = wordComponent.first
-        }
-        else{
-            self.oLblWordTitle.text =  word.title
-        }
+        self.oLblWordTitle.text = word.title
+
         
     }
     
