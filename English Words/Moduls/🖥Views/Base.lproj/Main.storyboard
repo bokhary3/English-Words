@@ -6,11 +6,10 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Main Table View Controller-->
+        <!--Words-->
         <scene sceneID="iw8-lX-eRE">
             <objects>
                 <tableViewController id="9dF-Ju-BDa" customClass="MainTableViewController" customModule="English_Words" customModuleProvider="target" sceneMemberID="viewController">
@@ -95,8 +94,7 @@
                             <outlet property="delegate" destination="9dF-Ju-BDa" id="Vsk-R1-JSz"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="xH9-iV-WSn">
-                        <nil key="title"/>
+                    <navigationItem key="navigationItem" title="Words" id="xH9-iV-WSn">
                         <view key="titleView" contentMode="scaleToFill" id="YZ1-3Z-Xwh">
                             <rect key="frame" x="94.5" y="2" width="186" height="40"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -167,6 +165,7 @@
                         <outlet property="oLblNavigationTitle" destination="d2e-y6-PFn" id="uwd-kQ-uJf"/>
                         <outlet property="oViewNavigationTitle" destination="3Yu-kf-GQh" id="c0A-VN-bLN"/>
                         <outlet property="viewModel" destination="H8U-ZJ-utD" id="YyA-ij-wK1"/>
+                        <segue destination="CEM-Ip-g7n" kind="show" identifier="showWordDetails" id="2W2-Vr-GN0"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EVL-WC-IqA" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -294,125 +293,215 @@
             </objects>
             <point key="canvasLocation" x="1217" y="197"/>
         </scene>
-        <!--Word Details View Controller-->
-        <scene sceneID="Vi8-wD-WHz">
+        <!--Word Details-->
+        <scene sceneID="Noh-58-tM2">
             <objects>
-                <viewController id="BrF-qW-Y7N" customClass="WordDetailsViewController" customModule="English_Words" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="vKX-cP-XZV">
+                <tableViewController title="Word Details" id="CEM-Ip-g7n" customClass="WordDetailsTableViewController" customModule="English_Words" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="o9B-gH-Xt2">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XVZ-Mp-afK">
-                                <rect key="frame" x="0.0" y="20" width="375" height="200"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.40000000000000002" translatesAutoresizingMaskIntoConstraints="NO" id="Ast-A1-YW4">
-                                        <rect key="frame" x="10" y="80.5" width="355" height="39"/>
-                                        <fontDescription key="fontDescription" name="KannadaSangamMN-Bold" family="Kannada Sangam MN" pointSize="30"/>
-                                        <color key="textColor" red="0.41176470590000003" green="0.6588235294" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstItem="Ast-A1-YW4" firstAttribute="leading" secondItem="XVZ-Mp-afK" secondAttribute="leading" constant="10" id="EvZ-XU-Kj0"/>
-                                    <constraint firstItem="Ast-A1-YW4" firstAttribute="centerY" secondItem="XVZ-Mp-afK" secondAttribute="centerY" id="Hgu-Eb-fjM"/>
-                                    <constraint firstAttribute="trailing" secondItem="Ast-A1-YW4" secondAttribute="trailing" constant="10" id="brL-ab-ldO"/>
-                                </constraints>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7m2-We-QZ6">
-                                <rect key="frame" x="0.0" y="240" width="375" height="100"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
-                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="156-rh-tQr">
-                                <rect key="frame" x="0.0" y="240" width="375" height="100"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7kR-0M-tHs">
-                                        <rect key="frame" x="0.0" y="0.0" width="25" height="100"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="25" id="oaa-fR-TdD"/>
-                                        </constraints>
-                                    </view>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="aJI-s8-3NC">
-                                        <rect key="frame" x="25" y="0.0" width="325" height="100"/>
-                                        <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OdR-zV-NGK">
-                                                <rect key="frame" x="0.0" y="0.0" width="325" height="25"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            </view>
-                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="o38-41-58j">
-                                                <rect key="frame" x="0.0" y="25" width="325" height="50"/>
-                                                <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O5Q-St-KIK">
-                                                        <rect key="frame" x="0.0" y="0.0" width="57" height="50"/>
-                                                        <state key="normal" image="translate"/>
-                                                    </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C8M-fd-KET">
-                                                        <rect key="frame" x="67" y="0.0" width="57" height="50"/>
-                                                        <state key="normal" image="you_glish"/>
-                                                    </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bgh-jE-ovl">
-                                                        <rect key="frame" x="134" y="0.0" width="57" height="50"/>
-                                                        <state key="normal" image="information"/>
-                                                    </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ojG-rm-fOV">
-                                                        <rect key="frame" x="201" y="0.0" width="57" height="50"/>
-                                                        <state key="normal" image="safari"/>
-                                                    </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lco-Rz-n29">
-                                                        <rect key="frame" x="268" y="0.0" width="57" height="50"/>
-                                                        <state key="normal" image="blank-check"/>
-                                                    </button>
-                                                </subviews>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            </stackView>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MJs-XE-FlC">
-                                                <rect key="frame" x="0.0" y="75" width="325" height="25"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="25" id="UI3-Nh-qmt"/>
-                                                </constraints>
-                                            </view>
-                                        </subviews>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstItem="OdR-zV-NGK" firstAttribute="height" secondItem="MJs-XE-FlC" secondAttribute="height" id="bLk-bR-NxR"/>
-                                        </constraints>
-                                    </stackView>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xsA-XD-5kZ">
-                                        <rect key="frame" x="350" y="0.0" width="25" height="100"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </view>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstItem="xsA-XD-5kZ" firstAttribute="width" secondItem="7kR-0M-tHs" secondAttribute="width" id="i92-gn-q0N"/>
-                                </constraints>
-                            </stackView>
-                        </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="7m2-We-QZ6" firstAttribute="top" secondItem="156-rh-tQr" secondAttribute="top" id="5kq-MC-uRc"/>
-                            <constraint firstItem="156-rh-tQr" firstAttribute="height" secondItem="XVZ-Mp-afK" secondAttribute="height" multiplier="0.5" id="7W4-nb-Aok"/>
-                            <constraint firstItem="7m2-We-QZ6" firstAttribute="leading" secondItem="156-rh-tQr" secondAttribute="leading" id="Cy4-jb-MHH"/>
-                            <constraint firstItem="XVZ-Mp-afK" firstAttribute="centerX" secondItem="aEI-7j-zFJ" secondAttribute="centerX" id="JAV-J7-KSk"/>
-                            <constraint firstItem="156-rh-tQr" firstAttribute="top" secondItem="XVZ-Mp-afK" secondAttribute="bottom" constant="20" id="KrZ-z6-M4a"/>
-                            <constraint firstItem="156-rh-tQr" firstAttribute="width" secondItem="vKX-cP-XZV" secondAttribute="width" id="Kyc-vo-PZQ"/>
-                            <constraint firstItem="7m2-We-QZ6" firstAttribute="trailing" secondItem="156-rh-tQr" secondAttribute="trailing" id="SKr-i8-zLy"/>
-                            <constraint firstItem="156-rh-tQr" firstAttribute="centerX" secondItem="aEI-7j-zFJ" secondAttribute="centerX" id="Xjm-S5-B81"/>
-                            <constraint firstItem="XVZ-Mp-afK" firstAttribute="top" secondItem="aEI-7j-zFJ" secondAttribute="top" id="Zrh-FA-efl"/>
-                            <constraint firstItem="7m2-We-QZ6" firstAttribute="bottom" secondItem="156-rh-tQr" secondAttribute="bottom" id="aWX-PA-YOH"/>
-                            <constraint firstItem="XVZ-Mp-afK" firstAttribute="height" secondItem="vKX-cP-XZV" secondAttribute="height" multiplier="0.3" id="eiG-T2-KPW"/>
-                            <constraint firstItem="XVZ-Mp-afK" firstAttribute="width" secondItem="vKX-cP-XZV" secondAttribute="width" id="j7h-i8-lp8"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="aEI-7j-zFJ"/>
-                    </view>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="XVZ-Mp-afK">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="129"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.40000000000000002" translatesAutoresizingMaskIntoConstraints="NO" id="Ast-A1-YW4">
+                                    <rect key="frame" x="10" y="64.5" width="355" height="0.0"/>
+                                    <fontDescription key="fontDescription" name="KannadaSangamMN-Bold" family="Kannada Sangam MN" pointSize="40"/>
+                                    <color key="textColor" red="0.41176470590000003" green="0.6588235294" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                            <constraints>
+                                <constraint firstItem="Ast-A1-YW4" firstAttribute="leading" secondItem="XVZ-Mp-afK" secondAttribute="leading" constant="10" id="EvZ-XU-Kj0"/>
+                                <constraint firstItem="Ast-A1-YW4" firstAttribute="centerY" secondItem="XVZ-Mp-afK" secondAttribute="centerY" id="Hgu-Eb-fjM"/>
+                                <constraint firstAttribute="trailing" secondItem="Ast-A1-YW4" secondAttribute="trailing" constant="10" id="brL-ab-ldO"/>
+                            </constraints>
+                        </view>
+                        <sections>
+                            <tableViewSection id="a2K-88-SMP">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" textLabel="Bos-Kv-DEy" imageView="8d9-Wc-CLt" style="IBUITableViewCellStyleDefault" id="wog-CR-eXg">
+                                        <rect key="frame" x="0.0" y="129" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="wog-CR-eXg" id="37S-MI-bKk">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Bos-Kv-DEy">
+                                                    <rect key="frame" x="59" y="0.0" width="300" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" name="MyanmarSangamMN" family="Myanmar Sangam MN" pointSize="18"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="information" id="8d9-Wc-CLt">
+                                                    <rect key="frame" x="16" y="7" width="28" height="28"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </imageView>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="what means this word on dictionary of .." id="ZVY-cD-ldY">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="o39-5i-MFy" imageView="Ibn-2B-P1a" style="IBUITableViewCellStyleDefault" id="6C8-x1-nds">
+                                        <rect key="frame" x="0.0" y="229" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="6C8-x1-nds" id="UbT-Un-YcS">
+                                            <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Oxford" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="o39-5i-MFy">
+                                                    <rect key="frame" x="59" y="0.0" width="281" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" name="MyanmarSangamMN" family="Myanmar Sangam MN" pointSize="18"/>
+                                                    <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="dictionary1" id="Ibn-2B-P1a">
+                                                    <rect key="frame" x="16" y="7" width="28" height="28"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </imageView>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="eV7-J1-SKj" imageView="A4n-bP-ZVz" style="IBUITableViewCellStyleDefault" id="7CD-xc-55l">
+                                        <rect key="frame" x="0.0" y="273" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="7CD-xc-55l" id="VxR-mt-sHo">
+                                            <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Cambridge" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="eV7-J1-SKj">
+                                                    <rect key="frame" x="59" y="0.0" width="281" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" name="MyanmarSangamMN" family="Myanmar Sangam MN" pointSize="18"/>
+                                                    <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="dictionary2" id="A4n-bP-ZVz">
+                                                    <rect key="frame" x="16" y="7" width="28" height="28"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </imageView>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="Fvy-Po-xMD" imageView="i1L-yw-kMg" style="IBUITableViewCellStyleDefault" id="vu9-ri-5du">
+                                        <rect key="frame" x="0.0" y="317" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="vu9-ri-5du" id="K3A-cJ-Mmw">
+                                            <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Merriam Webster" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Fvy-Po-xMD">
+                                                    <rect key="frame" x="59" y="0.0" width="281" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" name="MyanmarSangamMN" family="Myanmar Sangam MN" pointSize="18"/>
+                                                    <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="dictionary3" id="i1L-yw-kMg">
+                                                    <rect key="frame" x="16" y="7" width="28" height="28"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </imageView>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection id="hbm-G3-OwC">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="4Ht-P9-fDo" imageView="3iC-t7-mLW" style="IBUITableViewCellStyleDefault" id="fLk-YX-nvd">
+                                        <rect key="frame" x="0.0" y="397" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fLk-YX-nvd" id="hL3-PL-0le">
+                                            <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Translate by Google" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="4Ht-P9-fDo">
+                                                    <rect key="frame" x="59" y="0.0" width="281" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" name="MyanmarSangamMN" family="Myanmar Sangam MN" pointSize="18"/>
+                                                    <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="translate" id="3iC-t7-mLW">
+                                                    <rect key="frame" x="16" y="7" width="28" height="28"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </imageView>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection id="xdV-ce-ZJa">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="QK3-8x-ZaR" imageView="kfX-I1-H8K" style="IBUITableViewCellStyleDefault" id="bnq-8G-G91">
+                                        <rect key="frame" x="0.0" y="477" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bnq-8G-G91" id="ayc-tk-L28">
+                                            <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Listen to the word" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="QK3-8x-ZaR">
+                                                    <rect key="frame" x="59" y="0.0" width="281" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" name="MyanmarSangamMN" family="Myanmar Sangam MN" pointSize="18"/>
+                                                    <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="listening" adjustsImageSizeForAccessibilityContentSizeCategory="YES" id="kfX-I1-H8K">
+                                                    <rect key="frame" x="16" y="7" width="28" height="28"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </imageView>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection id="cW9-YH-kuM">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="checkmark" indentationWidth="10" textLabel="I4h-2Z-b3E" imageView="v5T-Cm-UY4" style="IBUITableViewCellStyleDefault" id="RcH-SQ-deS">
+                                        <rect key="frame" x="0.0" y="557" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="RcH-SQ-deS" id="eDo-Ls-042">
+                                            <rect key="frame" x="0.0" y="0.0" width="335" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="I remember this word" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="I4h-2Z-b3E">
+                                                    <rect key="frame" x="59" y="0.0" width="276" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" name="MyanmarSangamMN" family="Myanmar Sangam MN" pointSize="18"/>
+                                                    <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="remeber" id="v5T-Cm-UY4">
+                                                    <rect key="frame" x="16" y="7" width="28" height="28"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </imageView>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="CEM-Ip-g7n" id="Gmv-dF-qbX"/>
+                            <outlet property="delegate" destination="CEM-Ip-g7n" id="7KZ-sj-hqz"/>
+                        </connections>
+                    </tableView>
                     <connections>
-                        <outlet property="wordLabel" destination="Ast-A1-YW4" id="PXL-qV-QlV"/>
+                        <outlet property="rememberCell" destination="RcH-SQ-deS" id="gCt-r3-MDJ"/>
+                        <outlet property="wordInfoLabel" destination="wog-CR-eXg" id="VWF-PC-ePh"/>
+                        <outlet property="wordLabel" destination="Ast-A1-YW4" id="5JO-bP-VtD"/>
                     </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="HTo-Vg-ozc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LKl-v5-hXG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1413.5999999999999" y="995.35232383808102"/>
+            <point key="canvasLocation" x="1217" y="996"/>
         </scene>
         <!--Search Result Table View Controller-->
         <scene sceneID="eSa-ny-KiI">
@@ -525,8 +614,8 @@
             <objects>
                 <navigationController storyboardIdentifier="HomeNC" automaticallyAdjustsScrollViewInsets="NO" id="LeN-VF-C0s" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="gTG-3R-LPN">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="gTG-3R-LPN">
+                        <rect key="frame" x="0.0" y="20" width="375" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -545,10 +634,15 @@
     <resources>
         <image name="arrow-right" width="51.200000762939453" height="51.200000762939453"/>
         <image name="blank-check" width="51.200000762939453" height="51.200000762939453"/>
-        <image name="information" width="51.200000762939453" height="51.200000762939453"/>
+        <image name="dictionary1" width="28" height="28"/>
+        <image name="dictionary2" width="28" height="28"/>
+        <image name="dictionary3" width="28" height="28"/>
+        <image name="information" width="28" height="28"/>
+        <image name="listening" width="28" height="28"/>
+        <image name="remeber" width="28" height="28"/>
         <image name="safari" width="51.200000762939453" height="51.200000762939453"/>
         <image name="settings25" width="40" height="40"/>
-        <image name="translate" width="418.90908813476562" height="418.90908813476562"/>
+        <image name="translate" width="28" height="28"/>
         <image name="you_glish" width="51.200000762939453" height="51.200000762939453"/>
     </resources>
 </document>

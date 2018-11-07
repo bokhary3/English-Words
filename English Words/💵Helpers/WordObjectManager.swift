@@ -40,7 +40,7 @@ class WordObjectManager {
         let fetchRequest =
             NSFetchRequest<NSManagedObject>(entityName: "WordObject")
         
-        fetchRequest.predicate = NSPredicate(format: "id = %@", word.title)
+        fetchRequest.predicate = NSPredicate(format: "id = %@", word.data)
         
         var results: [NSManagedObject] = []
         

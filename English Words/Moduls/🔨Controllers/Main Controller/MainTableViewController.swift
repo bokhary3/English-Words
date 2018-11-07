@@ -44,7 +44,7 @@ class MainTableViewController: UITableViewController {
     }
     func setTableViewHeader() {
         // create banner view
-        if !UserStatus.productPurchased{
+        if !UserStatus.productPurchased {
             let bannerSize = UIDevice.current.userInterfaceIdiom == .phone ? kGADAdSizeBanner : kGADAdSizeLeaderboard
             bannerView = GADBannerView(adSize: bannerSize)
             bannerView.adUnitID = Constants.Keys.adMobBannerUnitID
@@ -72,7 +72,8 @@ class MainTableViewController: UITableViewController {
         searchController.hidesNavigationBarDuringPresentation = true
         searchController.searchBar.delegate = self
         
-        self.tableView.tableHeaderView = searchController.searchBar
+        navigationItem.searchController = searchController
+        navigationItem.hidesSearchBarWhenScrolling = true
         
     }
     
@@ -141,20 +142,20 @@ class MainTableViewController: UITableViewController {
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let word = viewModel.wordOf(indexPath: indexPath)
-        word.isExpanded = !word.isExpanded
-        let rowAnimation: UITableViewRowAnimation = word.isExpanded ? .top : .bottom
-        tableView.reloadRows(at: [indexPath], with: rowAnimation)
+        performSegue(withIdentifier: "showWordDetails", sender: word)
     }
     
-    /*
+    
      // MARK: - Navigation
      
      // In a storyboard-based application, you will often want to do a little preparation before navigation
      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
+        if segue.identifier == "showWordDetails" {
+            let wordDetailsController = segue.destination as! WordDetailsTableViewController
+            wordDetailsController.word = sender as? Word
+        }
+    }
+ 
     
 }
 extension MainTableViewController: GADBannerViewDelegate {
