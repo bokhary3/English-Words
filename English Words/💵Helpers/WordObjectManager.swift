@@ -59,6 +59,28 @@ class WordObjectManager {
             print("error executing fetch request: \(error)")
         }
     }
+    func isRemeberWord(word: Word) -> Bool {
+        
+        let fetchRequest =
+            NSFetchRequest<NSManagedObject>(entityName: "WordObject")
+        
+        fetchRequest.predicate = NSPredicate(format: "id = %@", word.data)
+        
+        var results: [NSManagedObject] = []
+        
+        do {
+            results = try managedContext.fetch(fetchRequest)
+            if results.count > 0 {
+                let wordObj = results[0]
+                let isRemeber = wordObj.value(forKey: "isRemember") as! Bool
+                return isRemeber
+            }
+        }
+        catch {
+            print("error executing fetch request: \(error)")
+        }
+        return false
+    }
     
     private func save(word: String)-> Int {
         
@@ -145,7 +167,7 @@ class WordObjectManager {
         return existWords.count
     }
     
-     func deleteWordFromCoreData() {
+    func deleteWordFromCoreData() {
         if Constants.fromPurchaseProcess {
             let deleteFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "WordObject")
             let deleteRequest = NSBatchDeleteRequest(fetchRequest: deleteFetch)

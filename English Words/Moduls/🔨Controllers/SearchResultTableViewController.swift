@@ -13,7 +13,6 @@ class SearchResultTableViewController: UITableViewController {
     //MARK: Variables
     var allWords = [Word]()
     var matchingWords = [Word]()
-    var remembredWords = [NSManagedObject]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,59 +40,34 @@ class SearchResultTableViewController: UITableViewController {
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: SearchWordTableViewCell.identifier, for: indexPath)    as! SearchWordTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "SearchWordCell", for: indexPath)
         
-        // Configure the cell...
-        cell.searchResultTVC = self
-        cell.configureCell(indexPath: indexPath)
+        cell.textLabel?.text = matchingWords[indexPath.row].title
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let word = matchingWords[indexPath.row]
+        performSegue(withIdentifier: "showWordDetails", sender: word)
+    }
     
-    /*
-     // Override to support conditional editing of the table view.
-     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-     // Return false if you do not want the specified item to be editable.
-     return true
-     }
-     */
+    // MARK: - Navigation
     
-    /*
-     // Override to support editing the table view.
-     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-     if editingStyle == .delete {
-     // Delete the row from the data source
-     tableView.deleteRows(at: [indexPath], with: .fade)
-     } else if editingStyle == .insert {
-     // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-     }
-     }
-     */
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showWordDetails" {
+            let wordDetailsController = segue.destination as! WordDetailsTableViewController
+            let mainNavigatioController = Initializer.getMainNavigationController()
+            for controller in mainNavigatioController.viewControllers {
+                if controller is MainTableViewController {
+                    let mainViewController = controller as! MainTableViewController
+                    wordDetailsController.delegate = mainViewController
+                }
+            }
+            wordDetailsController.word = sender as? Word
+        }
+    }
     
-    /*
-     // Override to support rearranging the table view.
-     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-     
-     }
-     */
-    
-    /*
-     // Override to support conditional rearranging of the table view.
-     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-     // Return false if you do not want the item to be re-orderable.
-     return true
-     }
-     */
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
     
 }
 extension SearchResultTableViewController:UISearchResultsUpdating{

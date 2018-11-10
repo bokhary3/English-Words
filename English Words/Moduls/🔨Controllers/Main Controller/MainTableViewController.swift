@@ -10,6 +10,10 @@ import UIKit
 import CoreData
 import GoogleMobileAds
 
+protocol WordsDelegate: AnyObject {
+    func refresh()
+}
+
 class MainTableViewController: UITableViewController {
     
     //MARK: Variables
@@ -23,6 +27,12 @@ class MainTableViewController: UITableViewController {
         super.viewDidLoad()
         setupViews()
     }
+    override func viewWillAppear(_ animated: Bool) {
+        if let selectedIndexPath = tableView.indexPathForSelectedRow {
+            tableView.deselectRow(at: selectedIndexPath, animated: true)
+        }
+    }
+    
     //MARK: Outlets
     @IBOutlet weak var oViewNavigationTitle: UIView!
     @IBOutlet weak var oLblNavigationTitle: UILabel!
@@ -77,7 +87,7 @@ class MainTableViewController: UITableViewController {
         
     }
     
-    func refershUI() {
+    func refreshUI() {
         setNavigationTitle()
         tableView.reloadData()
     }
@@ -113,15 +123,12 @@ class MainTableViewController: UITableViewController {
         return cell
     }
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let word = viewModel.wordOf(indexPath: indexPath)
-        if word.isExpanded {
-            return 90
-        }
-        return 70
+        return viewModel.chars[indexPath.section].isExpanded ? 60 : 0
     }
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 55
     }
+    
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "header") as! SectionTableViewCell
         let char = viewModel.charOfSection(section: section)
@@ -152,6 +159,7 @@ class MainTableViewController: UITableViewController {
      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showWordDetails" {
             let wordDetailsController = segue.destination as! WordDetailsTableViewController
+            wordDetailsController.delegate = self
             wordDetailsController.word = sender as? Word
         }
     }
@@ -194,71 +202,17 @@ extension MainTableViewController: GADBannerViewDelegate {
 }
 
 extension MainTableViewController {
-    @IBAction func aBtnRememper(_ sender: UIButton) {
-        let cellInfo =  cellInformation(sender: sender)
-        if !UserStatus.rememberTipShowed {
-            UserStatus.rememberTipShowed = true
-            Helper.showRemeberTipe(sender: sender, cell: cellInfo.1, message: "Remember it?")
-        } else {
-            WordObjectManager.shared?.remeberWord(word: cellInfo.0)
-            refershUI()
-        }
-    }
-    @IBAction func aBtnDictionary(_ sender: UIButton) {
-        let cellInfo =  cellInformation(sender: sender)
-        
-        Helper.openActionSheetSites(sender: sender, word: cellInfo.0.title, viewController: self)
-    }
-    @IBAction func aBtnInfo(_ sender: UIButton) {
-        let cellInfo =  cellInformation(sender: sender)
-        
-        
-        let title = "\'\(cellInfo.0.title)\' info"
-        let message = "\'\(cellInfo.0.title)\' is (\(cellInfo.0.title.components(separatedBy: ",(")[1]), occures \(cellInfo.0.title.components(separatedBy: ",")[1]) times."
-        
-        Helper.alert(title: title, message: message, sender: sender, viewController: self)
-    }
-    @IBAction func aBtnTranslate(_ sender: UIButton) {
-        let cellInfo =  cellInformation(sender: sender)
-        
-        let url = Constants.WebSites.googleTranslate + cellInfo.0.title
-        Helper.openSafariVC(url: url, viewController: self)
-    }
-    @IBAction func aBtnYouGlish(_ sender: UIButton) {
-        let cellInfo =  cellInformation(sender: sender)
-        
-        if !UserStatus.youGlishTipShowed {
-            UserStatus.youGlishTipShowed = true
-            Helper.showRemeberTipe(sender: sender, cell: cellInfo.1, message: "Listen to this word?")
-        }
-        else{
-            let url = Constants.WebSites.youGlish + cellInfo.0.title
-            Helper.openSafariVC(url: url, viewController: self)
-        }
-    }
-    @IBAction func aBtnDropDown(_ sender: UIButton) {
-        if !UserStatus.productPurchased {
-            showAdsBanner()
-        }
-        viewModel.adsClicksCount += 1
-        
-        let char  = viewModel.charOfSection(section: sender.tag)
-        if char.words.count > 0 {
-            openSectionOf(char: char, section: sender.tag)
-        }
-    }
-    
     func openSectionOf(char: Char, section: Int) {
         char.isExpanded = !char.isExpanded
         let viewHeader = tableView.headerView(forSection: section) as! SectionTableViewCell
         if char.isExpanded {
             viewHeader.oBtnDropDown.rotate(char.isExpanded ? .pi/2 : .pi)
             self.tableView.reloadSections(
-                [section], with: UITableViewRowAnimation.none)
+                [section], with: UITableViewRowAnimation.automatic)
         } else {
             viewHeader.oBtnDropDown.rotate(0)
             self.tableView.reloadSections(
-                [section], with: UITableViewRowAnimation.none)
+                [section], with: UITableViewRowAnimation.automatic)
         }
     }
     
@@ -270,13 +224,6 @@ extension MainTableViewController {
                 print("Ad wasn't ready")
             }
         }
-    }
-    
-    func cellInformation(sender: UIButton) -> (Word,UITableViewCell){
-        let indexPath = tableView.indexPath(for: sender)!
-        let word = viewModel.wordOf(indexPath: indexPath)
-        let cell = tableView.cellForRow(at: indexPath)
-        return (word,cell!)
     }
 }
 
@@ -298,17 +245,16 @@ extension MainTableViewController: UISearchBarDelegate{
         searchResultVC.allWords = viewModel.cleanWords.map({ (title) in
             Word(isRemebered: false, data: title)
         })
-        searchResultVC.remembredWords = viewModel.remembredWords
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        refershUI()
+        refreshUI()
     }
 }
 
 extension MainTableViewController: ViewModelDelegate {
     func updateUI() {
-        refershUI()
+        refreshUI()
     }
     
     func didLoadData() {
@@ -328,5 +274,11 @@ extension MainTableViewController: CustomHeaderDelegate {
         if char.words.count > 0 {
             openSectionOf(char: char, section: section)
         }
+    }
+}
+
+extension MainTableViewController: WordsDelegate {
+    func refresh() {
+        refreshUI()
     }
 }

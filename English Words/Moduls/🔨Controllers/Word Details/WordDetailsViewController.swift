@@ -7,13 +7,13 @@
 //
 
 import UIKit
-import SafariServices
 import CoreData
 
 class WordDetailsTableViewController: UITableViewController {
     
     //MARK: Variables
     var word: Word!
+    weak var delegate: WordsDelegate!
     
     //MARK: Outlets
     @IBOutlet weak var wordInfoLabel: UITableViewCell!
@@ -36,27 +36,28 @@ class WordDetailsTableViewController: UITableViewController {
     func setupViews() {
         wordLabel.text = word.title
         
-        rememberCell.accessoryType = word.isRemebered ? .checkmark : .none
+        rememberCell.accessoryType = WordObjectManager.shared!.isRemeberWord(word: word) ? .checkmark : .none
         
         wordInfoLabel.textLabel?.text = "\'\(word.title)\' is (\(word.data.components(separatedBy: ",(")[1]), occures \(word.data.components(separatedBy: ",")[1]) times."
         
     }
     
-    func openSafariViewController(urlPath: String) {
-        if let url = URL(string: urlPath) {
-        let safariVC = SFSafariViewController(url: url)
-            present(safariVC, animated: true, completion: nil)
-        }
+    func openWebViewController(urlPath: String) {
+        let url = URL(string: urlPath)
+        performSegue(withIdentifier: "showWebViewController", sender: url)
     }
-    /*
+    
+    
      // MARK: - Navigation
      
      // In a storyboard-based application, you will often want to do a little preparation before navigation
      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
+        if segue.identifier == "showWebViewController" {
+            let webController = segue.destination as! WebViewController
+            webController.url = sender as? URL
+        }
+    }
+    
     
 }
 
@@ -85,7 +86,37 @@ extension WordDetailsTableViewController {
             listenToTheWord()
         } else if indexPath.section == 4 {
             rememberTheWord()
+            tableView.deselectRow(at: indexPath, animated: true)
+            delegate.refresh()
         }
+    }
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if !UserStatus.productPurchased {
+            if indexPath.section == 2 {
+                if indexPath.row == 0 {
+                    return 0
+                }
+            }
+        }
+        return super.tableView(tableView, heightForRowAt: indexPath)
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if !UserStatus.productPurchased {
+            if section == 2 {
+                return 0.001
+            }
+        }
+        return super.tableView(tableView, heightForHeaderInSection: section)
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        if !UserStatus.productPurchased {
+            if section == 2 {
+                return 0.001
+            }
+        }
+        return super.tableView(tableView, heightForFooterInSection: section)
     }
     
     func handleDictionariesSection(row: Int) {
@@ -98,16 +129,16 @@ extension WordDetailsTableViewController {
         default:
             break
         }
-        openSafariViewController(urlPath: urlPath)
+        openWebViewController(urlPath: urlPath)
     }
    
     func translateByGoogle() {
         let urlPath = Constants.WebSites.googleTranslate + word.title
-       openSafariViewController(urlPath: urlPath)
+       openWebViewController(urlPath: urlPath)
     }
     func listenToTheWord() {
         let urlPath = Constants.WebSites.youGlish + word.title
-        openSafariViewController(urlPath: urlPath)
+        openWebViewController(urlPath: urlPath)
     }
     
     func rememberTheWord() {

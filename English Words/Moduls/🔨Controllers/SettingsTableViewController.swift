@@ -9,6 +9,8 @@
 import UIKit
 import SwiftyStoreKit
 import StoreKit
+import MessageUI
+
 class SettingsTableViewController: UITableViewController {
     
     //MARK: Variables
@@ -75,8 +77,9 @@ class SettingsTableViewController: UITableViewController {
         }
         
     }
+    
     func shareApp(){
-        let textToShare = "Download the English Words app, it containt most important word in english language, it help you to increase your english vocabulary."
+        let textToShare = "Download the English Words app, it contains most important words in english language, it help you to increase your english vocabulary."
         
         if let myWebsite = NSURL(string: "http://itunes.apple.com/app/id1332815701") {
             let objectsToShare = [textToShare, myWebsite] as [AnyObject]
@@ -88,7 +91,19 @@ class SettingsTableViewController: UITableViewController {
             self.present(activityVC, animated: true, completion: nil)
         }
     }
-    func purchaseProduct(product:SKProduct){
+    func sendFeedback() {
+        if MFMailComposeViewController.canSendMail() {
+            let mail = MFMailComposeViewController()
+            mail.mailComposeDelegate = self
+            mail.setToRecipients(["englishwords18@gmail.com"])
+            mail.setSubject("My Feedback")
+            present(mail, animated: true)
+        } else {
+            // show failure alert
+        }
+    }
+    
+    func purchaseProduct(product: SKProduct) {
         Loader.show(view: self.view)
         SwiftyStoreKit.purchaseProduct(product, quantity: 1, atomically: true) { result in
             Loader.hide(view: self.view)
@@ -138,7 +153,7 @@ class SettingsTableViewController: UITableViewController {
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return 3
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -156,8 +171,10 @@ class SettingsTableViewController: UITableViewController {
             else if indexPath.row == 1 { //restore
                 self.restorePurchase()
             }
-        } else {
+        } else if indexPath.section == 1 {
             shareApp()
+        } else {
+            sendFeedback()
         }
         
     }
@@ -168,8 +185,10 @@ class SettingsTableViewController: UITableViewController {
                 return "You can restore your purchase"
             }
             return "Upgarde version to get all featurs of app, remove ads, search about specific word and translate word by google translate."
+        } else if section == 1 {
+            return "Share English Words app"
         }
-        return "Share English Words app"
+        return "Describe an issue or share your ideas"
     }
     override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         let headerTitle =  UserStatus.productPurchased ? "You can restore your purchase" : "Upgarde version to get all featurs of app, remove ads, get all words, search about specific word and translate word by google translate."
@@ -177,55 +196,12 @@ class SettingsTableViewController: UITableViewController {
             else { return }
         if section == 0 {
             tableViewHeaderFooterView.textLabel?.text = headerTitle
-        }
-        else{
+        } else if section == 1 {
             tableViewHeaderFooterView.textLabel?.text = "Share English Words app"
+        } else {
+            tableViewHeaderFooterView.textLabel?.text = "Describe an issue or share your ideas"
         }
     }
-    /*
-     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-     let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-     
-     // Configure the cell...
-     
-     return cell
-     }
-     */
-    
-    /*
-     // Override to support conditional editing of the table view.
-     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-     // Return false if you do not want the specified item to be editable.
-     return true
-     }
-     */
-    
-    /*
-     // Override to support editing the table view.
-     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-     if editingStyle == .delete {
-     // Delete the row from the data source
-     tableView.deleteRows(at: [indexPath], with: .fade)
-     } else if editingStyle == .insert {
-     // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-     }    
-     }
-     */
-    
-    /*
-     // Override to support rearranging the table view.
-     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-     
-     }
-     */
-    
-    /*
-     // Override to support conditional rearranging of the table view.
-     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-     // Return false if you do not want the item to be re-orderable.
-     return true
-     }
-     */
     
     /*
      // MARK: - Navigation
@@ -237,4 +213,10 @@ class SettingsTableViewController: UITableViewController {
      }
      */
     
+}
+
+extension SettingsTableViewController: MFMailComposeViewControllerDelegate {
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true, completion: nil)
+    }
 }
