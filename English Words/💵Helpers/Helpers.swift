@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import EasyTipView
 import SafariServices
 
 class Helper{
@@ -90,24 +89,6 @@ class Helper{
             blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
             alpha: CGFloat(1.0)
         )
-    }
-    
-    class func showRemeberTipe(sender: UIButton, cell: UITableViewCell , message: String) {
-        var preferences = EasyTipView.Preferences()
-        preferences.drawing.font = UIFont(name: "Futura-Medium", size: 15)!
-        preferences.drawing.foregroundColor = .white
-        preferences.drawing.backgroundColor = Helper.colorOf(hex: "007AFF")
-        preferences.drawing.arrowPosition = EasyTipView.ArrowPosition.top
-        
-        /*
-         * Optionally you can make these preferences global for all future EasyTipViews
-         */
-        EasyTipView.globalPreferences = preferences
-        EasyTipView.show(forView: sender,
-                         withinSuperview: cell.contentView,
-                         text: message,
-                         preferences: preferences,
-                         delegate: cell)
     }
     
     class func openActionSheetSites(sender: UIButton, word: String, viewController: UIViewController) {

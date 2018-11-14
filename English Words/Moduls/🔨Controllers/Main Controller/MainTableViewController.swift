@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 import GoogleMobileAds
+import FirebaseAnalytics
 
 protocol WordsDelegate: AnyObject {
     func refresh()
@@ -32,7 +33,22 @@ class MainTableViewController: UITableViewController {
             tableView.deselectRow(at: selectedIndexPath, animated: true)
         }
     }
-    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        
+        recordScreenView()
+    }
+    func recordScreenView() {
+        // These strings must be <= 36 characters long in order for setScreenName:screenClass: to succeed.
+        guard let screenName = title else {
+            return
+        }
+        let screenClass = classForCoder.description()
+        
+        // [START set_current_screen]
+        Analytics.setScreenName(screenName, screenClass: screenClass)
+        // [END set_current_screen]
+    }
     //MARK: Outlets
     @IBOutlet weak var oViewNavigationTitle: UIView!
     @IBOutlet weak var oLblNavigationTitle: UILabel!
@@ -153,17 +169,17 @@ class MainTableViewController: UITableViewController {
     }
     
     
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    // MARK: - Navigation
+    
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showWordDetails" {
             let wordDetailsController = segue.destination as! WordDetailsTableViewController
             wordDetailsController.delegate = self
             wordDetailsController.word = sender as? Word
         }
     }
- 
+    
     
 }
 extension MainTableViewController: GADBannerViewDelegate {

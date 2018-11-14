@@ -10,6 +10,7 @@ import UIKit
 import SwiftyStoreKit
 import StoreKit
 import MessageUI
+import FirebaseAnalytics
 
 class SettingsTableViewController: UITableViewController {
     
@@ -19,7 +20,22 @@ class SettingsTableViewController: UITableViewController {
         super.viewDidLoad()
         setupViews()
     }
-    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        
+        recordScreenView()
+    }
+    func recordScreenView() {
+        // These strings must be <= 36 characters long in order for setScreenName:screenClass: to succeed.
+        guard let screenName = title else {
+            return
+        }
+        let screenClass = classForCoder.description()
+        
+        // [START set_current_screen]
+        Analytics.setScreenName(screenName, screenClass: screenClass)
+        // [END set_current_screen]
+    }
     //MARK: Outlets
     @IBOutlet weak var oCellPurchaseProduct: UITableViewCell!
     @IBOutlet weak var oCellRestore: UITableViewCell!
@@ -48,6 +64,8 @@ class SettingsTableViewController: UITableViewController {
                 return Alert.alert(title: "Restore failed", message: "Unknown error. Please contact support", alertActionTitle: "Ok")
             } else if results.restoredPurchases.count > 0 {
                 print("Restore Success: \(results.restoredPurchases)")
+                Analytics.logEvent("Purchase", parameters: ["action": "Restore Product \(results.restoredPurchases.count)"])
+
                 return self.relaunchApp(title: "Purchases Restored", message: "All purchases have been restored",productPurchased: false)
             } else {
                 print("Nothing to Restore")
@@ -109,6 +127,7 @@ class SettingsTableViewController: UITableViewController {
             Loader.hide(view: self.view)
             switch result {
             case .success(let purchase):
+                Analytics.logEvent("Purchase", parameters: ["action": "Buy Product \(product.price)"])
                 self.relaunchApp(title: "", message: "Purchase Success: \(purchase.productId)")
                 print("Purchase Success: \(purchase.productId)")
             case .error(let error):
@@ -176,7 +195,6 @@ class SettingsTableViewController: UITableViewController {
         } else {
             sendFeedback()
         }
-        
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -184,16 +202,18 @@ class SettingsTableViewController: UITableViewController {
             if UserStatus.productPurchased {
                 return "You can restore your purchase"
             }
-            return "Upgarde version to get all featurs of app, remove ads, search about specific word and translate word by google translate."
+            return "Upgrade version to get all features of app, remove ads, search about specific word, translate word by google translate, and also word reading feature."
         } else if section == 1 {
             return "Share English Words app"
         }
         return "Describe an issue or share your ideas"
     }
     override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        let headerTitle =  UserStatus.productPurchased ? "You can restore your purchase" : "Upgarde version to get all featurs of app, remove ads, get all words, search about specific word and translate word by google translate."
+        let headerTitle =  UserStatus.productPurchased ? "You can restore your purchase" : "Upgrade version to get all features of app, remove ads, search about specific word, translate word by google translate, and also word reading feature."
         guard let tableViewHeaderFooterView = view as? UITableViewHeaderFooterView
             else { return }
+        tableViewHeaderFooterView.textLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+        tableViewHeaderFooterView.textLabel?.textColor = .darkGray
         if section == 0 {
             tableViewHeaderFooterView.textLabel?.text = headerTitle
         } else if section == 1 {

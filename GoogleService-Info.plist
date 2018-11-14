@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AD_UNIT_ID_FOR_BANNER_TEST</key>
+	<string>ca-app-pub-3940256099942544/2934735716</string>
+	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
+	<string>ca-app-pub-3940256099942544/4411468910</string>
+	<key>CLIENT_ID</key>
+	<string>751903459-1gohgv6c7fb41kpb4e86v618rpj77rtp.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.751903459-1gohgv6c7fb41kpb4e86v618rpj77rtp</string>
+	<key>API_KEY</key>
+	<string>AIzaSyB5G6of16gT79l3xCoIJNgzjcDeFJnVd9s</string>
+	<key>GCM_SENDER_ID</key>
+	<string>751903459</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>bokhary.All.English.Words</string>
+	<key>PROJECT_ID</key>
+	<string>english-words-190120</string>
+	<key>STORAGE_BUCKET</key>
+	<string>english-words-190120.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<true></true>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:751903459:ios:5ab2d91feae73f3e</string>
+	<key>DATABASE_URL</key>
+	<string>https://english-words-190120.firebaseio.com</string>
+</dict>
+</plist>

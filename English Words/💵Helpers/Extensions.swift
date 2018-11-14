@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import EasyTipView
 
 extension UIView {
     func rotate(_ toValue: CGFloat, duration: CFTimeInterval = 0.2) {
@@ -47,14 +46,4 @@ extension UIApplication {
         }
         return controller
     }
-}
-
-extension UITableViewCell: EasyTipViewDelegate {
-    public func easyTipViewDidDismiss(_ tipView: EasyTipView) {
-        tipView.dismiss()
-    }
-}
-
-extension String {
-    
 }

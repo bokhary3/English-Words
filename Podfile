@@ -8,6 +8,5 @@ target 'English Words' do
     # Pods for English Words
     pod 'Google-Mobile-Ads-SDK'
     pod 'SwiftyStoreKit'
-    pod 'EasyTipView'
-
+    pod 'Firebase/Core'
 end

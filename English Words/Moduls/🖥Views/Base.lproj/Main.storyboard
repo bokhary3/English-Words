@@ -490,7 +490,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ytu-3F-xkf">
-                                <rect key="frame" x="0.0" y="116" width="375" height="471"/>
+                                <rect key="frame" x="0.0" y="116" width="375" height="551"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <wkWebViewConfiguration key="configuration">
                                     <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
@@ -498,25 +498,12 @@
                                 </wkWebViewConfiguration>
                             </wkWebView>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="dYq-Wa-cSe">
-                                <rect key="frame" x="177.5" y="341.5" width="20" height="20"/>
+                                <rect key="frame" x="177.5" y="381.5" width="20" height="20"/>
                             </activityIndicatorView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zoS-sa-yLq" customClass="GADBannerView">
-                                <rect key="frame" x="0.0" y="587" width="375" height="80"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="80" id="9Yl-oW-fHT"/>
-                                </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="autoloadEnabled" value="YES"/>
-                                </userDefinedRuntimeAttributes>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="zoS-sa-yLq" firstAttribute="centerX" secondItem="KZJ-U1-hnX" secondAttribute="centerX" id="G4C-8c-0SW"/>
-                            <constraint firstItem="zoS-sa-yLq" firstAttribute="top" secondItem="ytu-3F-xkf" secondAttribute="bottom" id="KRU-hF-0S4"/>
-                            <constraint firstItem="KZJ-U1-hnX" firstAttribute="bottom" secondItem="zoS-sa-yLq" secondAttribute="bottom" id="Lok-x4-8eW"/>
-                            <constraint firstItem="zoS-sa-yLq" firstAttribute="width" secondItem="mlu-oF-6yp" secondAttribute="width" id="QKI-Va-xN7"/>
+                            <constraint firstItem="KZJ-U1-hnX" firstAttribute="bottom" secondItem="ytu-3F-xkf" secondAttribute="bottom" id="JuF-eN-ZPg"/>
                             <constraint firstItem="ytu-3F-xkf" firstAttribute="top" secondItem="KZJ-U1-hnX" secondAttribute="top" id="R1u-n8-8hV"/>
                             <constraint firstItem="dYq-Wa-cSe" firstAttribute="centerX" secondItem="ytu-3F-xkf" secondAttribute="centerX" id="TGj-Wh-ohy"/>
                             <constraint firstItem="dYq-Wa-cSe" firstAttribute="centerY" secondItem="ytu-3F-xkf" secondAttribute="centerY" id="hXT-Gi-Qgp"/>
@@ -527,8 +514,6 @@
                     </view>
                     <connections>
                         <outlet property="activityIndicator" destination="dYq-Wa-cSe" id="8dC-Iv-xxL"/>
-                        <outlet property="bannerHeightConstraint" destination="9Yl-oW-fHT" id="tSC-EP-y6B"/>
-                        <outlet property="bannerView" destination="zoS-sa-yLq" id="WVw-do-0vp"/>
                         <outlet property="webView" destination="ytu-3F-xkf" id="oKm-EK-Zx8"/>
                     </connections>
                 </viewController>

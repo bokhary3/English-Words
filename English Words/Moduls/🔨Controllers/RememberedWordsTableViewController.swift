@@ -8,6 +8,8 @@
 
 import UIKit
 import CoreData
+import FirebaseAnalytics
+
 class RememberedWordsTableViewController: UITableViewController {
     
     //MARK: Variables
@@ -17,7 +19,22 @@ class RememberedWordsTableViewController: UITableViewController {
         super.viewDidLoad()
         setupViews()
     }
-    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        
+        recordScreenView()
+    }
+    func recordScreenView() {
+        // These strings must be <= 36 characters long in order for setScreenName:screenClass: to succeed.
+        guard let screenName = title else {
+            return
+        }
+        let screenClass = classForCoder.description()
+        
+        // [START set_current_screen]
+        Analytics.setScreenName(screenName, screenClass: screenClass)
+        // [END set_current_screen]
+    }
     //MARK: Outlets
     //MARK: Actions
     
@@ -78,7 +95,7 @@ class RememberedWordsTableViewController: UITableViewController {
         }
         return cell
     }
-
+    
     
     /*
      // Override to support conditional editing of the table view.

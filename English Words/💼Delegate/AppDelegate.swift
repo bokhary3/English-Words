@@ -10,6 +10,7 @@ import UIKit
 import CoreData
 import GoogleMobileAds
 import SwiftyStoreKit
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -37,6 +38,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
         
+        FirebaseApp.configure()
         
         GADMobileAds.configure(withApplicationID: Constants.Keys.adMobAPIKey)
         return true

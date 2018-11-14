@@ -10,6 +10,7 @@ import UIKit
 import CoreData
 import AVFoundation
 import GoogleMobileAds
+import FirebaseAnalytics
 
 class WordDetailsTableViewController: UITableViewController {
     
@@ -39,11 +40,29 @@ class WordDetailsTableViewController: UITableViewController {
         addADSBanner()
         
     }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        
+        recordScreenView()
+    }
+    func recordScreenView() {
+        // These strings must be <= 36 characters long in order for setScreenName:screenClass: to succeed.
+        guard let screenName = title else {
+            return
+        }
+        let screenClass = classForCoder.description()
+        
+        // [START set_current_screen]
+        Analytics.setScreenName(screenName, screenClass: screenClass)
+        // [END set_current_screen]
+    }
     
     //MARK: Actions
     @IBAction func speakWordButtonTapped(_ sender: UIButton) {
         let utterance = AVSpeechUtterance(string: self.wordLabel.text ?? "")
         self.speechSynthesizer.speak(utterance)
+        Analytics.logEvent("Word Details", parameters: ["speak_word" : word.title])
+
     }
     
     //MARK: Methods
@@ -61,7 +80,10 @@ class WordDetailsTableViewController: UITableViewController {
     
     func addADSBanner() {
         if !UserStatus.productPurchased {
-            let bannerSize = UIDevice.current.userInterfaceIdiom == .phone ? kGADAdSizeBanner : kGADAdSizeLeaderboard
+            speakButton.isHidden = true
+            
+            // add banner view
+            let bannerSize = UIDevice.current.userInterfaceIdiom == .phone ? kGADAdSizeLargeBanner : kGADAdSizeLeaderboard
             let bannerView = GADBannerView(adSize: bannerSize)
             bannerView.adUnitID = Constants.Keys.adMobBannerUnitID
             bannerView.rootViewController = self
@@ -80,10 +102,10 @@ class WordDetailsTableViewController: UITableViewController {
     }
     
     
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    // MARK: - Navigation
+    
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showWebViewController" {
             let webController = segue.destination as! WebViewController
             webController.url = sender as? URL
@@ -161,19 +183,23 @@ extension WordDetailsTableViewController {
         default:
             break
         }
+        Analytics.logEvent("Word Details", parameters: ["word_in_dictionary" : urlPath])
         openWebViewController(urlPath: urlPath)
     }
-   
+    
     func translateByGoogle() {
         let urlPath = Constants.WebSites.googleTranslate + word.title
-       openWebViewController(urlPath: urlPath)
+        Analytics.logEvent("Word Details", parameters: ["translate_by_word" : urlPath])
+        openWebViewController(urlPath: urlPath)
     }
     func listenToTheWord() {
         let urlPath = Constants.WebSites.youGlish + word.title
+        Analytics.logEvent("Word Details", parameters: ["Listen_to_word" : urlPath])
         openWebViewController(urlPath: urlPath)
     }
     
     func rememberTheWord() {
+        Analytics.logEvent("Word Details", parameters: ["remember_word" : word.title])
         WordObjectManager.shared?.remeberWord(word: word)
         rememberCell.accessoryType = word.isRemebered ? .checkmark : .none
     }

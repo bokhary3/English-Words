@@ -31,6 +31,7 @@
 		DA4DF64D2197576F00861540 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4DF64C2197576F00861540 /* WebViewController.swift */; };
 		DA6E154A218F8F8B0051F657 /* WordDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6E1549218F8F8B0051F657 /* WordDetailsViewController.swift */; };
 		DA94160A2108BE6A00147F5B /* SectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA9416092108BE6A00147F5B /* SectionView.xib */; };
+		DAADD07C219CB8CB00E05284 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DAADD07B219CB8CB00E05284 /* GoogleService-Info.plist */; };
 		DAC88FE820FE14AA00C3FE94 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC88FE720FE14AA00C3FE94 /* MainViewModel.swift */; };
 		DAC88FEA20FE163700C3FE94 /* ViewModelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC88FE920FE163700C3FE94 /* ViewModelDelegate.swift */; };
 		DAC88FEC20FE19C400C3FE94 /* WordObjectManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC88FEB20FE19C400C3FE94 /* WordObjectManager.swift */; };
@@ -66,6 +67,7 @@
 		DA4DF64C2197576F00861540 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		DA6E1549218F8F8B0051F657 /* WordDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordDetailsViewController.swift; sourceTree = "<group>"; };
 		DA9416092108BE6A00147F5B /* SectionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SectionView.xib; sourceTree = "<group>"; };
+		DAADD07B219CB8CB00E05284 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		DAC88FE720FE14AA00C3FE94 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		DAC88FE920FE163700C3FE94 /* ViewModelDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelDelegate.swift; sourceTree = "<group>"; };
 		DAC88FEB20FE19C400C3FE94 /* WordObjectManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordObjectManager.swift; sourceTree = "<group>"; };
@@ -89,6 +91,8 @@
 			isa = PBXGroup;
 			children = (
 				4F6D71081FEAF1490014FC39 /* English Words */,
+				4F6D71151FEAF1490014FC39 /* Info.plist */,
+				DAADD07B219CB8CB00E05284 /* GoogleService-Info.plist */,
 				4F6D71071FEAF1490014FC39 /* Products */,
 				BBF655BE4F0FBD7F4C279D31 /* Pods */,
 				6CD6AB9613EE6B9108E9F8EA /* Frameworks */,
@@ -107,7 +111,6 @@
 			isa = PBXGroup;
 			children = (
 				DAC88FE520FE145D00C3FE94 /* Moduls */,
-				4F6D71151FEAF1490014FC39 /* Info.plist */,
 				4F6D71311FEB00AB0014FC39 /* 💰Resources */,
 				4F6D712C1FEAFEFA0014FC39 /* 💵Helpers */,
 				4F6D71291FEAF70C0014FC39 /* ⚔️Models */,
@@ -330,6 +333,7 @@
 				4F6D71141FEAF1490014FC39 /* LaunchScreen.storyboard in Resources */,
 				4F6D71111FEAF1490014FC39 /* Assets.xcassets in Resources */,
 				4F6D710F1FEAF1490014FC39 /* Main.storyboard in Resources */,
+				DAADD07C219CB8CB00E05284 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -343,13 +347,15 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-English Words/Pods-English Words-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/EasyTipView/EasyTipView.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyStoreKit/SwiftyStoreKit.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EasyTipView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyStoreKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -546,7 +552,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = E9WC5VCAQB;
-				INFOPLIST_FILE = "$(SRCROOT)/English Words/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = bokhary.All.English.Words;
@@ -566,7 +572,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = E9WC5VCAQB;
-				INFOPLIST_FILE = "$(SRCROOT)/English Words/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = bokhary.All.English.Words;

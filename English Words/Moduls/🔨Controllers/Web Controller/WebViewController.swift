@@ -9,16 +9,16 @@
 import UIKit
 import WebKit
 import GoogleMobileAds
+import FirebaseAnalytics
 
 class WebViewController: UIViewController {
-
+    
     //MARK: Variables
     var url: URL!
+    var bannerView: GADBannerView!
     
     //MARK: Outlets
     @IBOutlet weak var webView: WKWebView!
-    @IBOutlet weak var bannerView: GADBannerView!
-    @IBOutlet weak var bannerHeightConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
@@ -29,7 +29,24 @@ class WebViewController: UIViewController {
         // setup views
         setupViews()
     }
-    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        
+        recordScreenView()
+        
+        Analytics.logEvent("WebViewController", parameters: ["URL String" : url.absoluteString])
+    }
+    func recordScreenView() {
+        // These strings must be <= 36 characters long in order for setScreenName:screenClass: to succeed.
+        guard let screenName = title else {
+            return
+        }
+        let screenClass = classForCoder.description()
+        
+        // [START set_current_screen]
+        Analytics.setScreenName(screenName, screenClass: screenClass)
+        // [END set_current_screen]
+    }
     //MARK: Actions
     
     //MARK: Methods
@@ -37,32 +54,49 @@ class WebViewController: UIViewController {
         webView.navigationDelegate = self
         let request = URLRequest(url: url)
         webView.load(request)
+        addADSBanner()
     }
     func addADSBanner() {
         if !UserStatus.productPurchased {
+            let bannerSize = UIDevice.current.userInterfaceIdiom == .phone ? kGADAdSizeBanner : kGADAdSizeLeaderboard
+            bannerView = GADBannerView(adSize: bannerSize)
+            
             bannerView.adUnitID = Constants.Keys.adMobBannerUnitID
             bannerView.rootViewController = self
             bannerView.delegate = self
             bannerView.load(GADRequest())
+            bannerView.translatesAutoresizingMaskIntoConstraints = false
+            view.addSubview(bannerView)
             
+            positionBannerViewFullWidthAtBottomOfSafeArea(bannerView)
         }
         else{
-            // setup search bar
-            bannerHeightConstraint.constant = 0
-            view.layoutIfNeeded()
+            
         }
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func positionBannerViewFullWidthAtBottomOfSafeArea(_ bannerView: UIView) {
+        // Position the banner. Stick it to the bottom of the Safe Area.
+        // Make it constrained to the edges of the safe area.
+        let guide = view.safeAreaLayoutGuide
+        NSLayoutConstraint.activate([
+            guide.leftAnchor.constraint(equalTo: bannerView.leftAnchor),
+            guide.rightAnchor.constraint(equalTo: bannerView.rightAnchor),
+            guide.bottomAnchor.constraint(equalTo: bannerView.bottomAnchor)
+            ])
+        bannerView.heightAnchor.constraint(equalToConstant: 50).isActive = true
     }
-    */
-
+    
+    
+    /*
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destination.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }
 extension WebViewController: WKNavigationDelegate {
     func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
