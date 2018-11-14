@@ -48,24 +48,29 @@ class SearchResultTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let word = matchingWords[indexPath.row]
-        performSegue(withIdentifier: "showWordDetails", sender: word)
+        if (self.parent is UISearchController) {
+            openWordDetailsController(word: word)
+        }
+    }
+    
+    func openWordDetailsController(word: Word) {
+        let navigationController = self.parent?.presentingViewController?.navigationController
+        let wordDetailsController = storyboard?.instantiateViewController(withIdentifier: "WordDetailsTableViewController") as! WordDetailsTableViewController
+        let mainNavigatioController = Initializer.getMainNavigationController()
+        for controller in mainNavigatioController.viewControllers {
+            if controller is MainTableViewController {
+                let mainViewController = controller as! MainTableViewController
+                wordDetailsController.delegate = mainViewController
+            }
+        }
+        wordDetailsController.word = word
+        navigationController?.pushViewController(wordDetailsController, animated: true)
     }
     
     // MARK: - Navigation
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showWordDetails" {
-            let wordDetailsController = segue.destination as! WordDetailsTableViewController
-            let mainNavigatioController = Initializer.getMainNavigationController()
-            for controller in mainNavigatioController.viewControllers {
-                if controller is MainTableViewController {
-                    let mainViewController = controller as! MainTableViewController
-                    wordDetailsController.delegate = mainViewController
-                }
-            }
-            wordDetailsController.word = sender as? Word
-        }
     }
     
     

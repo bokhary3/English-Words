@@ -8,6 +8,8 @@
 
 import UIKit
 import CoreData
+import AVFoundation
+import GoogleMobileAds
 
 class WordDetailsTableViewController: UITableViewController {
     
@@ -15,10 +17,16 @@ class WordDetailsTableViewController: UITableViewController {
     var word: Word!
     weak var delegate: WordsDelegate!
     
+    private let speechSynthesizer = AVSpeechSynthesizer()
+    private var pitch: Float = 1.0
+    private var rate = AVSpeechUtteranceDefaultSpeechRate
+    private var volume: Float = 1.0
+    
     //MARK: Outlets
     @IBOutlet weak var wordInfoLabel: UITableViewCell!
     @IBOutlet weak var wordLabel: UILabel!
     @IBOutlet weak var rememberCell: UITableViewCell!
+    @IBOutlet weak var speakButton: UIButton!
     
     
     //MARK: View lifcycle methods
@@ -28,12 +36,21 @@ class WordDetailsTableViewController: UITableViewController {
         // setup views
         setupViews()
         
+        addADSBanner()
+        
     }
     
     //MARK: Actions
-
+    @IBAction func speakWordButtonTapped(_ sender: UIButton) {
+        let utterance = AVSpeechUtterance(string: self.wordLabel.text ?? "")
+        self.speechSynthesizer.speak(utterance)
+    }
+    
     //MARK: Methods
     func setupViews() {
+        
+        self.speechSynthesizer.delegate = self
+        
         wordLabel.text = word.title
         
         rememberCell.accessoryType = WordObjectManager.shared!.isRemeberWord(word: word) ? .checkmark : .none
@@ -42,6 +59,21 @@ class WordDetailsTableViewController: UITableViewController {
         
     }
     
+    func addADSBanner() {
+        if !UserStatus.productPurchased {
+            let bannerSize = UIDevice.current.userInterfaceIdiom == .phone ? kGADAdSizeBanner : kGADAdSizeLeaderboard
+            let bannerView = GADBannerView(adSize: bannerSize)
+            bannerView.adUnitID = Constants.Keys.adMobBannerUnitID
+            bannerView.rootViewController = self
+            bannerView.delegate = self
+            self.tableView.tableFooterView = bannerView
+            bannerView.load(GADRequest())
+            
+        }
+        else{
+            // setup search bar
+        }
+    }
     func openWebViewController(urlPath: String) {
         let url = URL(string: urlPath)
         performSegue(withIdentifier: "showWebViewController", sender: url)
@@ -144,5 +176,49 @@ extension WordDetailsTableViewController {
     func rememberTheWord() {
         WordObjectManager.shared?.remeberWord(word: word)
         rememberCell.accessoryType = word.isRemebered ? .checkmark : .none
+    }
+}
+
+extension WordDetailsTableViewController: AVSpeechSynthesizerDelegate {
+    func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didStart utterance: AVSpeechUtterance) {
+        self.speakButton.isEnabled = false
+    }
+    
+    func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {
+        self.speakButton.isEnabled = true
+    }
+}
+extension WordDetailsTableViewController: GADBannerViewDelegate {
+    /// Tells the delegate an ad request loaded an ad.
+    func adViewDidReceiveAd(_ bannerView: GADBannerView) {
+        print("adViewDidReceiveAd")
+    }
+    
+    /// Tells the delegate an ad request failed.
+    func adView(_ bannerView: GADBannerView,
+                didFailToReceiveAdWithError error: GADRequestError) {
+        print("adView:didFailToReceiveAdWithError: \(error.localizedDescription)")
+    }
+    
+    /// Tells the delegate that a full-screen view will be presented in response
+    /// to the user clicking on an ad.
+    func adViewWillPresentScreen(_ bannerView: GADBannerView) {
+        print("adViewWillPresentScreen")
+    }
+    
+    /// Tells the delegate that the full-screen view will be dismissed.
+    func adViewWillDismissScreen(_ bannerView: GADBannerView) {
+        print("adViewWillDismissScreen")
+    }
+    
+    /// Tells the delegate that the full-screen view has been dismissed.
+    func adViewDidDismissScreen(_ bannerView: GADBannerView) {
+        print("adViewDidDismissScreen")
+    }
+    
+    /// Tells the delegate that a user click will open another app (such as
+    /// the App Store), backgrounding the current app.
+    func adViewWillLeaveApplication(_ bannerView: GADBannerView) {
+        print("adViewWillLeaveApplication")
     }
 }
