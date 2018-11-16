@@ -43,4 +43,7 @@ struct Constants {
     
     static var fromPurchaseProcess = false
     
+    struct UserDefaultsKeys {
+        static let APP_OPENED_COUNT = "APP_OPENED_COUNT"
+    }
 }

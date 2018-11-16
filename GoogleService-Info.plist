@@ -36,5 +36,7 @@
 	<string>1:751903459:ios:5ab2d91feae73f3e</string>
 	<key>DATABASE_URL</key>
 	<string>https://english-words-190120.firebaseio.com</string>
+	<key>ADMOB_APP_ID</key>
+	<string>ca-app-pub-1448110355544135~7666189534</string>
 </dict>
 </plist>

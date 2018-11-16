@@ -19,10 +19,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        
-        
-        UserStatus.productPurchased = false
-        
+        handleRateAlert()
+        completeStorKitTransaction()
+        setup()
+        return true
+    }
+    
+    private func handleRateAlert() {
+        StoreReviewHelper.incrementAppOpenedCount()
+        StoreReviewHelper.checkAndAskForReview()
+    }
+
+    private func completeStorKitTransaction() {
         SwiftyStoreKit.completeTransactions(atomically: true) { purchases in
             for purchase in purchases {
                 switch purchase.transaction.transactionState {
@@ -37,11 +45,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 }
             }
         }
-        
+    }
+    private func setup() {
         FirebaseApp.configure()
-        
         GADMobileAds.configure(withApplicationID: Constants.Keys.adMobAPIKey)
-        return true
     }
 
     func applicationWillTerminate(_ application: UIApplication) {

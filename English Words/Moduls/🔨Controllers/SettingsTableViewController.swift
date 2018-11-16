@@ -117,7 +117,7 @@ class SettingsTableViewController: UITableViewController {
             mail.setSubject("My Feedback")
             present(mail, animated: true)
         } else {
-            // show failure alert
+            Helper.alert(title: "Oops!", message: "Please configure your Mail app to send your valuable feedback.", viewController: self)
         }
     }
     
