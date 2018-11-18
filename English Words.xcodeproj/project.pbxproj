@@ -32,6 +32,7 @@
 		DA6D09D6219F286D008AEB1A /* StoreReviewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6D09D5219F286D008AEB1A /* StoreReviewHelper.swift */; };
 		DA6D09D8219F2E2C008AEB1A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DA6D09D7219F2E2C008AEB1A /* GoogleService-Info.plist */; };
 		DA6E154A218F8F8B0051F657 /* WordDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6E1549218F8F8B0051F657 /* WordDetailsViewController.swift */; };
+		DA7F8ADC21A1FE6D00529D07 /* UpgradeVersionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA7F8ADB21A1FE6D00529D07 /* UpgradeVersionManager.swift */; };
 		DA94160A2108BE6A00147F5B /* SectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA9416092108BE6A00147F5B /* SectionView.xib */; };
 		DAC88FE820FE14AA00C3FE94 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC88FE720FE14AA00C3FE94 /* MainViewModel.swift */; };
 		DAC88FEA20FE163700C3FE94 /* ViewModelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC88FE920FE163700C3FE94 /* ViewModelDelegate.swift */; };
@@ -69,6 +70,7 @@
 		DA6D09D5219F286D008AEB1A /* StoreReviewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreReviewHelper.swift; sourceTree = "<group>"; };
 		DA6D09D7219F2E2C008AEB1A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		DA6E1549218F8F8B0051F657 /* WordDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordDetailsViewController.swift; sourceTree = "<group>"; };
+		DA7F8ADB21A1FE6D00529D07 /* UpgradeVersionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpgradeVersionManager.swift; sourceTree = "<group>"; };
 		DA9416092108BE6A00147F5B /* SectionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SectionView.xib; sourceTree = "<group>"; };
 		DAC88FE720FE14AA00C3FE94 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		DAC88FE920FE163700C3FE94 /* ViewModelDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelDelegate.swift; sourceTree = "<group>"; };
@@ -200,6 +202,7 @@
 				DAC88FEB20FE19C400C3FE94 /* WordObjectManager.swift */,
 				DAC88FED20FE257C00C3FE94 /* Loader.swift */,
 				DA6D09D5219F286D008AEB1A /* StoreReviewHelper.swift */,
+				DA7F8ADB21A1FE6D00529D07 /* UpgradeVersionManager.swift */,
 			);
 			path = "💵Helpers";
 			sourceTree = "<group>";
@@ -410,6 +413,7 @@
 				DAC88FEA20FE163700C3FE94 /* ViewModelDelegate.swift in Sources */,
 				4FF44FD120040AD800947EC2 /* UserStatus.swift in Sources */,
 				4F6D712B1FEAF74E0014FC39 /* Models.swift in Sources */,
+				DA7F8ADC21A1FE6D00529D07 /* UpgradeVersionManager.swift in Sources */,
 				4FE622BA1FF6B7F900C61957 /* RememberedWords.xcdatamodeld in Sources */,
 				4F6D712E1FEAFF1F0014FC39 /* Constants.swift in Sources */,
 			);

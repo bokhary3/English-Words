@@ -65,6 +65,7 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
+                <outlet property="containerView" destination="DSw-jT-ceO" id="fg8-hz-yzA"/>
                 <outlet property="oBtnDropDown" destination="nsd-gY-zXa" id="lmi-6Q-imG"/>
                 <outlet property="oBtnSelect" destination="5GB-87-6M5" id="rAa-8U-WMq"/>
                 <outlet property="oLblSectionTitle" destination="JtU-oc-SeM" id="efy-Th-6nz"/>

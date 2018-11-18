@@ -23,6 +23,7 @@ class SectionTableViewCell: UITableViewHeaderFooterView {
     @IBOutlet weak var oLblSectionTitle: UILabel!
     @IBOutlet weak var oBtnDropDown: UIButton!
     @IBOutlet weak var oBtnSelect: UIButton!
+    @IBOutlet weak var containerView: UIView!
     
     //MARK: Actions
     @IBAction func didTapButton(_ sender: AnyObject) {

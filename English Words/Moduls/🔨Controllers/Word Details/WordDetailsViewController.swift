@@ -59,10 +59,15 @@ class WordDetailsTableViewController: UITableViewController {
     
     //MARK: Actions
     @IBAction func speakWordButtonTapped(_ sender: UIButton) {
-        let utterance = AVSpeechUtterance(string: self.wordLabel.text ?? "")
-        self.speechSynthesizer.speak(utterance)
-        Analytics.logEvent("Word Details", parameters: ["speak_word" : word.title])
-
+        if UserStatus.productPurchased {
+            let utterance = AVSpeechUtterance(string: self.wordLabel.text ?? "")
+            self.speechSynthesizer.speak(utterance)
+            Analytics.logEvent("Word Details", parameters: ["speak_word" : word.title])
+        } else {
+            let upgradeManager = UpgradeVersionManager(viewController: self)
+            upgradeManager.alertUpgardeMessage(message: "Upgrade Version to can use speak feature!")
+        }
+        
     }
     
     //MARK: Methods
@@ -80,8 +85,6 @@ class WordDetailsTableViewController: UITableViewController {
     
     func addADSBanner() {
         if !UserStatus.productPurchased {
-            speakButton.isHidden = true
-            
             // add banner view
             let bannerSize = UIDevice.current.userInterfaceIdiom == .phone ? kGADAdSizeLargeBanner : kGADAdSizeLeaderboard
             let bannerView = GADBannerView(adSize: bannerSize)
@@ -144,16 +147,16 @@ extension WordDetailsTableViewController {
             delegate.refresh()
         }
     }
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if !UserStatus.productPurchased {
-            if indexPath.section == 2 {
-                if indexPath.row == 0 {
-                    return 0
-                }
-            }
-        }
-        return super.tableView(tableView, heightForRowAt: indexPath)
-    }
+//    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        if !UserStatus.productPurchased {
+//            if indexPath.section == 2 {
+//                if indexPath.row == 0 {
+//                    return 0
+//                }
+//            }
+//        }
+//        return super.tableView(tableView, heightForRowAt: indexPath)
+//    }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if !UserStatus.productPurchased {
@@ -188,9 +191,14 @@ extension WordDetailsTableViewController {
     }
     
     func translateByGoogle() {
-        let urlPath = Constants.WebSites.googleTranslate + word.title
-        Analytics.logEvent("Word Details", parameters: ["translate_by_word" : urlPath])
-        openWebViewController(urlPath: urlPath)
+        if UserStatus.productPurchased {
+            let urlPath = Constants.WebSites.googleTranslate + word.title
+            Analytics.logEvent("Word Details", parameters: ["translate_by_word" : urlPath])
+            openWebViewController(urlPath: urlPath)
+        } else {
+            let upgradeManager = UpgradeVersionManager(viewController: self)
+            upgradeManager.alertUpgardeMessage(message: "Upgrade Version to can use Google translate feature!")
+        }
     }
     func listenToTheWord() {
         let urlPath = Constants.WebSites.youGlish + word.title

@@ -56,6 +56,10 @@ class MainTableViewController: UITableViewController {
     @IBOutlet var viewModel: MainViewModel!
     
     //MARK: Actions
+    @IBAction func searchBarButtonAction(_ sender: UIBarButtonItem) {
+        let upgardeManager = UpgradeVersionManager(viewController: self)
+        upgardeManager.alertUpgardeMessage(message: "Upgrade version to can use search feature")
+    }
     
     //MARK: Methods
     func setupViews() {
@@ -67,6 +71,12 @@ class MainTableViewController: UITableViewController {
         
         // load words from file
         self.viewModel.loadWordsFromExcelFile()
+        
+        // hide search button if purchased
+        if UserStatus.productPurchased {
+            navigationItem.leftBarButtonItem = nil
+        }
+        
     }
     func setTableViewHeader() {
         // create banner view
@@ -150,6 +160,7 @@ class MainTableViewController: UITableViewController {
         let char = viewModel.charOfSection(section: section)
         headerView.delegate = self
         headerView.sectionNumber = section
+        headerView.containerView.backgroundColor = section % 2 == 0 ? UIColor(named: "evenColor") : UIColor(named: "oddColor")
         
         if char.isExpanded {
             headerView.oBtnDropDown.rotate(char.isExpanded ? .pi/2 : .pi)
