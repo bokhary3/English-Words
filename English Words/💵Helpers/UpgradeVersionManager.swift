@@ -10,6 +10,7 @@ import UIKit
 import SwiftyStoreKit
 import StoreKit
 import FirebaseAnalytics
+import KeychainAccess
 
 class UpgradeVersionManager {
     
@@ -60,6 +61,7 @@ class UpgradeVersionManager {
             case .success(let purchase):
                 Analytics.logEvent("Purchase", parameters: ["action": "Buy Product \(product.price)"])
                 self.relaunchApp(title: "", message: "Purchase Success: \(purchase.productId)")
+                self.saveProductPurchaseStatus()
                 print("Purchase Success: \(purchase.productId)")
             case .error(let error):
                 switch error.code {
@@ -85,7 +87,7 @@ class UpgradeVersionManager {
         }
     }
     
-    func restorePurchase(){
+    func restorePurchase() {
         Loader.show(view: viewController!.view)
         SwiftyStoreKit.restorePurchases(atomically: true) { results in
             Loader.hide(view: self.viewController!.view)
@@ -95,15 +97,16 @@ class UpgradeVersionManager {
             }
             if results.restoreFailedPurchases.count > 0 {
                 print("Restore Failed: \(results.restoreFailedPurchases)")
-                return Alert.alert(title: "Restore failed", message: "Unknown error. Please contact support", alertActionTitle: "Ok")
+                Alert.alert(title: "Restore failed", message: "Unknown error. Please contact support", alertActionTitle: "Ok")
             } else if results.restoredPurchases.count > 0 {
                 print("Restore Success: \(results.restoredPurchases)")
                 Analytics.logEvent("Purchase", parameters: ["action": "Restore Product \(results.restoredPurchases.count)"])
+                self.removeProductPurchaseStatus()
+                self.relaunchApp(title: "Purchases Restored", message: "All purchases have been restored",productPurchased: false)
                 
-                return self.relaunchApp(title: "Purchases Restored", message: "All purchases have been restored",productPurchased: false)
             } else {
                 print("Nothing to Restore")
-                return Alert.alert(title: "Nothing to restore", message: "No previous purchases were found", alertActionTitle: "Ok")
+                Alert.alert(title: "Nothing to restore", message: "No previous purchases were found", alertActionTitle: "Ok")
             }
         }
     }
@@ -113,7 +116,6 @@ class UpgradeVersionManager {
         
         let okAction = UIAlertAction(title: "Ok", style: .default, handler: {
             _ in
-            UserStatus.productPurchased = productPurchased
             Constants.fromPurchaseProcess = true
             let homeVC = Initializer.createVCWith(identifier: Constants.StoryboardIds.homeNC)
             Initializer.getAppdelegate().window?.rootViewController = homeVC
@@ -122,5 +124,32 @@ class UpgradeVersionManager {
         alert.addAction(okAction)
         
         viewController!.present(alert, animated: true, completion: nil)
+    }
+    
+    private func saveProductPurchaseStatus() {
+        // replace the keychain service name as you like
+        let keychain = Keychain(service: Constants.PurchaseData.productID)
+        
+        // use the in-app product item identifier as key, and set its value to indicate user has purchased it
+        do {
+            try keychain.set("purchased", key: Constants.UserData.productPurchasedKey)
+        }
+        catch let error {
+            print("setting keychain to purchased failed")
+            print(error)
+        }
+    }
+    private func removeProductPurchaseStatus() {
+        // replace the keychain service name as you like
+        let keychain = Keychain(service: Constants.PurchaseData.productID)
+        
+        // use the in-app product item identifier as key, and set its value to indicate user has purchased it
+        do {
+            try keychain.remove(Constants.UserData.productPurchasedKey)
+        }
+        catch let error {
+            print("remove keychain to purchased failed")
+            print(error)
+        }
     }
 }

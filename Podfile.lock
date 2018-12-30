@@ -44,6 +44,7 @@ PODS:
     - GoogleUtilities/Logger
   - GoogleUtilities/UserDefaults (5.3.4):
     - GoogleUtilities/Logger
+  - KeychainAccess (3.1.2)
   - nanopb (0.3.901):
     - nanopb/decode (= 0.3.901)
     - nanopb/encode (= 0.3.901)
@@ -54,6 +55,7 @@ PODS:
 DEPENDENCIES:
   - Firebase/Core
   - Google-Mobile-Ads-SDK
+  - KeychainAccess
   - SwiftyStoreKit
 
 SPEC REPOS:
@@ -65,6 +67,7 @@ SPEC REPOS:
     - Google-Mobile-Ads-SDK
     - GoogleAppMeasurement
     - GoogleUtilities
+    - KeychainAccess
     - nanopb
     - SwiftyStoreKit
 
@@ -76,9 +79,10 @@ SPEC CHECKSUMS:
   Google-Mobile-Ads-SDK: 6e529e748b45507a2ca904e0b5a52669ba3920c4
   GoogleAppMeasurement: 5029d78f2b438bd30ffb44e6c558b57c21622727
   GoogleUtilities: abb092d2c12e817fa3e0e7b274987dd72fb86ec3
+  KeychainAccess: b3816fddcf28aa29d94b10ec305cd52be14c472b
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   SwiftyStoreKit: 9ebd15971e28aa2989825fe8bc092eb5f75dd0b2
 
-PODFILE CHECKSUM: 8496f595bb072de24601347af2baea9c673eb0e8
+PODFILE CHECKSUM: e9ab12a3bb107c153b9ac8bbfc194aeaab59711a
 
 COCOAPODS: 1.5.0

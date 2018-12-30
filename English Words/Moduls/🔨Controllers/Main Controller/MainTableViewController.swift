@@ -176,6 +176,7 @@ class MainTableViewController: UITableViewController {
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let word = viewModel.wordOf(indexPath: indexPath)
+        showAdsBanner()
         performSegue(withIdentifier: "showWordDetails", sender: word)
     }
     
@@ -236,6 +237,7 @@ extension MainTableViewController {
             viewHeader.oBtnDropDown.rotate(char.isExpanded ? .pi/2 : .pi)
             self.tableView.reloadSections(
                 [section], with: UITableViewRowAnimation.automatic)
+            tableView.scrollToRow(at: [section, 0], at: .middle, animated: true)
         } else {
             viewHeader.oBtnDropDown.rotate(0)
             self.tableView.reloadSections(
@@ -244,17 +246,20 @@ extension MainTableViewController {
     }
     
     func showAdsBanner() {
-        if viewModel.adsClicksCount % 8 == 0 {
-            if interstitial.isReady {
-                interstitial.present(fromRootViewController: self)
-            } else {
-                print("Ad wasn't ready")
+        if !UserStatus.productPurchased {
+            if viewModel.adsClicksCount % 5 == 0 {
+                if interstitial.isReady {
+                    interstitial.present(fromRootViewController: self)
+                } else {
+                    print("Ad wasn't ready")
+                }
             }
+            viewModel.adsClicksCount += 1
         }
     }
 }
 
-extension MainTableViewController:GADInterstitialDelegate{
+extension MainTableViewController: GADInterstitialDelegate {
     func createAndLoadInterstitial() -> GADInterstitial {
         let interstitial = GADInterstitial(adUnitID: Constants.Keys.adMobInterstitial)
         interstitial.delegate = self
@@ -266,7 +271,7 @@ extension MainTableViewController:GADInterstitialDelegate{
         interstitial = createAndLoadInterstitial()
     }
 }
-extension MainTableViewController: UISearchBarDelegate{
+extension MainTableViewController: UISearchBarDelegate {
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         let searchResultVC = self.searchController.searchResultsController as! SearchResultTableViewController
         searchResultVC.allWords = viewModel.cleanWords.map({ (title) in
@@ -292,11 +297,7 @@ extension MainTableViewController: ViewModelDelegate {
 
 extension MainTableViewController: CustomHeaderDelegate {
     func didTapButton(in section: Int) {
-        if !UserStatus.productPurchased {
-            showAdsBanner()
-        }
-        viewModel.adsClicksCount += 1
-        
+        showAdsBanner()
         let char  = viewModel.charOfSection(section: section)
         if char.words.count > 0 {
             openSectionOf(char: char, section: section)

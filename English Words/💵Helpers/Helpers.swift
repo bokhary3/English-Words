@@ -17,8 +17,7 @@ class Helper{
                 return nil
         }
         do {
-            var contents = try String(contentsOfFile: filepath, encoding: .utf8)
-            contents = cleanRows(file: contents)
+            let contents = try String(contentsOfFile: filepath, encoding: .utf8)
             return contents
         } catch {
             print("File Read Error for file \(filepath)")

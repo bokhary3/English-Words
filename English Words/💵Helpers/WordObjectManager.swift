@@ -27,10 +27,16 @@ class WordObjectManager {
             appDelegate.persistentContainer.viewContext
     }
     
-    func getExistWords(cleanWords: [String]) -> [NSManagedObject]{
-        for word in cleanWords{
-            if self.save(word: word) == 2 {
+    func getExistWords(cleanWords: [String]) -> [NSManagedObject] {
+        existWords.removeAll()
+        for word in cleanWords {
+            if someEntityExists(id: word) {
+                // get exist words from core data
+                getExistWordsFromCoreData()
                 break
+            } else {
+                // add word to core data
+                addWordToCoreData(word: word)
             }
         }
         return existWords
@@ -80,19 +86,6 @@ class WordObjectManager {
             print("error executing fetch request: \(error)")
         }
         return false
-    }
-    
-    private func save(word: String)-> Int {
-        
-        if !someEntityExists(id: word){
-            // add word to core data
-            addWordToCoreData(word: word)
-            return 1
-        } else {
-            // get exist words from core data
-            getExistWordsFromCoreData()
-            return 2
-        }
     }
     
     private func addWordToCoreData(word: String) {

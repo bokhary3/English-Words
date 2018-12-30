@@ -61,6 +61,7 @@ class MainViewModel: NSObject {
             let char = Char(isExpanded: false, words: wordsByChar)
             chars.append(char)
         }
+        chars[0].isExpanded = true
         dataCome = true
         delegate.didLoadData()
     }

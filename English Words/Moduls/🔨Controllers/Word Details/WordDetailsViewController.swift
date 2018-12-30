@@ -147,34 +147,6 @@ extension WordDetailsTableViewController {
             delegate.refresh()
         }
     }
-//    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        if !UserStatus.productPurchased {
-//            if indexPath.section == 2 {
-//                if indexPath.row == 0 {
-//                    return 0
-//                }
-//            }
-//        }
-//        return super.tableView(tableView, heightForRowAt: indexPath)
-//    }
-    
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if !UserStatus.productPurchased {
-            if section == 2 {
-                return 0.001
-            }
-        }
-        return super.tableView(tableView, heightForHeaderInSection: section)
-    }
-    
-    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        if !UserStatus.productPurchased {
-            if section == 2 {
-                return 0.001
-            }
-        }
-        return super.tableView(tableView, heightForFooterInSection: section)
-    }
     
     func handleDictionariesSection(row: Int) {
         var urlPath = Constants.WebSites.oxfordLink + word.title

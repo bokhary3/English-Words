@@ -9,4 +9,5 @@ target 'English Words' do
     pod 'Google-Mobile-Ads-SDK'
     pod 'SwiftyStoreKit'
     pod 'Firebase/Core'
+    pod 'KeychainAccess'
 end
