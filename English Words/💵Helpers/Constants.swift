@@ -33,8 +33,6 @@ struct Constants {
     
     struct UserData {
         static let productPurchasedKey = "PRODUCTPURCHASED"
-        static let rememberTipShowedKey = "REMEMBERTIPSHOWED"
-        static let youGlishTipShowedKey = "YOUGLISHTIPSHOWED"
     }
     
     struct PurchaseData {

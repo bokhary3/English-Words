@@ -50,9 +50,6 @@ class MainTableViewController: UITableViewController {
         // [END set_current_screen]
     }
     //MARK: Outlets
-    @IBOutlet weak var oViewNavigationTitle: UIView!
-    @IBOutlet weak var oLblNavigationTitle: UILabel!
-    @IBOutlet weak var oActivityIndicator: UIActivityIndicatorView!
     @IBOutlet var viewModel: MainViewModel!
     
     //MARK: Actions
@@ -114,18 +111,9 @@ class MainTableViewController: UITableViewController {
     }
     
     func refreshUI() {
-        setNavigationTitle()
         tableView.reloadData()
     }
-    func setNavigationTitle() {
-        oLblNavigationTitle.text = "\(WordObjectManager.shared!.rememberedWordsCount())\\\(WordObjectManager.shared!.allWordsAcount())"
-        
-        oViewNavigationTitle.isHidden = false
-        oActivityIndicator.stopAnimating()
-    }
-    
-    
-    
+
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -166,11 +154,13 @@ class MainTableViewController: UITableViewController {
             headerView.oBtnDropDown.rotate(char.isExpanded ? .pi/2 : .pi)
         }
         if char.words.count > 0 {
-            headerView.oLblSectionTitle.text = "\(char.words[0].title.capitalized.first!)"
+            let mutableAttributed = NSMutableAttributedString(string: "\(char.words[0].title.capitalized.first!)", attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
+            let attributedString = NSAttributedString(string: " (\(char.words.count))", attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray])
+            mutableAttributed.append(attributedString)
+            headerView.oLblSectionTitle.attributedText = mutableAttributed
         }
         else{
             headerView.oLblSectionTitle.text = "X"
-            
         }
         return headerView
     }
