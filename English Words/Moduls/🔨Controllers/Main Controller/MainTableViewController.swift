@@ -237,7 +237,7 @@ extension MainTableViewController {
     
     func showAdsBanner() {
         if !UserStatus.productPurchased {
-            if viewModel.adsClicksCount % 5 == 0 {
+            if viewModel.adsClicksCount % 5 == 0 && viewModel.adsClicksCount != 0 {
                 if interstitial.isReady {
                     interstitial.present(fromRootViewController: self)
                 } else {

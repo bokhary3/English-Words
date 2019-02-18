@@ -19,9 +19,9 @@ class Word {
         
         let wordComponent =  data.components(separatedBy: ",")
         if wordComponent.count > 0 {
-            self.title = wordComponent.first!
+            self.title = wordComponent.first!.capitalized
         } else {
-            self.title =  data
+            self.title =  data.capitalized
         }
     }
     

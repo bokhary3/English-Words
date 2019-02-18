@@ -68,15 +68,15 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" textLabel="ksL-Xa-952" style="IBUITableViewCellStyleDefault" id="tdg-Ny-elw">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Cell" textLabel="ksL-Xa-952" style="IBUITableViewCellStyleDefault" id="tdg-Ny-elw">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="tdg-Ny-elw" id="tWn-bZ-Lw7">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ksL-Xa-952">
-                                            <rect key="frame" x="16" y="0.0" width="343" height="43.5"/>
+                                            <rect key="frame" x="16" y="0.0" width="324" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" name="NotoSansChakma-Regular" family="Noto Sans Chakma" pointSize="20"/>
                                             <nil key="highlightedColor"/>
@@ -90,6 +90,9 @@
                             <outlet property="delegate" destination="JgC-BR-kdf" id="mqT-fa-f0S"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <segue destination="CEM-Ip-g7n" kind="show" identifier="showWordDetails" id="X9d-wx-cTx"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tSJ-CZ-gkp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -161,12 +164,8 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                </cells>
-                            </tableViewSection>
-                            <tableViewSection id="q2Z-MA-gnq">
-                                <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="s6j-sT-RgF" style="IBUITableViewCellStyleDefault" id="zb5-cV-NJ9">
-                                        <rect key="frame" x="0.0" y="239" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="203" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="zb5-cV-NJ9" id="Sqb-zS-3bU">
                                             <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
@@ -182,12 +181,8 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                </cells>
-                            </tableViewSection>
-                            <tableViewSection id="6Hm-up-WF1">
-                                <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="fSg-dj-doQ" style="IBUITableViewCellStyleDefault" id="qnT-Nk-bn0">
-                                        <rect key="frame" x="0.0" y="319" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="247" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="qnT-Nk-bn0" id="Qvu-ml-oJp">
                                             <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
@@ -432,6 +427,7 @@
                         </connections>
                     </tableView>
                     <connections>
+                        <outlet property="iMemorizedThisWordLabel" destination="I4h-2Z-b3E" id="yHt-y6-UNU"/>
                         <outlet property="rememberCell" destination="RcH-SQ-deS" id="gCt-r3-MDJ"/>
                         <outlet property="speakButton" destination="y8T-rI-l8V" id="IKN-eg-fgT"/>
                         <outlet property="wordInfoLabel" destination="wog-CR-eXg" id="VWF-PC-ePh"/>
@@ -550,6 +546,7 @@
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="gbO-Ii-fSU" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="qnZ-Tm-BAB">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
@@ -598,6 +595,6 @@
         <image name="translate" width="40" height="40"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="2W2-Vr-GN0"/>
+        <segue reference="X9d-wx-cTx"/>
     </inferredMetricsTieBreakers>
 </document>

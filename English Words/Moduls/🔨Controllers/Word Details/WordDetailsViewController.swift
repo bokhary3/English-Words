@@ -28,6 +28,7 @@ class WordDetailsTableViewController: UITableViewController {
     @IBOutlet weak var wordLabel: UILabel!
     @IBOutlet weak var rememberCell: UITableViewCell!
     @IBOutlet weak var speakButton: UIButton!
+    @IBOutlet weak var iMemorizedThisWordLabel: UILabel!
     
     
     //MARK: View lifcycle methods
@@ -81,6 +82,7 @@ class WordDetailsTableViewController: UITableViewController {
         
         wordInfoLabel.textLabel?.text = "\'\(word.title)\' is (\(word.data.components(separatedBy: ",(")[1]), occures \(word.data.components(separatedBy: ",")[1]) times."
         
+        setMemorizeText()
     }
     
     func addADSBanner() {
@@ -182,6 +184,16 @@ extension WordDetailsTableViewController {
         Analytics.logEvent("Word Details", parameters: ["remember_word" : word.title])
         WordObjectManager.shared?.remeberWord(word: word)
         rememberCell.accessoryType = word.isRemebered ? .checkmark : .none
+        
+        setMemorizeText()
+    }
+    
+    private func setMemorizeText() {
+        if word.isRemebered {
+            iMemorizedThisWordLabel.text = "Yes, I memorize it."
+        } else {
+            iMemorizedThisWordLabel.text = "Do you memorize '\(word.title)' word?"
+        }
     }
 }
 

@@ -77,14 +77,14 @@ class SettingsTableViewController: UITableViewController {
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 4
+        return 2
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
             return 2
         }
-        return 1
+        return 3
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -96,11 +96,13 @@ class SettingsTableViewController: UITableViewController {
                 upgradeVersionManager.restorePurchase()
             }
         } else if indexPath.section == 1 {
-            shareApp()
-        } else if indexPath.section == 2 {
-            sendFeedback()
-        } else  {
-            performSegue(withIdentifier: "showMemorizedWords", sender: nil)
+            if indexPath.row == 0 {
+                shareApp()
+            } else if indexPath.row == 1 {
+                sendFeedback()
+            } else  {
+                performSegue(withIdentifier: "showMemorizedWords", sender: nil)
+            }
         }
     }
     
@@ -110,12 +112,8 @@ class SettingsTableViewController: UITableViewController {
                 return "You can restore your purchase"
             }
             return "Upgrade version to get all features of app, remove ads, search about specific word, translate word by google translate, and also word reading feature."
-        } else if section == 1 {
-            return "Share English Words app"
-        } else if section == 2 {
-            return "Describe an issue or share your ideas"
         }
-        return "Memorized Words"
+        return ""
     }
     override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         let headerTitle =  UserStatus.productPurchased ? "You can restore your purchase" : "Upgrade version to get all features of app, remove ads, search about specific word, translate word by google translate, and also word reading feature."
@@ -125,12 +123,6 @@ class SettingsTableViewController: UITableViewController {
         tableViewHeaderFooterView.textLabel?.textColor = .darkGray
         if section == 0 {
             tableViewHeaderFooterView.textLabel?.text = headerTitle
-        } else if section == 1 {
-            tableViewHeaderFooterView.textLabel?.text = "Share English Words app"
-        } else if section == 2 {
-            tableViewHeaderFooterView.textLabel?.text = "Describe an issue or share your ideas"
-        } else {
-            tableViewHeaderFooterView.textLabel?.text = "Memorized Words"
         }
     }
     
