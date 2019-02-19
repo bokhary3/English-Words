@@ -32,6 +32,7 @@
 		DA6D09D6219F286D008AEB1A /* StoreReviewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6D09D5219F286D008AEB1A /* StoreReviewHelper.swift */; };
 		DA6D09D8219F2E2C008AEB1A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DA6D09D7219F2E2C008AEB1A /* GoogleService-Info.plist */; };
 		DA6E154A218F8F8B0051F657 /* WordDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6E1549218F8F8B0051F657 /* WordDetailsViewController.swift */; };
+		DA75FC8F221C7CA200514EA1 /* English_Words.csv in Resources */ = {isa = PBXBuildFile; fileRef = DA75FC8E221C7CA200514EA1 /* English_Words.csv */; };
 		DA7F8ADC21A1FE6D00529D07 /* UpgradeVersionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA7F8ADB21A1FE6D00529D07 /* UpgradeVersionManager.swift */; };
 		DA94160A2108BE6A00147F5B /* SectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA9416092108BE6A00147F5B /* SectionView.xib */; };
 		DAC88FE820FE14AA00C3FE94 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC88FE720FE14AA00C3FE94 /* MainViewModel.swift */; };
@@ -70,6 +71,7 @@
 		DA6D09D5219F286D008AEB1A /* StoreReviewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreReviewHelper.swift; sourceTree = "<group>"; };
 		DA6D09D7219F2E2C008AEB1A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		DA6E1549218F8F8B0051F657 /* WordDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordDetailsViewController.swift; sourceTree = "<group>"; };
+		DA75FC8E221C7CA200514EA1 /* English_Words.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = English_Words.csv; sourceTree = "<group>"; };
 		DA7F8ADB21A1FE6D00529D07 /* UpgradeVersionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpgradeVersionManager.swift; sourceTree = "<group>"; };
 		DA9416092108BE6A00147F5B /* SectionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SectionView.xib; sourceTree = "<group>"; };
 		DAC88FE720FE14AA00C3FE94 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
@@ -211,6 +213,7 @@
 			isa = PBXGroup;
 			children = (
 				4FEF91011FEB08DA002D48A8 /* Words_English.csv */,
+				DA75FC8E221C7CA200514EA1 /* English_Words.csv */,
 				4FE622B81FF6B7F900C61957 /* RememberedWords.xcdatamodeld */,
 			);
 			path = "💰Resources";
@@ -339,6 +342,7 @@
 				4F6D71141FEAF1490014FC39 /* LaunchScreen.storyboard in Resources */,
 				DA6D09D8219F2E2C008AEB1A /* GoogleService-Info.plist in Resources */,
 				4F6D71111FEAF1490014FC39 /* Assets.xcassets in Resources */,
+				DA75FC8F221C7CA200514EA1 /* English_Words.csv in Resources */,
 				4F6D710F1FEAF1490014FC39 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

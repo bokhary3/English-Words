@@ -29,6 +29,7 @@ class WordDetailsTableViewController: UITableViewController {
     @IBOutlet weak var rememberCell: UITableViewCell!
     @IBOutlet weak var speakButton: UIButton!
     @IBOutlet weak var iMemorizedThisWordLabel: UILabel!
+    @IBOutlet weak var translatedWordLabel: UILabel!
     
     
     //MARK: View lifcycle methods
@@ -77,10 +78,10 @@ class WordDetailsTableViewController: UITableViewController {
         self.speechSynthesizer.delegate = self
         
         wordLabel.text = word.title
+        translatedWordLabel.text = word.translated
         
         rememberCell.accessoryType = WordObjectManager.shared!.isRemeberWord(word: word) ? .checkmark : .none
-        
-        wordInfoLabel.textLabel?.text = "\'\(word.title)\' is (\(word.data.components(separatedBy: ",(")[1]), occures \(word.data.components(separatedBy: ",")[1]) times."
+        wordInfoLabel.textLabel?.text = "\'\(word.title)\' is \(word.info), occures \(word.occurs) times."
         
         setMemorizeText()
     }

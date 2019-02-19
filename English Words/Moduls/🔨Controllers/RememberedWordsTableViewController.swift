@@ -76,7 +76,7 @@ class RememberedWordsTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return Helper.emptyTableView(tableView: tableView, dataCount: self.results.count, dataCome: self.dataCome, emptyTableViewMessage: "You didn't remember any word! :(", seperatorStyle: .singleLine)
+        return Helper.emptyTableView(tableView: tableView, dataCount: self.results.count, dataCome: self.dataCome, emptyTableViewMessage: "You don't memorize any word! :(", seperatorStyle: .singleLine)
     }
     
     
@@ -98,13 +98,14 @@ class RememberedWordsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let data = results[indexPath.row]
         let wordData = data.value(forKey: "id") as? String ?? ""
+        
         let word = Word(isRemebered: true, data: wordData)
         performSegue(withIdentifier: "showWordDetails", sender: word)
     }
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    // MARK: - Navigation
+    
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showWordDetails" {
             let wordDetailsController = segue.destination as! WordDetailsTableViewController
             wordDetailsController.word = sender as? Word
