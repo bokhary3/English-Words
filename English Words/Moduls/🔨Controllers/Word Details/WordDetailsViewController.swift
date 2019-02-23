@@ -11,6 +11,7 @@ import CoreData
 import AVFoundation
 import GoogleMobileAds
 import FirebaseAnalytics
+import MOLH
 
 class WordDetailsTableViewController: UITableViewController {
     
@@ -81,7 +82,12 @@ class WordDetailsTableViewController: UITableViewController {
         translatedWordLabel.text = word.translated
         
         rememberCell.accessoryType = WordObjectManager.shared!.isRemeberWord(word: word) ? .checkmark : .none
-        wordInfoLabel.textLabel?.text = "\'\(word.title)\' is \(word.info), occures \(word.occurs) times."
+        
+        if MOLHLanguage.isArabic() {
+            wordInfoLabel.textLabel?.text = "كلمة '\(word.title)' هي \(word.info) وتتكرر \(word.occurs) مرة"
+        } else  {
+            wordInfoLabel.textLabel?.text = "\'\(word.title)\' is \(word.info), occures \(word.occurs) times."
+        }
         
         setMemorizeText()
     }
@@ -96,7 +102,6 @@ class WordDetailsTableViewController: UITableViewController {
             bannerView.delegate = self
             self.tableView.tableFooterView = bannerView
             bannerView.load(GADRequest())
-            
         }
         else{
             // setup search bar
@@ -137,6 +142,13 @@ extension WordDetailsTableViewController {
 //MARK: UITableView datasource methods
 
 extension WordDetailsTableViewController {
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.section == 0 {
+            return UITableViewAutomaticDimension
+        }
+        
+        return 50
+    }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 1 {
             handleDictionariesSection(row: indexPath.row)
@@ -191,9 +203,13 @@ extension WordDetailsTableViewController {
     
     private func setMemorizeText() {
         if word.isRemebered {
-            iMemorizedThisWordLabel.text = "Yes, I memorize it."
+            iMemorizedThisWordLabel.text = NSLocalizedString("yesImemorizeIt", comment: "")
         } else {
-            iMemorizedThisWordLabel.text = "Do you memorize '\(word.title)' word?"
+            if MOLHLanguage.isArabic() {
+                iMemorizedThisWordLabel.text = "هل تحفظ كلمة '\(word.title)'؟"
+            } else {
+                iMemorizedThisWordLabel.text = "Do you memorize '\(word.title)' word?"
+            }
         }
     }
 }

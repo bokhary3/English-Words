@@ -10,6 +10,7 @@ import UIKit
 import CoreData
 import GoogleMobileAds
 import FirebaseAnalytics
+import MOLH
 
 protocol WordsDelegate: AnyObject {
     func refresh()
@@ -151,7 +152,10 @@ class MainTableViewController: UITableViewController {
         headerView.containerView.backgroundColor = section % 2 == 0 ? UIColor(named: "evenColor") : UIColor(named: "oddColor")
         
         if char.isExpanded {
-            headerView.oBtnDropDown.rotate(char.isExpanded ? .pi/2 : .pi)
+            headerView.oBtnDropDown.rotate(.pi/2)
+        } else {
+            let collapsedAngle: CGFloat = MOLHLanguage.isArabic() ? .pi/2 : 0
+            headerView.oBtnDropDown.rotate(char.isExpanded ? .pi/2 : collapsedAngle)
         }
         if char.words.count > 0 {
             let mutableAttributed = NSMutableAttributedString(string: "\(char.words[0].title.capitalized.first!)", attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
@@ -224,12 +228,13 @@ extension MainTableViewController {
         char.isExpanded = !char.isExpanded
         let viewHeader = tableView.headerView(forSection: section) as! SectionTableViewCell
         if char.isExpanded {
-            viewHeader.oBtnDropDown.rotate(char.isExpanded ? .pi/2 : .pi)
+            viewHeader.oBtnDropDown.rotate(.pi/2)
             self.tableView.reloadSections(
                 [section], with: UITableViewRowAnimation.automatic)
             tableView.scrollToRow(at: [section, 0], at: .middle, animated: true)
         } else {
-            viewHeader.oBtnDropDown.rotate(0)
+            let collapsedAngle: CGFloat = MOLHLanguage.isArabic() ? .pi/2 : 0
+            viewHeader.oBtnDropDown.rotate(collapsedAngle)
             self.tableView.reloadSections(
                 [section], with: UITableViewRowAnimation.automatic)
         }
@@ -239,7 +244,7 @@ extension MainTableViewController {
         if !UserStatus.productPurchased {
             if viewModel.adsClicksCount % 5 == 0 && viewModel.adsClicksCount != 0 {
                 if interstitial.isReady {
-                    interstitial.present(fromRootViewController: self)
+                 //   interstitial.present(fromRootViewController: self)
                 } else {
                     print("Ad wasn't ready")
                 }
@@ -280,9 +285,8 @@ extension MainTableViewController: ViewModelDelegate {
     }
     
     func didLoadData() {
-        tableView.reloadData()
+//        tableView.reloadData()
     }
-    
 }
 
 extension MainTableViewController: CustomHeaderDelegate {

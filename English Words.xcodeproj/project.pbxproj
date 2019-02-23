@@ -28,6 +28,7 @@
 		4FFA9DE92006A0C100559C8F /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFA9DE82006A0C100559C8F /* Alert.swift */; };
 		4FFA9DEB2006AC1100559C8F /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FFA9DEA2006AC1100559C8F /* StoreKit.framework */; };
 		5569BFA1099BAA6E295BDBC3 /* Pods_English_Words.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B2CFB607BA1591B565F3C89 /* Pods_English_Words.framework */; };
+		DA2ABFA32221BE1A0033EC17 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DA2ABFA52221BE1A0033EC17 /* Localizable.strings */; };
 		DA4DF64D2197576F00861540 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4DF64C2197576F00861540 /* WebViewController.swift */; };
 		DA6D09D6219F286D008AEB1A /* StoreReviewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6D09D5219F286D008AEB1A /* StoreReviewHelper.swift */; };
 		DA6D09D8219F2E2C008AEB1A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DA6D09D7219F2E2C008AEB1A /* GoogleService-Info.plist */; };
@@ -67,6 +68,9 @@
 		4FFA9DE82006A0C100559C8F /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		4FFA9DEA2006AC1100559C8F /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		AE73155B69956D899A87A16B /* Pods-English Words.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-English Words.debug.xcconfig"; path = "Pods/Target Support Files/Pods-English Words/Pods-English Words.debug.xcconfig"; sourceTree = "<group>"; };
+		DA2ABF9F2221B6AA0033EC17 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Main.strings; sourceTree = "<group>"; };
+		DA2ABFA42221BE1A0033EC17 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
+		DA2ABFA62221BE1C0033EC17 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		DA4DF64C2197576F00861540 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		DA6D09D5219F286D008AEB1A /* StoreReviewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreReviewHelper.swift; sourceTree = "<group>"; };
 		DA6D09D7219F2E2C008AEB1A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -123,6 +127,7 @@
 				4F6D71241FEAF39B0014FC39 /* 🛢Custome Cells */,
 				4F6D711F1FEAF1B10014FC39 /* 📋Plist */,
 				4F6D711E1FEAF1A20014FC39 /* 🌄Images */,
+				DA2ABFA02221BDED0033EC17 /* Langaue */,
 				4F6D711B1FEAF15F0014FC39 /* 💼Delegate */,
 			);
 			path = "English Words";
@@ -237,6 +242,14 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		DA2ABFA02221BDED0033EC17 /* Langaue */ = {
+			isa = PBXGroup;
+			children = (
+				DA2ABFA52221BE1A0033EC17 /* Localizable.strings */,
+			);
+			path = Langaue;
+			sourceTree = "<group>";
+		};
 		DA4DF64B2197575700861540 /* Web Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -342,6 +355,7 @@
 				4F6D71141FEAF1490014FC39 /* LaunchScreen.storyboard in Resources */,
 				DA6D09D8219F2E2C008AEB1A /* GoogleService-Info.plist in Resources */,
 				4F6D71111FEAF1490014FC39 /* Assets.xcassets in Resources */,
+				DA2ABFA32221BE1A0033EC17 /* Localizable.strings in Resources */,
 				DA75FC8F221C7CA200514EA1 /* English_Words.csv in Resources */,
 				4F6D710F1FEAF1490014FC39 /* Main.storyboard in Resources */,
 			);
@@ -359,6 +373,7 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-English Words/Pods-English Words-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework",
+				"${BUILT_PRODUCTS_DIR}/MOLH/MOLH.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyStoreKit/SwiftyStoreKit.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
@@ -366,6 +381,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MOLH.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyStoreKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
@@ -432,6 +448,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				4F6D710E1FEAF1490014FC39 /* Base */,
+				DA2ABF9F2221B6AA0033EC17 /* ar */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -444,6 +461,15 @@
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
+		DA2ABFA52221BE1A0033EC17 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DA2ABFA42221BE1A0033EC17 /* ar */,
+				DA2ABFA62221BE1C0033EC17 /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -451,6 +477,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -510,6 +537,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";

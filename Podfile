@@ -10,4 +10,5 @@ target 'English Words' do
     pod 'SwiftyStoreKit'
     pod 'Firebase/Core'
     pod 'KeychainAccess'
+    pod 'MOLH'
 end

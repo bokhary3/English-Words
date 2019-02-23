@@ -11,6 +11,7 @@ import CoreData
 import GoogleMobileAds
 import SwiftyStoreKit
 import Firebase
+import MOLH
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -22,6 +23,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         handleRateAlert()
         completeStorKitTransaction()
         setup()
+        
+        MOLH.shared.activate(true)
+        
         return true
     }
     
@@ -105,3 +109,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
+extension AppDelegate: MOLHResetable {
+    func reset() {
+        let homeVC = Initializer.createVCWith(identifier: Constants.StoryboardIds.homeNC)
+        Initializer.getAppdelegate().window?.rootViewController = homeVC
+    }
+}

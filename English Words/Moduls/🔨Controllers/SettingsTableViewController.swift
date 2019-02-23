@@ -11,6 +11,7 @@ import SwiftyStoreKit
 import StoreKit
 import MessageUI
 import FirebaseAnalytics
+import MOLH
 
 class SettingsTableViewController: UITableViewController {
     
@@ -46,11 +47,11 @@ class SettingsTableViewController: UITableViewController {
     func setupViews() {
         upgradeVersionManager = UpgradeVersionManager(viewController: self)
         
-        memorizedWordsLabel.text = "Memorized Words (\(WordObjectManager.shared!.rememberedWordsCount()))"
+        memorizedWordsLabel.text = "\(NSLocalizedString("memorizedWords", comment: "")) (\(WordObjectManager.shared!.rememberedWordsCount()))"
     }
     
     func shareApp(){
-        let textToShare = "Download the English Words app, it contains most important words in english language, it help you to increase your english vocabulary."
+        let textToShare = NSLocalizedString("shareAppText", comment: "")
         
         if let myWebsite = NSURL(string: "http://itunes.apple.com/app/id1332815701") {
             let objectsToShare = [textToShare, myWebsite] as [AnyObject]
@@ -67,10 +68,10 @@ class SettingsTableViewController: UITableViewController {
             let mail = MFMailComposeViewController()
             mail.mailComposeDelegate = self
             mail.setToRecipients(["englishwords18@gmail.com"])
-            mail.setSubject("My Feedback")
+            mail.setSubject(NSLocalizedString("myFeedback", comment: ""))
             present(mail, animated: true)
         } else {
-            Helper.alert(title: "Oops!", message: "Please configure your Mail app to send your valuable feedback.", viewController: self)
+            Helper.alert(title: NSLocalizedString("Oops", comment: ""), message: NSLocalizedString("mailWarning", comment: ""), viewController: self)
         }
     }
     
@@ -84,7 +85,7 @@ class SettingsTableViewController: UITableViewController {
         if section == 0 {
             return 2
         }
-        return 3
+        return 4
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -100,8 +101,31 @@ class SettingsTableViewController: UITableViewController {
                 shareApp()
             } else if indexPath.row == 1 {
                 sendFeedback()
-            } else  {
+            } else if indexPath.row == 2 {
                 performSegue(withIdentifier: "showMemorizedWords", sender: nil)
+            } else {
+                let alert = UIAlertController(title: NSLocalizedString("selectYourLanguage", comment: ""), message: "", preferredStyle: .alert)
+                let englishAction = UIAlertAction(title: "English", style: .default) { (_) in
+                    
+                    if MOLHLanguage.isArabic() {
+                        MOLH.setLanguageTo("en")
+                        MOLH.reset()
+                    }
+                    
+                }
+                
+                let arabicAction = UIAlertAction(title: "عربي", style: .default) { (_) in
+                    if !MOLHLanguage.isArabic() {
+                        MOLH.setLanguageTo("ar")
+                        MOLH.reset()
+                    }
+                }
+                
+                alert.addAction(englishAction)
+                alert.addAction(arabicAction)
+                
+                present(alert, animated: true, completion: nil)
+                
             }
         }
     }
@@ -109,14 +133,15 @@ class SettingsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if section == 0 {
             if UserStatus.productPurchased {
-                return "You can restore your purchase"
+                return NSLocalizedString("restoreUpgradeMessage", comment: "")
             }
-            return "Upgrade version to get all features of app, remove ads, search about specific word, translate word by google translate, and also word reading feature."
+            return NSLocalizedString("upgradeMessage", comment: "")
         }
         return ""
     }
     override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        let headerTitle =  UserStatus.productPurchased ? "You can restore your purchase" : "Upgrade version to get all features of app, remove ads, search about specific word, translate word by google translate, and also word reading feature."
+        let headerTitle =  UserStatus.productPurchased ? NSLocalizedString("restoreUpgradeMessage", comment: "") : NSLocalizedString("upgradeMessage", comment: "")
+        
         guard let tableViewHeaderFooterView = view as? UITableViewHeaderFooterView
             else { return }
         tableViewHeaderFooterView.textLabel?.font = UIFont.boldSystemFont(ofSize: 15)

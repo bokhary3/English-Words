@@ -1,0 +1,16 @@
+/* 
+  Localizable.strings
+  English Words
+
+  Created by Elsayed Hussein on 2/23/19.
+  Copyright © 2019 mac. All rights reserved.
+*/
+"selectYourLanguage" = "من فضلك أختر لغة الجهاز";
+"memorizedWords" = "الكلمات المحفوظة";
+"shareAppText" = "جرب تطبيق English Words، أستخدمه لتعلم اللغة الإنجليزية،يساعدني لحفظ كلمات الانجليزية بسهولة.";
+"myFeedback" = "تقييمي";
+"mailWarning" = "من فضلك قم بضيط تطبيق البريد لارسال تقييمك";
+"Oops" = "أووبس!";
+"upgradeMessage" =  "قم بتنزيل النسخه الكامله للتطبيق، حيث ستحصل على كل المميزات، بدون إعلانات، البحث عن كلمة معينة، أيضا ميزة قراءة الكلمات.";
+"restoreUpgradeMessage" = "يمكنك الرجوع إلي النخسة العادية";
+"yesImemorizeIt" = "نعم، أحفظها.";

@@ -1,0 +1,16 @@
+/* 
+  Localizable.strings
+  English Words
+
+  Created by Elsayed Hussein on 2/23/19.
+  Copyright © 2019 mac. All rights reserved.
+*/
+"selectYourLanguage" = "Please selct your language";
+"memorizedWords" = "Memorized Words";
+"shareAppText" = "Download the English Words app, it contains most important words in english language, it help you to increase your english vocabulary.";
+"myFeedback" = "My Feedback";
+"mailWarning" = "Please configure your Mail app to send your valuable feedback.";
+"Oops" = "Oops!";
+"upgradeMessage" =  "Upgrade version to get all features of app, remove ads, search about specific word, translate word by google translate, and also word reading feature.";
+"restoreUpgradeMessage" = "You can restore your purchase";
+"yesImemorizeIt" = "Yes, I memorize it.";

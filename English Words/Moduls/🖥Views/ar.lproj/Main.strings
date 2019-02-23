@@ -1,0 +1,74 @@
+
+/* Class = "UILabel"; text = "Translate by Google"; ObjectID = "4Ht-P9-fDo"; */
+"4Ht-P9-fDo.text" = "الترجمة من خلال جوجل";
+
+/* Class = "UILabel"; text = "fff"; ObjectID = "4jh-LY-pf2"; */
+"4jh-LY-pf2.text" = "fff";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "557-Gy-aEh"; */
+"557-Gy-aEh.text" = "Title";
+
+/* Class = "UILabel"; text = "Share App"; ObjectID = "9pa-4j-1fx"; */
+"9pa-4j-1fx.text" = "مشاركة English Words";
+
+/* Class = "UILabel"; text = "Restore my upgarde"; ObjectID = "9xj-wk-3nF"; */
+"9xj-wk-3nF.text" = "نسخة عادية";
+
+/* Class = "UILabel"; text = "fff"; ObjectID = "Ast-A1-YW4"; */
+"Ast-A1-YW4.text" = "fff";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "Bos-Kv-DEy"; */
+"Bos-Kv-DEy.text" = "Title";
+
+/* Class = "UITableViewController"; title = "Word Details"; ObjectID = "CEM-Ip-g7n"; */
+"CEM-Ip-g7n.title" = "تفاصيل الكلمة";
+
+/* Class = "UILabel"; text = "Merriam Webster"; ObjectID = "Fvy-Po-xMD"; */
+"Fvy-Po-xMD.text" = "مريم ويبستر";
+
+/* Class = "UILabel"; text = "I remember this word"; ObjectID = "I4h-2Z-b3E"; */
+"I4h-2Z-b3E.text" = "I remember this word";
+
+/* Class = "UITabBarItem"; title = "Words"; ObjectID = "PIk-8W-iNz"; */
+"PIk-8W-iNz.title" = "كلمات";
+
+/* Class = "UILabel"; text = "Listen to the word"; ObjectID = "QK3-8x-ZaR"; */
+"QK3-8x-ZaR.text" = "استمع إلى الكلمة";
+
+/* Class = "UIViewController"; title = "Explore!"; ObjectID = "R8t-bT-8pL"; */
+"R8t-bT-8pL.title" = "إكتشف";
+
+/* Class = "UITableViewSection"; headerTitle = "what means this word on dictionary of .."; ObjectID = "ZVY-cD-ldY"; */
+"ZVY-cD-ldY.headerTitle" = "ماذا تعني هذة الكلمة في قاموس ...";
+
+/* Class = "UILabel"; text = "Upgrade Version"; ObjectID = "dk3-cg-Il9"; */
+"dk3-cg-Il9.text" = "نسخة مطورة";
+
+/* Class = "UILabel"; text = "Cambridge"; ObjectID = "eV7-J1-SKj"; */
+"eV7-J1-SKj.text" = "كمبريدج";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "fJ0-oh-uYc"; */
+"fJ0-oh-uYc.text" = "Title";
+
+/* Class = "UILabel"; text = "Memorized Words"; ObjectID = "fSg-dj-doQ"; */
+"fSg-dj-doQ.text" = "الكلمات المحفوظة";
+
+/* Class = "UINavigationItem"; title = "Settings"; ObjectID = "jKQ-XB-baO"; */
+"jKQ-XB-baO.title" = "الإعدادات";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "ksL-Xa-952"; */
+"ksL-Xa-952.text" = "Title";
+
+/* Class = "UILabel"; text = "Oxford"; ObjectID = "o39-5i-MFy"; */
+//"o39-5i-MFy.text" = "أكسفورد";
+
+/* Class = "UILabel"; text = "Send a Feedback"; ObjectID = "s6j-sT-RgF"; */
+"s6j-sT-RgF.text" = "إرسال تعليق";
+
+/* Class = "UINavigationItem"; title = "All Words(2265)"; ObjectID = "xH9-iV-WSn"; */
+"xH9-iV-WSn.title" = "كل الكلمات(٢٢٦٥)";
+
+/* Class = "UITabBarItem"; title = "Settings"; ObjectID = "yJE-VB-Cta"; */
+"yJE-VB-Cta.title" = "الإعدادات";
+
+"np5-Se-xZ7.text" = "تغيير اللغة";

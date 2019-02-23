@@ -198,6 +198,23 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="np5-Se-xZ7" style="IBUITableViewCellStyleDefault" id="mRF-Fi-QAt">
+                                        <rect key="frame" x="0.0" y="291" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="mRF-Fi-QAt" id="kS4-hG-hhW">
+                                            <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Change Language" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="np5-Se-xZ7">
+                                                    <rect key="frame" x="16" y="0.0" width="324" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" name="NotoSansChakma-Regular" family="Noto Sans Chakma" pointSize="20"/>
+                                                    <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -530,7 +547,7 @@
         <!--Words-->
         <scene sceneID="Wth-Q8-cJX">
             <objects>
-                <navigationController storyboardIdentifier="HomeNC" automaticallyAdjustsScrollViewInsets="NO" id="LeN-VF-C0s" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="LeN-VF-C0s" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Words" image="dictionary2" id="PIk-8W-iNz"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="gTG-3R-LPN">
@@ -552,7 +569,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="rie-SP-jKj">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="gbO-Ii-fSU" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="HomeNC" automaticallyAdjustsScrollViewInsets="NO" id="gbO-Ii-fSU" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="qnZ-Tm-BAB">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
@@ -604,6 +621,6 @@
         <image name="translate" width="40" height="40"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="X9d-wx-cTx"/>
+        <segue reference="2W2-Vr-GN0"/>
     </inferredMetricsTieBreakers>
 </document>
