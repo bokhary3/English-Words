@@ -17,7 +17,6 @@ class WordDetailsTableViewController: UITableViewController {
     
     //MARK: Variables
     var word: Word!
-    weak var delegate: WordsDelegate!
     
     private let speechSynthesizer = AVSpeechSynthesizer()
     private var pitch: Float = 1.0
@@ -45,7 +44,6 @@ class WordDetailsTableViewController: UITableViewController {
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        
         recordScreenView()
     }
     func recordScreenView() {
@@ -68,7 +66,7 @@ class WordDetailsTableViewController: UITableViewController {
             Analytics.logEvent("Word Details", parameters: ["speak_word" : word.title])
         } else {
             let upgradeManager = UpgradeVersionManager(viewController: self)
-            upgradeManager.alertUpgardeMessage(message: "Upgrade Version to can use speak feature!")
+            upgradeManager.alertUpgardeMessage(message: NSLocalizedString("upgradeSpeakFeature", comment: ""))
         }
         
     }
@@ -88,6 +86,7 @@ class WordDetailsTableViewController: UITableViewController {
         } else  {
             wordInfoLabel.textLabel?.text = "\'\(word.title)\' is \(word.info), occures \(word.occurs) times."
         }
+        wordInfoLabel.textLabel?.sizeToFit()
         
         setMemorizeText()
     }
@@ -100,7 +99,8 @@ class WordDetailsTableViewController: UITableViewController {
             bannerView.adUnitID = Constants.Keys.adMobBannerUnitID
             bannerView.rootViewController = self
             bannerView.delegate = self
-            self.tableView.tableFooterView = bannerView
+            
+            tableView.tableFooterView = bannerView
             bannerView.load(GADRequest())
         }
         else{
@@ -144,7 +144,9 @@ extension WordDetailsTableViewController {
 extension WordDetailsTableViewController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0 {
-            return UITableViewAutomaticDimension
+            let height =  wordInfoLabel.textLabel?.requiredHeight ?? UITableViewAutomaticDimension
+            return height + 20
+            
         }
         
         return 50
@@ -159,7 +161,7 @@ extension WordDetailsTableViewController {
         } else if indexPath.section == 4 {
             rememberTheWord()
             tableView.deselectRow(at: indexPath, animated: true)
-            delegate.refresh()
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "refreshMemorizedWords"), object: nil)
         }
     }
     
@@ -184,7 +186,7 @@ extension WordDetailsTableViewController {
             openWebViewController(urlPath: urlPath)
         } else {
             let upgradeManager = UpgradeVersionManager(viewController: self)
-            upgradeManager.alertUpgardeMessage(message: "Upgrade Version to can use Google translate feature!")
+            upgradeManager.alertUpgardeMessage(message: NSLocalizedString("upgradeGoogleTranslateFeature", comment: ""))
         }
     }
     func listenToTheWord() {

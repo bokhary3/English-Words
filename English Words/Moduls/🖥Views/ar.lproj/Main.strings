@@ -12,7 +12,7 @@
 "9pa-4j-1fx.text" = "مشاركة English Words";
 
 /* Class = "UILabel"; text = "Restore my upgarde"; ObjectID = "9xj-wk-3nF"; */
-"9xj-wk-3nF.text" = "نسخة عادية";
+"9xj-wk-3nF.text" = "إستعادة الترقية";
 
 /* Class = "UILabel"; text = "fff"; ObjectID = "Ast-A1-YW4"; */
 "Ast-A1-YW4.text" = "fff";
@@ -42,7 +42,7 @@
 "ZVY-cD-ldY.headerTitle" = "ماذا تعني هذة الكلمة في قاموس ...";
 
 /* Class = "UILabel"; text = "Upgrade Version"; ObjectID = "dk3-cg-Il9"; */
-"dk3-cg-Il9.text" = "نسخة مطورة";
+"dk3-cg-Il9.text" = "شراء الترقية";
 
 /* Class = "UILabel"; text = "Cambridge"; ObjectID = "eV7-J1-SKj"; */
 "eV7-J1-SKj.text" = "كمبريدج";
@@ -54,13 +54,13 @@
 "fSg-dj-doQ.text" = "الكلمات المحفوظة";
 
 /* Class = "UINavigationItem"; title = "Settings"; ObjectID = "jKQ-XB-baO"; */
-"jKQ-XB-baO.title" = "الإعدادات";
+"jKQ-XB-baO.title" = "المزيد";
 
 /* Class = "UILabel"; text = "Title"; ObjectID = "ksL-Xa-952"; */
 "ksL-Xa-952.text" = "Title";
 
 /* Class = "UILabel"; text = "Oxford"; ObjectID = "o39-5i-MFy"; */
-//"o39-5i-MFy.text" = "أكسفورد";
+"o39-5i-MFy.text" = "أكسفورد";
 
 /* Class = "UILabel"; text = "Send a Feedback"; ObjectID = "s6j-sT-RgF"; */
 "s6j-sT-RgF.text" = "إرسال تعليق";
@@ -69,6 +69,7 @@
 "xH9-iV-WSn.title" = "كل الكلمات(٢٢٦٥)";
 
 /* Class = "UITabBarItem"; title = "Settings"; ObjectID = "yJE-VB-Cta"; */
-"yJE-VB-Cta.title" = "الإعدادات";
+"yJE-VB-Cta.title" = "المزيد";
 
 "np5-Se-xZ7.text" = "تغيير اللغة";
+"egd-ul-Jjs.text" = "قيم أو أكتب رأيك";

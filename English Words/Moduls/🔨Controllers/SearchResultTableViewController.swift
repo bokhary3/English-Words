@@ -60,6 +60,7 @@ class SearchResultTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SearchWordCell", for: indexPath)
         
         cell.textLabel?.text = matchingWords[indexPath.row].title
+        cell.detailTextLabel?.text = matchingWords[indexPath.row].translated
         return cell
     }
     
@@ -73,13 +74,6 @@ class SearchResultTableViewController: UITableViewController {
     func openWordDetailsController(word: Word) {
         let navigationController = self.parent?.presentingViewController?.navigationController
         let wordDetailsController = storyboard?.instantiateViewController(withIdentifier: "WordDetailsTableViewController") as! WordDetailsTableViewController
-        let mainNavigatioController = Initializer.getMainNavigationController()
-        for controller in mainNavigatioController.viewControllers {
-            if controller is MainTableViewController {
-                let mainViewController = controller as! MainTableViewController
-                wordDetailsController.delegate = mainViewController
-            }
-        }
         wordDetailsController.word = word
         navigationController?.pushViewController(wordDetailsController, animated: true)
     }

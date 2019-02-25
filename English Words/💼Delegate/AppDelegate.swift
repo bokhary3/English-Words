@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         setup()
         
         MOLH.shared.activate(true)
-        
+        MOLH.shared.specialKeyWords = ["cancel" ,"Done", "Back"]
         return true
     }
     

@@ -24,14 +24,13 @@
                             <fontDescription key="fontDescription" name="KannadaSangamMN-Bold" family="Kannada Sangam MN" pointSize="22"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nsd-gY-zXa">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nsd-gY-zXa">
                             <rect key="frame" x="297" y="11.5" width="19" height="19"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="19" id="GCm-H9-CIV"/>
                                 <constraint firstAttribute="width" secondItem="nsd-gY-zXa" secondAttribute="height" id="a8Z-Fj-Twu"/>
                             </constraints>
                             <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <state key="normal" backgroundImage="arrow-right"/>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5GB-87-6M5">
                             <rect key="frame" x="0.0" y="0.0" width="321" height="42"/>
@@ -73,7 +72,4 @@
             <point key="canvasLocation" x="-3.5" y="-253"/>
         </view>
     </objects>
-    <resources>
-        <image name="arrow-right" width="51.200000762939453" height="51.200000762939453"/>
-    </resources>
 </document>

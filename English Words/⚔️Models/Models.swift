@@ -30,7 +30,7 @@ class Word {
         }
         
         let wordComponent =  data.components(separatedBy: ",")
-        if wordComponent.count > 0 {
+        if wordComponent.count > 1 {
             self.title = wordComponent.first!.capitalized
             self.occurs = wordComponent[1]
         } else {

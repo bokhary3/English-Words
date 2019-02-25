@@ -20,6 +20,13 @@ class SettingsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
+        
+        NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "refreshMemorizedWords"), object: nil, queue: nil) { [weak self](notification) in
+            self?.memorizedWordsLabel.text = "\(NSLocalizedString("memorizedWords", comment: "")) (\(WordObjectManager.shared!.rememberedWordsCount()))"
+        }
+    }
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "refreshMemorizedWords"), object: nil)
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
@@ -53,7 +60,7 @@ class SettingsTableViewController: UITableViewController {
     func shareApp(){
         let textToShare = NSLocalizedString("shareAppText", comment: "")
         
-        if let myWebsite = NSURL(string: "http://itunes.apple.com/app/id1332815701") {
+        if let myWebsite = NSURL(string: Constants.productPath) {
             let objectsToShare = [textToShare, myWebsite] as [AnyObject]
             let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
             
@@ -78,14 +85,40 @@ class SettingsTableViewController: UITableViewController {
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return 3
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
             return 2
+        } else if section == 1 {
+            return 1
         }
         return 4
+    }
+    
+    fileprivate func changeLanguage() {
+        let alert = UIAlertController(title: NSLocalizedString("selectYourLanguage", comment: ""), message: "", preferredStyle: .alert)
+        let englishAction = UIAlertAction(title: "English", style: .default) { (_) in
+            
+            if MOLHLanguage.isArabic() {
+                MOLH.setLanguageTo("en")
+                MOLH.reset()
+            }
+            
+        }
+        
+        let arabicAction = UIAlertAction(title: "عربي", style: .default) { (_) in
+            if !MOLHLanguage.isArabic() {
+                MOLH.setLanguageTo("ar")
+                MOLH.reset()
+            }
+        }
+        
+        alert.addAction(englishAction)
+        alert.addAction(arabicAction)
+        
+        present(alert, animated: true, completion: nil)
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -98,36 +131,30 @@ class SettingsTableViewController: UITableViewController {
             }
         } else if indexPath.section == 1 {
             if indexPath.row == 0 {
+                performSegue(withIdentifier: "showMemorizedWords", sender: nil)
+            }
+        } else {
+            if indexPath.row == 0 {
                 shareApp()
             } else if indexPath.row == 1 {
-                sendFeedback()
+                guard let productURL = URL(string: Constants.productPath) else { return }
+                
+                var components = URLComponents(url: productURL, resolvingAgainstBaseURL: false)
+                components?.queryItems = [
+                    URLQueryItem(name: "action", value: "write-review")
+                ]
+                guard let writeReviewURL = components?.url else {
+                    return
+                }
+                UIApplication.shared.open(writeReviewURL)
             } else if indexPath.row == 2 {
-                performSegue(withIdentifier: "showMemorizedWords", sender: nil)
+                sendFeedback()
             } else {
-                let alert = UIAlertController(title: NSLocalizedString("selectYourLanguage", comment: ""), message: "", preferredStyle: .alert)
-                let englishAction = UIAlertAction(title: "English", style: .default) { (_) in
-                    
-                    if MOLHLanguage.isArabic() {
-                        MOLH.setLanguageTo("en")
-                        MOLH.reset()
-                    }
-                    
-                }
-                
-                let arabicAction = UIAlertAction(title: "عربي", style: .default) { (_) in
-                    if !MOLHLanguage.isArabic() {
-                        MOLH.setLanguageTo("ar")
-                        MOLH.reset()
-                    }
-                }
-                
-                alert.addAction(englishAction)
-                alert.addAction(arabicAction)
-                
-                present(alert, animated: true, completion: nil)
-                
+                changeLanguage()
             }
         }
+        
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -136,6 +163,8 @@ class SettingsTableViewController: UITableViewController {
                 return NSLocalizedString("restoreUpgradeMessage", comment: "")
             }
             return NSLocalizedString("upgradeMessage", comment: "")
+        } else if section == 2 {
+            return "English Words"
         }
         return ""
     }

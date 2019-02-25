@@ -56,7 +56,7 @@ class MainTableViewController: UITableViewController {
     //MARK: Actions
     @IBAction func searchBarButtonAction(_ sender: UIBarButtonItem) {
         let upgardeManager = UpgradeVersionManager(viewController: self)
-        upgardeManager.alertUpgardeMessage(message: "Upgrade version to can use search feature")
+        upgardeManager.alertUpgardeMessage(message: NSLocalizedString("upgradeSearchFeature", comment: ""))
     }
     
     //MARK: Methods
@@ -75,6 +75,7 @@ class MainTableViewController: UITableViewController {
             navigationItem.leftBarButtonItem = nil
         }
         
+            navigationItem.hidesSearchBarWhenScrolling = false
     }
     func setTableViewHeader() {
         // create banner view
@@ -134,6 +135,7 @@ class MainTableViewController: UITableViewController {
         let word = viewModel.wordOf(indexPath: indexPath)
         
         cell.textLabel?.text =  word.title
+        cell.detailTextLabel?.text = word.translated
         
         return cell
     }
@@ -152,10 +154,11 @@ class MainTableViewController: UITableViewController {
         headerView.containerView.backgroundColor = section % 2 == 0 ? UIColor(named: "evenColor") : UIColor(named: "oddColor")
         
         if char.isExpanded {
-            headerView.oBtnDropDown.rotate(.pi/2)
+             let expandedAngle: CGFloat = MOLHLanguage.isArabic() ? (.pi/2): -(.pi/2)
+            headerView.oBtnDropDown.rotate(expandedAngle)
         } else {
-            let collapsedAngle: CGFloat = MOLHLanguage.isArabic() ? .pi/2 : 0
-            headerView.oBtnDropDown.rotate(char.isExpanded ? .pi/2 : collapsedAngle)
+            let collapsedAngle: CGFloat = MOLHLanguage.isArabic() ? -(.pi/2): (.pi/2)
+            headerView.oBtnDropDown.rotate(collapsedAngle)
         }
         if char.words.count > 0 {
             let mutableAttributed = NSMutableAttributedString(string: "\(char.words[0].title.capitalized.first!)", attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
@@ -181,7 +184,6 @@ class MainTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showWordDetails" {
             let wordDetailsController = segue.destination as! WordDetailsTableViewController
-            wordDetailsController.delegate = self
             wordDetailsController.word = sender as? Word
         }
     }
@@ -228,13 +230,13 @@ extension MainTableViewController {
         char.isExpanded = !char.isExpanded
         let viewHeader = tableView.headerView(forSection: section) as! SectionTableViewCell
         if char.isExpanded {
-            viewHeader.oBtnDropDown.rotate(.pi/2)
+//            viewHeader.oBtnDropDown.rotate(.pi/2)
             self.tableView.reloadSections(
                 [section], with: UITableViewRowAnimation.automatic)
             tableView.scrollToRow(at: [section, 0], at: .middle, animated: true)
         } else {
-            let collapsedAngle: CGFloat = MOLHLanguage.isArabic() ? .pi/2 : 0
-            viewHeader.oBtnDropDown.rotate(collapsedAngle)
+//            let collapsedAngle: CGFloat = MOLHLanguage.isArabic() ? .pi/2 : 0
+//            viewHeader.oBtnDropDown.rotate(collapsedAngle)
             self.tableView.reloadSections(
                 [section], with: UITableViewRowAnimation.automatic)
         }
@@ -242,9 +244,9 @@ extension MainTableViewController {
     
     func showAdsBanner() {
         if !UserStatus.productPurchased {
-            if viewModel.adsClicksCount % 5 == 0 && viewModel.adsClicksCount != 0 {
+            if viewModel.adsClicksCount % 8 == 0 && viewModel.adsClicksCount != 0 {
                 if interstitial.isReady {
-                 //   interstitial.present(fromRootViewController: self)
+                    interstitial.present(fromRootViewController: self)
                 } else {
                     print("Ad wasn't ready")
                 }

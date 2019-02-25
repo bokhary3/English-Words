@@ -7,10 +7,19 @@
 */
 "selectYourLanguage" = "Please selct your language";
 "memorizedWords" = "Memorized Words";
-"shareAppText" = "Download the English Words app, it contains most important words in english language, it help you to increase your english vocabulary.";
+"shareAppText" =  "Check out English Words, I use it to learn english, it helps me to memorize the english words easily";
 "myFeedback" = "My Feedback";
 "mailWarning" = "Please configure your Mail app to send your valuable feedback.";
 "Oops" = "Oops!";
 "upgradeMessage" =  "Upgrade version to get all features of app, remove ads, search about specific word, translate word by google translate, and also word reading feature.";
 "restoreUpgradeMessage" = "You can restore your purchase";
 "yesImemorizeIt" = "Yes, I memorize it.";
+"upgradeSearchFeature" = "Upgrade version to can using search feature";
+"ugrade" = "Upgrade";
+"cancel" = "Cancel";
+"ok" = "Ok";
+"memorizedWords" = "Memorized Words";
+"dontMemorizeAnyWord" = "You don't memorize any word! :(";
+"upgradeGoogleTranslateFeature" = "Upgrade Version to can using Google Translate feature";
+"upgradeSpeakFeature" = "Upgrade Version to can using words speak feature";
+"Back" = "Back";

@@ -19,6 +19,11 @@ class RememberedWordsTableViewController: UITableViewController {
         super.viewDidLoad()
         setupViews()
     }
+    override func viewWillAppear(_ animated: Bool) {
+        DispatchQueue.main.async {
+            self.rememberedWordsCount()
+        }
+    }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         
@@ -40,11 +45,8 @@ class RememberedWordsTableViewController: UITableViewController {
     
     //MARK: Methods
     func setupViews() {
-        self.navigationItem.title = "Memorized Words"
+        self.navigationItem.title = NSLocalizedString("memorizedWords", comment: "")
         self.tableView.tableFooterView = UIView(frame:CGRect.zero)
-        DispatchQueue.main.async {
-            self.rememberedWordsCount()
-        }
     }
     func rememberedWordsCount(){
         guard let appDelegate =
@@ -76,7 +78,7 @@ class RememberedWordsTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return Helper.emptyTableView(tableView: tableView, dataCount: self.results.count, dataCome: self.dataCome, emptyTableViewMessage: "You don't memorize any word! :(", seperatorStyle: .singleLine)
+        return Helper.emptyTableView(tableView: tableView, dataCount: self.results.count, dataCome: self.dataCome, emptyTableViewMessage: NSLocalizedString("dontMemorizeAnyWord", comment: ""), seperatorStyle: .singleLine)
     }
     
     
@@ -85,14 +87,11 @@ class RememberedWordsTableViewController: UITableViewController {
         
         // Configure the cell...
         let wordObj = self.results[indexPath.row]
-        let word = wordObj.value(forKey: "id") as? String ?? ""
-        let components = word.components(separatedBy: ",")
-        if components.count > 0 {
-            cell.textLabel?.text = components[0].capitalized
-        }
-        else{
-            cell.textLabel?.text = ""
-        }
+        let wordData = wordObj.value(forKey: "id") as? String ?? ""
+        let word = Word(isRemebered: true, data: wordData)
+        
+        cell.textLabel?.text = word.title
+        cell.detailTextLabel?.text = word.translated
         return cell
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

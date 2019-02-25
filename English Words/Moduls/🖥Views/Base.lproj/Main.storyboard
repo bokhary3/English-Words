@@ -19,17 +19,24 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="WordCell" textLabel="557-Gy-aEh" rowHeight="70" style="IBUITableViewCellStyleDefault" id="H7M-yd-URJ" customClass="WordTableViewCell" customModule="English_Words" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="WordCell" textLabel="557-Gy-aEh" detailTextLabel="iyG-gg-hso" rowHeight="70" style="IBUITableViewCellStyleValue1" id="H7M-yd-URJ" customClass="WordTableViewCell" customModule="English_Words" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="70"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="H7M-yd-URJ" id="5HX-Ag-zoy">
                                     <rect key="frame" x="0.0" y="0.0" width="341" height="69.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="557-Gy-aEh">
-                                            <rect key="frame" x="16" y="0.0" width="324" height="69.5"/>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="557-Gy-aEh" customClass="MOLHLabel" customModule="MOLH">
+                                            <rect key="frame" x="16" y="22" width="42.5" height="26.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" name="NotoSansChakma-Regular" family="Noto Sans Chakma" pointSize="25"/>
+                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="22"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="iyG-gg-hso">
+                                            <rect key="frame" x="289.5" y="25" width="50.5" height="23"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="19"/>
+                                            <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -68,17 +75,24 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Cell" textLabel="ksL-Xa-952" style="IBUITableViewCellStyleDefault" id="tdg-Ny-elw">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Cell" textLabel="ksL-Xa-952" detailTextLabel="obt-lf-KKa" style="IBUITableViewCellStyleValue1" id="tdg-Ny-elw">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="tdg-Ny-elw" id="tWn-bZ-Lw7">
                                     <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ksL-Xa-952">
-                                            <rect key="frame" x="16" y="0.0" width="324" height="43.5"/>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ksL-Xa-952" customClass="MOLHLabel" customModule="MOLH">
+                                            <rect key="frame" x="16" y="9" width="42.5" height="26.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" name="NotoSansChakma-Regular" family="Noto Sans Chakma" pointSize="20"/>
+                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="22"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="obt-lf-KKa">
+                                            <rect key="frame" x="289.5" y="12" width="50.5" height="23"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="19"/>
+                                            <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -98,7 +112,7 @@
             </objects>
             <point key="canvasLocation" x="2364" y="-520"/>
         </scene>
-        <!--Settings-->
+        <!--More-->
         <scene sceneID="2lJ-6L-lXP">
             <objects>
                 <tableViewController id="3dH-ZD-CDb" customClass="SettingsTableViewController" customModule="English_Words" customModuleProvider="target" sceneMemberID="viewController">
@@ -145,10 +159,31 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
+                            <tableViewSection id="4EY-VM-P0B">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="fSg-dj-doQ" style="IBUITableViewCellStyleDefault" id="qnT-Nk-bn0">
+                                        <rect key="frame" x="0.0" y="159" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="qnT-Nk-bn0" id="Qvu-ml-oJp">
+                                            <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Memorized Words" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fSg-dj-doQ" customClass="MOLHLabel" customModule="MOLH">
+                                                    <rect key="frame" x="16" y="0.0" width="324" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" name="NotoSansChakma-Regular" family="Noto Sans Chakma" pointSize="20"/>
+                                                    <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
                             <tableViewSection id="k5r-nL-D5v">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="9pa-4j-1fx" style="IBUITableViewCellStyleDefault" id="Um1-3L-WIi">
-                                        <rect key="frame" x="0.0" y="159" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="239" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Um1-3L-WIi" id="12g-mW-UEt">
                                             <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
@@ -164,8 +199,25 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="egd-ul-Jjs" style="IBUITableViewCellStyleDefault" id="MKc-NC-0Yf">
+                                        <rect key="frame" x="0.0" y="283" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="MKc-NC-0Yf" id="Zt7-8u-f3N">
+                                            <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Rate Or Review" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="egd-ul-Jjs">
+                                                    <rect key="frame" x="16" y="0.0" width="324" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" name="NotoSansChakma-Regular" family="Noto Sans Chakma" pointSize="20"/>
+                                                    <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="s6j-sT-RgF" style="IBUITableViewCellStyleDefault" id="zb5-cV-NJ9">
-                                        <rect key="frame" x="0.0" y="203" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="327" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="zb5-cV-NJ9" id="Sqb-zS-3bU">
                                             <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
@@ -181,25 +233,8 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="fSg-dj-doQ" style="IBUITableViewCellStyleDefault" id="qnT-Nk-bn0">
-                                        <rect key="frame" x="0.0" y="247" width="375" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="qnT-Nk-bn0" id="Qvu-ml-oJp">
-                                            <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Memorized Words" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fSg-dj-doQ">
-                                                    <rect key="frame" x="16" y="0.0" width="324" height="43.5"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" name="NotoSansChakma-Regular" family="Noto Sans Chakma" pointSize="20"/>
-                                                    <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="np5-Se-xZ7" style="IBUITableViewCellStyleDefault" id="mRF-Fi-QAt">
-                                        <rect key="frame" x="0.0" y="291" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="371" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="mRF-Fi-QAt" id="kS4-hG-hhW">
                                             <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
@@ -223,7 +258,7 @@
                             <outlet property="delegate" destination="3dH-ZD-CDb" id="0tr-fK-hCW"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Settings" id="jKQ-XB-baO"/>
+                    <navigationItem key="navigationItem" title="More" id="jKQ-XB-baO"/>
                     <connections>
                         <outlet property="memorizedWordsLabel" destination="fSg-dj-doQ" id="m3D-dz-bA7"/>
                         <outlet property="oCellPurchaseProduct" destination="2RD-Oj-OKD" id="rKj-d7-Ar9"/>
@@ -287,7 +322,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Bos-Kv-DEy">
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Bos-Kv-DEy" customClass="MOLHLabel" customModule="MOLH">
                                                     <rect key="frame" x="71" y="0.0" width="288" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" name="MyanmarSangamMN" family="Myanmar Sangam MN" pointSize="18"/>
@@ -429,7 +464,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="343" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="I remember this word" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="I4h-2Z-b3E">
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="I remember this word" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="I4h-2Z-b3E" customClass="MOLHLabel" customModule="MOLH">
                                                     <rect key="frame" x="74" y="0.0" width="266" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" name="MyanmarSangamMN" family="Myanmar Sangam MN" pointSize="18"/>
@@ -455,6 +490,7 @@
                         <outlet property="iMemorizedThisWordLabel" destination="I4h-2Z-b3E" id="yHt-y6-UNU"/>
                         <outlet property="rememberCell" destination="RcH-SQ-deS" id="gCt-r3-MDJ"/>
                         <outlet property="speakButton" destination="y8T-rI-l8V" id="IKN-eg-fgT"/>
+                        <outlet property="tableView" destination="o9B-gH-Xt2" id="HOZ-JQ-kMD"/>
                         <outlet property="translatedWordLabel" destination="4jh-LY-pf2" id="ios-cd-DPB"/>
                         <outlet property="wordInfoLabel" destination="wog-CR-eXg" id="VWF-PC-ePh"/>
                         <outlet property="wordLabel" destination="Ast-A1-YW4" id="5JO-bP-VtD"/>
@@ -514,7 +550,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="SearchWordCell" textLabel="fJ0-oh-uYc" rowHeight="54" style="IBUITableViewCellStyleDefault" id="Z1k-XN-4yU" customClass="SearchWordTableViewCell" customModule="English_Words" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="SearchWordCell" textLabel="fJ0-oh-uYc" detailTextLabel="sXN-vS-HI4" rowHeight="54" style="IBUITableViewCellStyleValue1" id="Z1k-XN-4yU" customClass="SearchWordTableViewCell" customModule="English_Words" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="54"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Z1k-XN-4yU" id="6zm-2s-Opz">
@@ -522,9 +558,16 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fJ0-oh-uYc">
-                                            <rect key="frame" x="16" y="0.0" width="324" height="53.5"/>
+                                            <rect key="frame" x="16" y="14" width="42.5" height="26.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" name="NotoSansChakma-Regular" family="Noto Sans Chakma" pointSize="22"/>
+                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="22"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="sXN-vS-HI4">
+                                            <rect key="frame" x="289.5" y="17" width="50.5" height="23"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="19"/>
+                                            <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -585,11 +628,11 @@
             </objects>
             <point key="canvasLocation" x="-417" y="-144"/>
         </scene>
-        <!--Settings-->
+        <!--More-->
         <scene sceneID="dde-zO-spA">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="wiC-gA-4Be" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Settings" image="settings25" id="yJE-VB-Cta"/>
+                    <tabBarItem key="tabBarItem" title="More" image="more" id="yJE-VB-Cta"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="Vke-Iu-mNR">
                         <rect key="frame" x="0.0" y="20" width="375" height="96"/>
@@ -614,13 +657,13 @@
         <image name="dictionary3" width="38.709678649902344" height="38.709678649902344"/>
         <image name="information" width="40" height="40"/>
         <image name="listening" width="30.769229888916016" height="30.769229888916016"/>
+        <image name="more" width="72" height="72"/>
         <image name="radioX" width="50" height="50"/>
         <image name="remeber" width="50" height="50"/>
         <image name="search" width="22" height="22.5"/>
-        <image name="settings25" width="40" height="40"/>
         <image name="translate" width="40" height="40"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="2W2-Vr-GN0"/>
+        <segue reference="X9d-wx-cTx"/>
     </inferredMetricsTieBreakers>
 </document>

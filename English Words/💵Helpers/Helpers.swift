@@ -70,7 +70,7 @@ class Helper{
     
     class func alert(title: String, message: String, viewController: UIViewController) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
+        let okAction = UIAlertAction(title: NSLocalizedString("ok", comment: ""), style: .default, handler: nil)
         alert.addAction(okAction)
         viewController.present(alert, animated: true, completion: nil)
     }

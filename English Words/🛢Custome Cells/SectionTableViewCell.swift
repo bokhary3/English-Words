@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MOLH
 
 protocol CustomHeaderDelegate: class {
     func didTapButton(in section: Int)
@@ -31,5 +32,18 @@ class SectionTableViewCell: UITableViewHeaderFooterView {
     }
     
     //MARK: Methods
-
+    override func prepareForReuse() {
+        if MOLHLanguage.isArabic() {
+            oBtnDropDown.setImage(#imageLiteral(resourceName: "arrow_right_ar"), for: .normal)
+        } else {
+             oBtnDropDown.setImage(#imageLiteral(resourceName: "arrow_right_en"), for: .normal)
+        }
+    }
+    override func awakeFromNib() {
+        if MOLHLanguage.isArabic() {
+            oBtnDropDown.setImage(#imageLiteral(resourceName: "arrow_right_ar"), for: .normal)
+        } else {
+            oBtnDropDown.setImage(#imageLiteral(resourceName: "arrow_right_en"), for: .normal)
+        }
+    }
 }

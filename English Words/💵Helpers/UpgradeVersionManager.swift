@@ -21,11 +21,11 @@ class UpgradeVersionManager {
     }
     
     func alertUpgardeMessage(message: String) {
-        let alert = UIAlertController(title: "Note", message: message, preferredStyle: .alert)
-        let upgradeAction = UIAlertAction(title: "Upgrade", style: .default) { (_) in
+        let alert = UIAlertController(title: message, message: "", preferredStyle: .alert)
+        let upgradeAction = UIAlertAction(title: NSLocalizedString("ugrade", comment: ""), style: .default) { (_) in
             self.verifyPurchase()
         }
-        alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
+        alert.addAction(UIAlertAction(title: NSLocalizedString("cancel", comment: ""), style: .default, handler: nil))
         alert.addAction(upgradeAction)
         
         viewController?.present(alert, animated: true, completion: nil)

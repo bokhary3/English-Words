@@ -12,5 +12,14 @@
 "mailWarning" = "من فضلك قم بضيط تطبيق البريد لارسال تقييمك";
 "Oops" = "أووبس!";
 "upgradeMessage" =  "قم بتنزيل النسخه الكامله للتطبيق، حيث ستحصل على كل المميزات، بدون إعلانات، البحث عن كلمة معينة، أيضا ميزة قراءة الكلمات.";
-"restoreUpgradeMessage" = "يمكنك الرجوع إلي النخسة العادية";
+"restoreUpgradeMessage" = "يمكنك إستعادة الترقية";
 "yesImemorizeIt" = "نعم، أحفظها.";
+"upgradeSearchFeature" = "ترقية الإصدار لاستخدام ميزة البحث";
+"ugrade" = "ترقية";
+"cancel" = "إلغاء";
+"ok" = "تم";
+"memorizedWords" = "الكلمات المحفوظة";
+"dontMemorizeAnyWord" = "لا يوجد كلمات محفوظة إلي الآن!";
+"upgradeGoogleTranslateFeature" = "يمكن ترقية الإصدار لاستخدام ميزة ترجمة جوجل";
+"upgradeSpeakFeature" = "ترقية الإصدار لاستخدام ميزة نطق الكلمات";
+"Back" = "الخلف";

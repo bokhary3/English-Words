@@ -10,7 +10,7 @@ import Foundation
 
 struct Constants {
     static let englishFileName = "English_Words"//"Words_English"
-    
+    static let productPath = "http://itunes.apple.com/app/id1332815701"
     struct StoryboardIds {
         static let mainSB = "Main"
         static let searchResultTVC = "SearchResultTVC"
