@@ -109,7 +109,6 @@ class MainTableViewController: UITableViewController {
         
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = true
-        
     }
     
     func refreshUI() {
@@ -161,8 +160,14 @@ class MainTableViewController: UITableViewController {
             headerView.oBtnDropDown.rotate(collapsedAngle)
         }
         if char.words.count > 0 {
-            let mutableAttributed = NSMutableAttributedString(string: "\(char.words[0].title.capitalized.first!)", attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
-            let attributedString = NSAttributedString(string: " (\(char.words.count))", attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray])
+            var black = UIColor.black
+            var gray = UIColor.gray
+            if #available(iOS 13, *) {
+                black = UIColor.label
+                gray = UIColor.systemGray
+            }
+            let mutableAttributed = NSMutableAttributedString(string: "\(char.words[0].title.capitalized.first!)", attributes: [NSAttributedString.Key.foregroundColor: black])
+            let attributedString = NSAttributedString(string: " (\(char.words.count))", attributes: [NSAttributedString.Key.foregroundColor: gray])
             mutableAttributed.append(attributedString)
             headerView.oLblSectionTitle.attributedText = mutableAttributed
         }
@@ -228,15 +233,11 @@ extension MainTableViewController: GADBannerViewDelegate {
 extension MainTableViewController {
     func openSectionOf(char: Char, section: Int) {
         char.isExpanded = !char.isExpanded
-        let viewHeader = tableView.headerView(forSection: section) as! SectionTableViewCell
         if char.isExpanded {
-//            viewHeader.oBtnDropDown.rotate(.pi/2)
             self.tableView.reloadSections(
                 [section], with: UITableViewRowAnimation.automatic)
             tableView.scrollToRow(at: [section, 0], at: .middle, animated: true)
         } else {
-//            let collapsedAngle: CGFloat = MOLHLanguage.isArabic() ? .pi/2 : 0
-//            viewHeader.oBtnDropDown.rotate(collapsedAngle)
             self.tableView.reloadSections(
                 [section], with: UITableViewRowAnimation.automatic)
         }

@@ -26,6 +26,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         MOLH.shared.activate(true)
         MOLH.shared.specialKeyWords = ["cancel" ,"Done", "Back"]
+        var black = UIColor.black
+        if #available(iOS 13, *) {
+            black = .label
+        }
+        UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: black]
         return true
     }
     
