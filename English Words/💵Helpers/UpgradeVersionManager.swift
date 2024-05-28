@@ -60,7 +60,7 @@ class UpgradeVersionManager {
             switch result {
             case .success(let purchase):
                 Analytics.logEvent("Purchase", parameters: ["action": "Buy Product \(product.price)"])
-                self.relaunchApp(title: "", message: "Purchase Success: \(purchase.productId)")
+                self.relaunchApp(title: "Thanks 😽".localized, message: "Thanks for your generosity.".localized)
 //                self.saveProductPurchaseStatus()
                 print("Purchase Success: \(purchase.productId)")
             case .error(let error):
@@ -106,10 +106,10 @@ class UpgradeVersionManager {
         
         let okAction = UIAlertAction(title: "Ok", style: .default, handler: {
             _ in
-            Constants.fromPurchaseProcess = true
-            let homeVC = Initializer.createVCWith(identifier: Constants.StoryboardIds.homeNC)
-            Initializer.getAppdelegate().window?.rootViewController = homeVC
-            UIView.transition(with: Initializer.getAppdelegate().window!, duration: 0.2, options: .transitionFlipFromLeft, animations: nil, completion: nil)
+//            Constants.fromPurchaseProcess = true
+//            let homeVC = Initializer.createVCWith(identifier: Constants.StoryboardIds.homeNC)
+//            Initializer.getAppdelegate().window?.rootViewController = homeVC
+//            UIView.transition(with: Initializer.getAppdelegate().window!, duration: 0.2, options: .transitionFlipFromLeft, animations: nil, completion: nil)
         })
         alert.addAction(okAction)
         

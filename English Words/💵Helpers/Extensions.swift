@@ -60,3 +60,8 @@ extension UILabel{
         return label.frame.height
     }
 }
+extension String {
+    var localized: String {
+        return NSLocalizedString(self, comment: self)
+    }
+}
