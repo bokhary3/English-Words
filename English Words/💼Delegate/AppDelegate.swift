@@ -8,7 +8,6 @@
 
 import UIKit
 import CoreData
-import GoogleMobileAds
 import SwiftyStoreKit
 import Firebase
 import MOLH
@@ -57,7 +56,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     private func setup() {
         FirebaseApp.configure()
-        GADMobileAds.configure(withApplicationID: Constants.Keys.adMobAPIKey)
     }
 
     func applicationWillTerminate(_ application: UIApplication) {

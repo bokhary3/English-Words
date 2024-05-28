@@ -21,6 +21,7 @@ class UserStatus {
     }
     
     static var productPurchased: Bool {
+        return true
         let keychain = Keychain(service: Constants.PurchaseData.productID)
         // if there is value correspond to the productIdentifier key in the keychain
         let value = try? keychain.get(Constants.UserData.productPurchasedKey) ?? ""

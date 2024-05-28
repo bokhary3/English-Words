@@ -33,7 +33,7 @@ class SearchResultTableViewController: UITableViewController {
         let screenClass = classForCoder.description()
         
         // [START set_current_screen]
-        Analytics.setScreenName(screenName, screenClass: screenClass)
+        Analytics.logEvent(screenName, parameters: ["class": screenClass])
         // [END set_current_screen]
     }
     //MARK: Outlets

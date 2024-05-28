@@ -8,7 +8,6 @@
 
 import UIKit
 import CoreData
-import GoogleMobileAds
 import FirebaseAnalytics
 import MOLH
 
@@ -19,11 +18,7 @@ protocol WordsDelegate: AnyObject {
 class MainTableViewController: UITableViewController {
     
     //MARK: Variables
-    
-    var bannerView: GADBannerView!
-    var interstitial: GADInterstitial!
     var searchController = UISearchController(searchResultsController: nil)
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,7 +42,7 @@ class MainTableViewController: UITableViewController {
         let screenClass = classForCoder.description()
         
         // [START set_current_screen]
-        Analytics.setScreenName(screenName, screenClass: screenClass)
+        Analytics.logEvent(screenName, parameters: ["class": screenClass])
         // [END set_current_screen]
     }
     //MARK: Outlets
@@ -79,22 +74,8 @@ class MainTableViewController: UITableViewController {
     }
     func setTableViewHeader() {
         // create banner view
-        if !UserStatus.productPurchased {
-            let bannerSize = UIDevice.current.userInterfaceIdiom == .phone ? kGADAdSizeBanner : kGADAdSizeLeaderboard
-            bannerView = GADBannerView(adSize: bannerSize)
-            bannerView.adUnitID = Constants.Keys.adMobBannerUnitID
-            bannerView.rootViewController = self
-            bannerView.delegate = self
-            self.tableView.tableHeaderView = bannerView
-            self.bannerView.load(GADRequest())
-            
-            // create interstistial
-            interstitial = self.createAndLoadInterstitial()
-        }
-        else{
-            // setup search bar
-            setupSearchBar()
-        }
+        // setup search bar
+        setupSearchBar()
     }
     
     func setupSearchBar(){
@@ -178,7 +159,6 @@ class MainTableViewController: UITableViewController {
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let word = viewModel.wordOf(indexPath: indexPath)
-        showAdsBanner()
         performSegue(withIdentifier: "showWordDetails", sender: word)
     }
     
@@ -195,40 +175,6 @@ class MainTableViewController: UITableViewController {
     
     
 }
-extension MainTableViewController: GADBannerViewDelegate {
-    /// Tells the delegate an ad request loaded an ad.
-    func adViewDidReceiveAd(_ bannerView: GADBannerView) {
-        print("adViewDidReceiveAd")
-    }
-    
-    /// Tells the delegate an ad request failed.
-    func adView(_ bannerView: GADBannerView,
-                didFailToReceiveAdWithError error: GADRequestError) {
-        print("adView:didFailToReceiveAdWithError: \(error.localizedDescription)")
-    }
-    
-    /// Tells the delegate that a full-screen view will be presented in response
-    /// to the user clicking on an ad.
-    func adViewWillPresentScreen(_ bannerView: GADBannerView) {
-        print("adViewWillPresentScreen")
-    }
-    
-    /// Tells the delegate that the full-screen view will be dismissed.
-    func adViewWillDismissScreen(_ bannerView: GADBannerView) {
-        print("adViewWillDismissScreen")
-    }
-    
-    /// Tells the delegate that the full-screen view has been dismissed.
-    func adViewDidDismissScreen(_ bannerView: GADBannerView) {
-        print("adViewDidDismissScreen")
-    }
-    
-    /// Tells the delegate that a user click will open another app (such as
-    /// the App Store), backgrounding the current app.
-    func adViewWillLeaveApplication(_ bannerView: GADBannerView) {
-        print("adViewWillLeaveApplication")
-    }
-}
 
 extension MainTableViewController {
     func openSectionOf(char: Char, section: Int) {
@@ -242,33 +188,8 @@ extension MainTableViewController {
                 [section], with: UITableViewRowAnimation.automatic)
         }
     }
-    
-    func showAdsBanner() {
-        if !UserStatus.productPurchased {
-            if viewModel.adsClicksCount % 8 == 0 && viewModel.adsClicksCount != 0 {
-                if interstitial.isReady {
-                    interstitial.present(fromRootViewController: self)
-                } else {
-                    print("Ad wasn't ready")
-                }
-            }
-            viewModel.adsClicksCount += 1
-        }
-    }
 }
 
-extension MainTableViewController: GADInterstitialDelegate {
-    func createAndLoadInterstitial() -> GADInterstitial {
-        let interstitial = GADInterstitial(adUnitID: Constants.Keys.adMobInterstitial)
-        interstitial.delegate = self
-        interstitial.load(GADRequest())
-        return interstitial
-    }
-    
-    func interstitialDidDismissScreen(_ ad: GADInterstitial) {
-        interstitial = createAndLoadInterstitial()
-    }
-}
 extension MainTableViewController: UISearchBarDelegate {
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         let searchResultVC = self.searchController.searchResultsController as! SearchResultTableViewController
@@ -294,7 +215,6 @@ extension MainTableViewController: ViewModelDelegate {
 
 extension MainTableViewController: CustomHeaderDelegate {
     func didTapButton(in section: Int) {
-        showAdsBanner()
         let char  = viewModel.charOfSection(section: section)
         if char.words.count > 0 {
             openSectionOf(char: char, section: section)

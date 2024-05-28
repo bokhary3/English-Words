@@ -9,7 +9,6 @@
 import UIKit
 import CoreData
 import AVFoundation
-import GoogleMobileAds
 import FirebaseAnalytics
 import MOLH
 
@@ -32,15 +31,11 @@ class WordDetailsTableViewController: UITableViewController {
     @IBOutlet weak var translatedWordLabel: UILabel!
     
     
-    //MARK: View lifcycle methods
+    //MARK: View lifecycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         // setup views
         setupViews()
-        
-        addADSBanner()
-        
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
@@ -54,16 +49,25 @@ class WordDetailsTableViewController: UITableViewController {
         let screenClass = classForCoder.description()
         
         // [START set_current_screen]
-        Analytics.setScreenName(screenName, screenClass: screenClass)
+        Analytics.logEvent(screenName, parameters: ["class": screenClass])
         // [END set_current_screen]
     }
     
     //MARK: Actions
     @IBAction func speakWordButtonTapped(_ sender: UIButton) {
         if UserStatus.productPurchased {
+            let audioSession = AVAudioSession() // 2) handle audio session first, before trying to read the text
+            do {
+                try audioSession.setCategory(AVAudioSessionCategoryPlayback, mode: AVAudioSessionModeDefault, options: .duckOthers)
+                try audioSession.setActive(false)
+            } catch let error {
+                print("❓", error.localizedDescription)
+            }
             let utterance = AVSpeechUtterance(string: self.wordLabel.text ?? "")
+            let voice = AVSpeechSynthesisVoice(language: "en-US")
+            utterance.voice = voice
             self.speechSynthesizer.speak(utterance)
-            Analytics.logEvent("Word Details", parameters: ["speak_word" : word.title])
+            Analytics.logEvent("Word_Details", parameters: ["speak_word" : word.title.replacingOccurrences(of: " ", with: "_")])
         } else {
             let upgradeManager = UpgradeVersionManager(viewController: self)
             upgradeManager.alertUpgardeMessage(message: NSLocalizedString("upgradeSpeakFeature", comment: ""))
@@ -72,6 +76,37 @@ class WordDetailsTableViewController: UITableViewController {
     }
     
     //MARK: Methods
+    func chooseSpeechVoices() -> [AVSpeechSynthesisVoice] {
+        // List all available voices in en-US language
+        let voices = AVSpeechSynthesisVoice.speechVoices()
+            .filter({$0.language == "en-US"})
+        
+        // split male/female voices
+        let maleVoices = voices.filter({$0.gender == .male})
+        let femaleVoices = voices.filter({$0.gender == .female})
+        
+        // pick voices
+        let selectedMaleVoice = maleVoices.first(where: {if #available(iOS 16.0, *) {
+            $0.quality == .premium
+        } else {
+            // Fallback on earlier versions
+            $0.quality == .enhanced
+        }}) ?? maleVoices.first // premium is only available from iOS 16
+        let selectedFemaleVoice = femaleVoices.first(where: {$0.quality == .enhanced}) ?? femaleVoices.first
+        
+        //
+        //        if selectedMaleVoice == nil && selectedFemaleVoice == nil {
+        //            showAlert("Text to speech feature is not available on your device")
+        //        } else if selectedMaleVoice == nil {
+        //            showAlert("Text to speech with Male voice is not available on your device")
+        //        } else if selectedFemaleVoice == nil {
+        //            showAlert("Text to speech with Female voice is not available on your device")
+        //        }
+        if let selectedMaleVoice, let selectedFemaleVoice {
+            return [selectedMaleVoice, selectedFemaleVoice]
+        }
+        return []
+    }
     func setupViews() {
         
         self.speechSynthesizer.delegate = self
@@ -89,23 +124,6 @@ class WordDetailsTableViewController: UITableViewController {
         wordInfoLabel.textLabel?.sizeToFit()
         
         setMemorizeText()
-    }
-    
-    func addADSBanner() {
-        if !UserStatus.productPurchased {
-            // add banner view
-            let bannerSize = UIDevice.current.userInterfaceIdiom == .phone ? kGADAdSizeLargeBanner : kGADAdSizeLeaderboard
-            let bannerView = GADBannerView(adSize: bannerSize)
-            bannerView.adUnitID = Constants.Keys.adMobBannerUnitID
-            bannerView.rootViewController = self
-            bannerView.delegate = self
-            
-            tableView.tableFooterView = bannerView
-            bannerView.load(GADRequest())
-        }
-        else{
-            // setup search bar
-        }
     }
     func openWebViewController(urlPath: String) {
         let url = URL(string: urlPath)
@@ -175,14 +193,14 @@ extension WordDetailsTableViewController {
         default:
             break
         }
-        Analytics.logEvent("Word Details", parameters: ["word_in_dictionary" : urlPath])
+        Analytics.logEvent("Word_Details", parameters: ["word_in_dictionary" : urlPath])
         openWebViewController(urlPath: urlPath)
     }
     
     func translateByGoogle() {
         if UserStatus.productPurchased {
             let urlPath = Constants.WebSites.googleTranslate + word.title
-            Analytics.logEvent("Word Details", parameters: ["translate_by_word" : urlPath])
+            Analytics.logEvent("Word_Details", parameters: ["translate_by_word" : urlPath])
             openWebViewController(urlPath: urlPath)
         } else {
             let upgradeManager = UpgradeVersionManager(viewController: self)
@@ -191,7 +209,7 @@ extension WordDetailsTableViewController {
     }
     func listenToTheWord() {
         let urlPath = Constants.WebSites.youGlish + word.title
-        Analytics.logEvent("Word Details", parameters: ["Listen_to_word" : urlPath])
+        Analytics.logEvent("Word_Details", parameters: ["Listen_to_word" : urlPath])
         openWebViewController(urlPath: urlPath)
     }
     
@@ -223,39 +241,5 @@ extension WordDetailsTableViewController: AVSpeechSynthesizerDelegate {
     
     func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {
         self.speakButton.isEnabled = true
-    }
-}
-extension WordDetailsTableViewController: GADBannerViewDelegate {
-    /// Tells the delegate an ad request loaded an ad.
-    func adViewDidReceiveAd(_ bannerView: GADBannerView) {
-        print("adViewDidReceiveAd")
-    }
-    
-    /// Tells the delegate an ad request failed.
-    func adView(_ bannerView: GADBannerView,
-                didFailToReceiveAdWithError error: GADRequestError) {
-        print("adView:didFailToReceiveAdWithError: \(error.localizedDescription)")
-    }
-    
-    /// Tells the delegate that a full-screen view will be presented in response
-    /// to the user clicking on an ad.
-    func adViewWillPresentScreen(_ bannerView: GADBannerView) {
-        print("adViewWillPresentScreen")
-    }
-    
-    /// Tells the delegate that the full-screen view will be dismissed.
-    func adViewWillDismissScreen(_ bannerView: GADBannerView) {
-        print("adViewWillDismissScreen")
-    }
-    
-    /// Tells the delegate that the full-screen view has been dismissed.
-    func adViewDidDismissScreen(_ bannerView: GADBannerView) {
-        print("adViewDidDismissScreen")
-    }
-    
-    /// Tells the delegate that a user click will open another app (such as
-    /// the App Store), backgrounding the current app.
-    func adViewWillLeaveApplication(_ bannerView: GADBannerView) {
-        print("adViewWillLeaveApplication")
     }
 }

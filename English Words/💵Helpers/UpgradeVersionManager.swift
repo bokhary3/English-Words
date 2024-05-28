@@ -33,7 +33,7 @@ class UpgradeVersionManager {
     
     func verifyPurchase() {
         Loader.show(view: viewController!.view)
-        SwiftyStoreKit.retrieveProductsInfo([Constants.PurchaseData.productID]) { result in
+        SwiftyStoreKit.retrieveProductsInfo([Constants.PurchaseData.buyMeCoffeeProductId]) { result in
             Loader.hide(view: self.viewController!.view)
             if let product = result.retrievedProducts.first {
                 let priceString = product.localizedPrice!
@@ -61,7 +61,7 @@ class UpgradeVersionManager {
             case .success(let purchase):
                 Analytics.logEvent("Purchase", parameters: ["action": "Buy Product \(product.price)"])
                 self.relaunchApp(title: "", message: "Purchase Success: \(purchase.productId)")
-                self.saveProductPurchaseStatus()
+//                self.saveProductPurchaseStatus()
                 print("Purchase Success: \(purchase.productId)")
             case .error(let error):
                 switch error.code {
@@ -93,7 +93,7 @@ class UpgradeVersionManager {
             } else if results.restoredPurchases.count > 0 {
                 Analytics.logEvent("Purchase", parameters: ["action": "Restore Product \(results.restoredPurchases.count)"])
 //                self.removeProductPurchaseStatus()
-                self.saveProductPurchaseStatus()
+//                self.saveProductPurchaseStatus()
                 self.relaunchApp(title: "Purchases Restored", message: "All purchases have been restored",productPurchased: false)
             } else {
                 Alert.alert(title: "Nothing to restore", message: "No previous purchases were found", alertActionTitle: "Ok")

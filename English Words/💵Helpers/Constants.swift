@@ -37,6 +37,7 @@ struct Constants {
     
     struct PurchaseData {
         static let productID = "bokhary.All.English.Words.RemoveAds"
+        static let buyMeCoffeeProductId = "bokhary.All.English.Words.buyMeCoffee"
     }
     
     static var fromPurchaseProcess = false

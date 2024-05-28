@@ -41,12 +41,12 @@ class SettingsTableViewController: UITableViewController {
         let screenClass = classForCoder.description()
         
         // [START set_current_screen]
-        Analytics.setScreenName(screenName, screenClass: screenClass)
+        Analytics.logEvent(screenName, parameters: ["class": screenClass])
         // [END set_current_screen]
     }
     //MARK: Outlets
     @IBOutlet weak var oCellPurchaseProduct: UITableViewCell!
-    @IBOutlet weak var oCellRestore: UITableViewCell!
+//    @IBOutlet weak var oCellRestore: UITableViewCell!
     @IBOutlet weak var memorizedWordsLabel: UILabel!
     //MARK: Actions
     
@@ -84,19 +84,19 @@ class SettingsTableViewController: UITableViewController {
     
     // MARK: - Table view data source
     
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
-    }
-    
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
-            return 2
-        } else if section == 1 {
-            return 1
-        }
-        return 4
-    }
-    
+//    override func numberOfSections(in tableView: UITableView) -> Int {
+//        return 3
+//    }
+//    
+//    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        if section == 0 {
+//            return 2
+//        } else if section == 1 {
+//            return 1
+//        }
+//        return 4
+//    }
+//    
     fileprivate func changeLanguage() {
         let alert = UIAlertController(title: NSLocalizedString("selectYourLanguage", comment: ""), message: "", preferredStyle: .alert)
         let englishAction = UIAlertAction(title: "English", style: .default) { (_) in
@@ -126,9 +126,9 @@ class SettingsTableViewController: UITableViewController {
             if indexPath.row == 0 { // upgrade
                 upgradeVersionManager.verifyPurchase()
             }
-            else if indexPath.row == 1 { //restore
-                upgradeVersionManager.restorePurchase()
-            }
+//            else if indexPath.row == 1 { //restore
+//                upgradeVersionManager.restorePurchase()
+//            }
         } else if indexPath.section == 1 {
             if indexPath.row == 0 {
                 performSegue(withIdentifier: "showMemorizedWords", sender: nil)
@@ -159,17 +159,14 @@ class SettingsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if section == 0 {
-            if UserStatus.productPurchased {
-                return NSLocalizedString("restoreUpgradeMessage", comment: "")
-            }
-            return NSLocalizedString("upgradeMessage", comment: "")
+            return "Tips"
         } else if section == 2 {
             return "English Words"
         }
         return ""
     }
     override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        let headerTitle =  UserStatus.productPurchased ? NSLocalizedString("restoreUpgradeMessage", comment: "") : NSLocalizedString("upgradeMessage", comment: "")
+        let headerTitle =  "Tips"//UserStatus.productPurchased ? NSLocalizedString("restoreUpgradeMessage", comment: "") : NSLocalizedString("upgradeMessage", comment: "")
         
         guard let tableViewHeaderFooterView = view as? UITableViewHeaderFooterView
             else { return }
